@@ -525,7 +525,35 @@ services.forEach(service => {
 
 });
 
-</script>
 
+const reserveButton = document.querySelector('.btn');
+
+reserveButton.addEventListener('click', () => {
+
+  const selected = document.querySelector('.service.selected');
+
+  if (!selected) {
+    alert('Por favor selecciona un servicio.');
+    return;
+  }
+
+  const serviceName =
+    selected.querySelector('.service-name').innerText;
+
+  const price =
+    selected.querySelector('.price').innerText;
+
+  alert(
+    'Servicio seleccionado:\n\n' +
+    serviceName +
+    '\n' +
+    price +
+    '\n\n' +
+    '¡Perfecto! Ahora vamos a elegir fecha y hora.'
+  );
+
+});
+
+</script>
 </body>
 </html>
