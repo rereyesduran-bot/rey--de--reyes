@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Rey de Reyes | Barbería</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+:root{
+  --negro:#080808;
+  --negro2:#11110f;
+  --card:#161614;
+  --dorado:#d7b56d;
+  --dorado-claro:#f0d99d;
+  --blanco:#f8f6f1;
+  --gris:#aaa79e;
+  --linea:#2b2924;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  background:
+    radial-gradient(circle at 50% -10%,#3b301d 0%,transparent 35%),
+    var(--negro);
+  color:var(--blanco);
+  font-family:'DM Sans',sans-serif;
+}
+
+.container{
+  width:min(100%,520px);
+  margin:auto;
+  padding:22px 17px 45px;
+}
+
+/* LOGO */
+
+header{
+  text-align:center;
+  padding:20px 0 25px;
+}
+
+.logo{
+  width:92px;
+  height:92px;
+  margin:auto;
+  border:1px solid var(--dorado);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--dorado-claro);
+  font-weight:700;
+  font-size:12px;
+  letter-spacing:2px;
+  line-height:1.4;
+  box-shadow:0 0 35px #d7b56d18;
+}
+
+header h1{
+  font-family:'Playfair Display',serif;
+  font-size:31px;
+  letter-spacing:4px;
+  margin-top:15px;
+}
+
+header p{
+  color:var(--gris);
+  font-size:11px;
+  letter-spacing:3px;
+  margin-top:5px;
+}
+
+/* TARJETA */
+
+.card{
+  background:linear-gradient(145deg,#191917,#11110f);
+  border:1px solid var(--linea);
+  border-radius:22px;
+  padding:21px;
+  margin-bottom:15px;
+  box-shadow:0 15px 40px #00000050;
+}
+
+.card-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:5px;
+}
+
+.card-title h2{
+  font-size:16px;
+}
+
+.gold{
+  color:var(--dorado-claro);
+}
+
+.muted{
+  color:var(--gris);
+  font-size:12px;
+}
+
+/* CUPON */
+
+.membership{
+  position:relative;
+  overflow:hidden;
+}
+
+.membership:after{
+  content:"REY DE REYES";
+  position:absolute;
+  right:-25px;
+  bottom:7px;
+  font-size:36px;
+  font-weight:700;
+  color:#ffffff04;
+  transform:rotate(-12deg);
+}
+
+.member-label{
+  color:var(--dorado);
+  font-size:10px;
+  letter-spacing:3px;
+  font-weight:700;
+}
+
+.stamps{
+  display:flex;
+  gap:9px;
+  margin:18px 0;
+}
+
+.stamp{
+  height:45px;
+  flex:1;
+  border-radius:13px;
+  border:1px solid #4b412e;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#686257;
+  font-size:17px;
+}
+
+.stamp.active{
+  background:linear-gradient(145deg,#e1c47d,#a9813c);
+  color:#111;
+  border-color:#e5c985;
+}
+
+.progress{
+  height:6px;
+  background:#2a2823;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.progress div{
+  width:20%;
+  height:100%;
+  background:linear-gradient(90deg,var(--dorado),var(--dorado-claro));
+}
+
+.member-message{
+  margin-top:12px;
+  color:#bbb5a9;
+  font-size:12px;
+  line-height:1.5;
+}
+
+/* SERVICIOS */
+
+.service{
+  border:1px solid var(--linea);
+  border-radius:15px;
+  padding:15px;
+  margin-top:9px;
+  cursor:pointer;
+  transition:.25s;
+}
+
+.service:hover,
+.service.selected{
+  border-color:var(--dorado);
+  background:#211c13;
+  transform:translateY(-1px);
+}
+
+.service-top{
+  display:flex;
+  justify-content:space-between;
+}
+
+.service-name{
+  font-weight:700;
+}
+
+.price{
+  color:var(--dorado-claro);
+  font-weight:700;
+}
+
+.service-info{
+  color:var(--gris);
+  font-size:11px;
+  margin-top:5px;
+}
+
+/* BOTONES */
+
+.btn{
+  width:100%;
+  border:0;
+  border-radius:14px;
+  padding:15px;
+  margin-top:15px;
+  background:linear-gradient(100deg,#b48d47,#efd38c);
+  color:#111;
+  font-weight:700;
+  font-size:13px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 25px #d7b56d25;
+}
+
+.btn-outline{
+  background:transparent;
+  border:1px solid #675737;
+  color:var(--dorado-claro);
+}
+
+/* UBICACION */
+
+.location{
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+
+.location-icon{
+  width:45px;
+  height:45px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
+  background:#211c13;
+  color:var(--dorado);
+  font-size:20px;
+}
+
+.location h3{
+  font-size:14px;
+}
+
+.location p{
+  color:var(--gris);
+  font-size:12px;
+  margin-top:3px;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+  border:1px solid #293b2c;
+  background:#111812;
+}
+
+.whatsapp .phone{
+  color:#9ac79d;
+  font-weight:600;
+}
+
+/* FOOTER */
+
+footer{
+  text-align:center;
+  color:#696761;
+  font-size:10px;
+  letter-spacing:1px;
+  padding-top:10px;
+}
+
+/* DESKTOP */
+
+@media(min-width:700px){
+  body{
+    padding:30px 0;
+  }
+
+  .container{
+    width:520px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+  <div class="logo">
+    REY<br>
+    DE<br>
+    REYES
+  </div>
+
+  <h1>REY DE REYES</h1>
+
+  <p>BARBERÍA · RESERVA TU HORA</p>
+</header>
+
+
+<!-- FIDELIDAD -->
+
+<section class="card membership">
+
+  <div class="member-label">
+    MEMBERS CLUB
+  </div>
+
+  <div class="card-title">
+    <h2>🎟️ Tu tarjeta de fidelidad</h2>
+    <strong class="gold">1 / 5</strong>
+  </div>
+
+  <p class="muted">
+    Tu quinto corte es gratis
+  </p>
+
+  <div class="stamps">
+
+    <div class="stamp active">✂</div>
+    <div class="stamp">✂</div>
+    <div class="stamp">✂</div>
+    <div class="stamp">✂</div>
+    <div class="stamp">🎁</div>
+
+  </div>
+
+  <div class="progress">
+    <div></div>
+  </div>
+
+  <p class="member-message">
+    ¡Ya tienes tu primer corte registrado!
+    Completa 4 cortes más y desbloquea tu beneficio.
+  </p>
+
+</section>
+
+
+<!-- RESERVA -->
+
+<section class="card">
+
+  <div class="card-title">
+    <h2>✂️ Reserva tu hora</h2>
+  </div>
+
+  <p class="muted">
+    Selecciona el servicio que quieres reservar.
+  </p>
+
+
+  <div class="service selected">
+
+    <div class="service-top">
+      <span class="service-name">✂️ Corte</span>
+      <span class="price">$10.000</span>
+    </div>
+
+    <div class="service-info">
+      1 hora · Corte clásico o moderno
+    </div>
+
+  </div>
+
+
+  <div class="service">
+
+    <div class="service-top">
+      <span class="service-name">🧔 Corte + barba</span>
+      <span class="price">$12.000</span>
+    </div>
+
+    <div class="service-info">
+      1 hora · Corte + arreglo de barba
+    </div>
+
+  </div>
+
+
+  <div class="service">
+
+    <div class="service-top">
+      <span class="service-name">🪒 Perfilado de cejas</span>
+      <span class="price">$2.000</span>
+    </div>
+
+    <div class="service-info">
+      Perfilado de cejas
+    </div>
+
+  </div>
+
+
+  <div class="service">
+
+    <div class="service-top">
+      <span class="service-name">🎒 Corte escolar</span>
+      <span class="price">$6.000</span>
+    </div>
+
+    <div class="service-info">
+      Corte escolar · 1 hora
+    </div>
+
+  </div>
+
+
+  <button class="btn">
+    CONTINUAR CON LA RESERVA →
+  </button>
+
+</section>
+
+
+<!-- UBICACION -->
+
+<section class="card">
+
+  <div class="card-title">
+    <h2>📍 Encuéntranos</h2>
+  </div>
+
+  <div class="location">
+
+    <div class="location-icon">
+      📍
+    </div>
+
+    <div>
+      <h3>Rey de Reyes · Barbería</h3>
+      <p>
+        María Cristina 6600<br>
+        La Florida, Santiago
+      </p>
+    </div>
+
+  </div>
+
+  <button
+    class="btn btn-outline"
+    onclick="window.open('https://www.google.com/maps/search/?api=1&query=Maria+Cristina+6600+La+Florida+Santiago','_blank')">
+
+    📍 CÓMO LLEGAR
+
+  </button>
+
+</section>
+
+
+<!-- WHATSAPP -->
+
+<section class="card whatsapp">
+
+  <div class="card-title">
+    <h2>📲 ¿Necesitas ayuda?</h2>
+  </div>
+
+  <p class="muted">
+    También puedes contactarnos directamente.
+  </p>
+
+  <p class="phone" style="margin-top:12px;">
+    +56 9 4961 6687
+  </p>
+
+  <button
+    class="btn"
+    onclick="window.open('https://wa.me/56949616687','_blank')">
+
+    ABRIR WHATSAPP
+
+  </button>
+
+</section>
+
+
+<footer>
+  REY DE REYES · BARBERÍA
+</footer>
+
+</div>
+
+
+<script>
+
+const services = document.querySelectorAll('.service');
+
+services.forEach(service => {
+
+  service.addEventListener('click', () => {
+
+    services.forEach(s => s.classList.remove('selected'));
+
+    service.classList.add('selected');
+
+  });
+
+});
+
+</script>
+
+</body>
+</html>
