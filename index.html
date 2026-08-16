@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Rey de Reyes | Barbería</title>
 
 <style>
+
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
 
 :root{
@@ -78,7 +82,7 @@ header p{
   margin-top:5px;
 }
 
-/* TARJETA */
+/* TARJETAS */
 
 .card{
   background:linear-gradient(145deg,#191917,#11110f);
@@ -243,6 +247,93 @@ header p{
   color:var(--dorado-claro);
 }
 
+/* RESERVA */
+
+.booking-box{
+  display:none;
+}
+
+.date-input{
+  width:100%;
+  margin-top:15px;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid #3a352c;
+  background:#11110f;
+  color:#f8f6f1;
+  font-family:inherit;
+  font-size:14px;
+  outline:none;
+}
+
+.date-input:focus{
+  border-color:var(--dorado);
+}
+
+.day-message{
+  margin-top:12px;
+  color:var(--gris);
+  font-size:12px;
+  line-height:1.5;
+}
+
+.time-section{
+  display:none;
+  margin-top:22px;
+}
+
+.time-section h3{
+  font-size:14px;
+  margin-bottom:12px;
+}
+
+.time-options{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px;
+}
+
+.time-button{
+  padding:13px 8px;
+  border-radius:12px;
+  border:1px solid #3a352c;
+  background:#171613;
+  color:#f8f6f1;
+  cursor:pointer;
+  font-family:inherit;
+  font-size:13px;
+  transition:.2s;
+}
+
+.time-button:hover{
+  border-color:var(--dorado);
+  transform:translateY(-1px);
+}
+
+.time-button.selected{
+  border-color:var(--dorado);
+  background:#211c13;
+  color:var(--dorado-claro);
+}
+
+.selected-summary{
+  display:none;
+  margin-top:18px;
+  padding:14px;
+  border-radius:14px;
+  border:1px solid #4b412e;
+  background:#171613;
+}
+
+.selected-summary strong{
+  color:var(--dorado-claro);
+}
+
+.booking-confirm{
+  display:none;
+  margin-top:12px;
+}
+
 /* UBICACION */
 
 .location{
@@ -297,6 +388,7 @@ footer{
 /* DESKTOP */
 
 @media(min-width:700px){
+
   body{
     padding:30px 0;
   }
@@ -304,8 +396,11 @@ footer{
   .container{
     width:520px;
   }
+
 }
+
 </style>
+
 </head>
 
 <body>
@@ -313,6 +408,7 @@ footer{
 <div class="container">
 
 <header>
+
   <div class="logo">
     REY<br>
     DE<br>
@@ -322,6 +418,7 @@ footer{
   <h1>REY DE REYES</h1>
 
   <p>BARBERÍA · RESERVA TU HORA</p>
+
 </header>
 
 
@@ -334,8 +431,11 @@ footer{
   </div>
 
   <div class="card-title">
+
     <h2>🎟️ Tu tarjeta de fidelidad</h2>
+
     <strong class="gold">1 / 5</strong>
+
   </div>
 
   <p class="muted">
@@ -345,9 +445,13 @@ footer{
   <div class="stamps">
 
     <div class="stamp active">✂</div>
+
     <div class="stamp">✂</div>
+
     <div class="stamp">✂</div>
+
     <div class="stamp">✂</div>
+
     <div class="stamp">🎁</div>
 
   </div>
@@ -369,7 +473,9 @@ footer{
 <section class="card">
 
   <div class="card-title">
+
     <h2>✂️ Reserva tu hora</h2>
+
   </div>
 
   <p class="muted">
@@ -380,8 +486,15 @@ footer{
   <div class="service selected">
 
     <div class="service-top">
-      <span class="service-name">✂️ Corte</span>
-      <span class="price">$10.000</span>
+
+      <span class="service-name">
+        ✂️ Corte
+      </span>
+
+      <span class="price">
+        $10.000
+      </span>
+
     </div>
 
     <div class="service-info">
@@ -394,8 +507,15 @@ footer{
   <div class="service">
 
     <div class="service-top">
-      <span class="service-name">🧔 Corte + barba</span>
-      <span class="price">$12.000</span>
+
+      <span class="service-name">
+        🧔 Corte + barba
+      </span>
+
+      <span class="price">
+        $12.000
+      </span>
+
     </div>
 
     <div class="service-info">
@@ -408,8 +528,15 @@ footer{
   <div class="service">
 
     <div class="service-top">
-      <span class="service-name">🪒 Perfilado de cejas</span>
-      <span class="price">$2.000</span>
+
+      <span class="service-name">
+        🪒 Perfilado de cejas
+      </span>
+
+      <span class="price">
+        $2.000
+      </span>
+
     </div>
 
     <div class="service-info">
@@ -422,8 +549,15 @@ footer{
   <div class="service">
 
     <div class="service-top">
-      <span class="service-name">🎒 Corte escolar</span>
-      <span class="price">$6.000</span>
+
+      <span class="service-name">
+        🎒 Corte escolar
+      </span>
+
+      <span class="price">
+        $6.000
+      </span>
+
     </div>
 
     <div class="service-info">
@@ -433,9 +567,98 @@ footer{
   </div>
 
 
-  <button class="btn">
+  <button
+    class="btn"
+    id="reserveButton"
+    type="button">
+
     CONTINUAR CON LA RESERVA →
+
   </button>
+
+</section>
+
+
+<!-- FECHA Y HORA -->
+
+<section
+  class="card booking-box"
+  id="bookingBox">
+
+  <div class="card-title">
+
+    <h2>📅 Elige tu fecha</h2>
+
+  </div>
+
+  <p class="muted">
+    Selecciona el día en que quieres venir.
+  </p>
+
+
+  <input
+    type="date"
+    id="bookingDate"
+    class="date-input"
+  >
+
+
+  <div
+    id="dayMessage"
+    class="day-message">
+
+    Selecciona una fecha para ver los horarios disponibles.
+
+  </div>
+
+
+  <div
+    id="timeSection"
+    class="time-section">
+
+    <h3>
+      ⏰ Elige tu hora
+    </h3>
+
+
+    <div
+      id="timeOptions"
+      class="time-options">
+    </div>
+
+
+    <div
+      id="selectedSummary"
+      class="selected-summary">
+
+      <div>
+        📅 Fecha:
+        <strong id="summaryDate"></strong>
+      </div>
+
+      <div style="margin-top:6px;">
+        ⏰ Hora:
+        <strong id="summaryTime"></strong>
+      </div>
+
+      <div style="margin-top:6px;">
+        ✂️ Servicio:
+        <strong id="summaryService"></strong>
+      </div>
+
+    </div>
+
+
+    <button
+      id="bookingConfirm"
+      class="btn booking-confirm"
+      type="button">
+
+      CONFIRMAR HORARIO →
+
+    </button>
+
+  </div>
 
 </section>
 
@@ -445,8 +668,11 @@ footer{
 <section class="card">
 
   <div class="card-title">
+
     <h2>📍 Encuéntranos</h2>
+
   </div>
+
 
   <div class="location">
 
@@ -454,18 +680,26 @@ footer{
       📍
     </div>
 
+
     <div>
-      <h3>Rey de Reyes · Barbería</h3>
+
+      <h3>
+        Rey de Reyes · Barbería
+      </h3>
+
       <p>
         María Cristina 6600<br>
         La Florida, Santiago
       </p>
+
     </div>
 
   </div>
 
+
   <button
     class="btn btn-outline"
+    type="button"
     onclick="window.open('https://www.google.com/maps/search/?api=1&query=Maria+Cristina+6600+La+Florida+Santiago','_blank')">
 
     📍 CÓMO LLEGAR
@@ -480,19 +714,28 @@ footer{
 <section class="card whatsapp">
 
   <div class="card-title">
+
     <h2>📲 ¿Necesitas ayuda?</h2>
+
   </div>
 
   <p class="muted">
     También puedes contactarnos directamente.
   </p>
 
-  <p class="phone" style="margin-top:12px;">
+
+  <p
+    class="phone"
+    style="margin-top:12px;">
+
     +56 9 4961 6687
+
   </p>
+
 
   <button
     class="btn"
+    type="button"
     onclick="window.open('https://wa.me/56949616687','_blank')">
 
     ABRIR WHATSAPP
@@ -503,21 +746,32 @@ footer{
 
 
 <footer>
+
   REY DE REYES · BARBERÍA
+
 </footer>
+
 
 </div>
 
 
 <script>
 
-const services = document.querySelectorAll('.service');
+/* ==========================================
+   SELECCIÓN DE SERVICIOS
+   ========================================== */
+
+const services =
+  document.querySelectorAll('.service');
+
 
 services.forEach(service => {
 
   service.addEventListener('click', () => {
 
-    services.forEach(s => s.classList.remove('selected'));
+    services.forEach(item => {
+      item.classList.remove('selected');
+    });
 
     service.classList.add('selected');
 
@@ -526,34 +780,529 @@ services.forEach(service => {
 });
 
 
-const reserveButton = document.querySelector('.btn');
+/* ==========================================
+   ELEMENTOS DE RESERVA
+   ========================================== */
+
+const reserveButton =
+  document.getElementById('reserveButton');
+
+const bookingBox =
+  document.getElementById('bookingBox');
+
+const bookingDate =
+  document.getElementById('bookingDate');
+
+const dayMessage =
+  document.getElementById('dayMessage');
+
+const timeSection =
+  document.getElementById('timeSection');
+
+const timeOptions =
+  document.getElementById('timeOptions');
+
+const selectedSummary =
+  document.getElementById('selectedSummary');
+
+const summaryDate =
+  document.getElementById('summaryDate');
+
+const summaryTime =
+  document.getElementById('summaryTime');
+
+const summaryService =
+  document.getElementById('summaryService');
+
+const bookingConfirm =
+  document.getElementById('bookingConfirm');
+
+
+/* ==========================================
+   HORARIOS DE REY DE REYES
+
+   0 = Domingo
+   1 = Lunes
+   2 = Martes
+   3 = Miércoles
+   4 = Jueves
+   5 = Viernes
+   6 = Sábado
+   ========================================== */
+
+const schedules = {
+
+  0: [
+    ['08:00', '14:00'],
+    ['15:00', '22:00']
+  ],
+
+  1: [
+    ['15:30', '20:00']
+  ],
+
+  2: [
+    ['15:30', '20:00']
+  ],
+
+  3: [
+    ['19:00', '22:00']
+  ],
+
+  4: [],
+
+  5: [
+    ['08:00', '17:00']
+  ],
+
+  6: [
+    ['18:30', '20:00']
+  ]
+
+};
+
+
+/* ==========================================
+   NOMBRES DE LOS DÍAS
+   ========================================== */
+
+const dayNames = [
+  'Domingo',
+  'Lunes',
+  'Martes',
+  'Miércoles',
+  'Jueves',
+  'Viernes',
+  'Sábado'
+];
+
+
+/* ==========================================
+   FECHA MÍNIMA = HOY
+   ========================================== */
+
+function setMinimumDate(){
+
+  const today =
+    new Date();
+
+  const year =
+    today.getFullYear();
+
+  const month =
+    String(today.getMonth() + 1).padStart(2,'0');
+
+  const day =
+    String(today.getDate()).padStart(2,'0');
+
+  const todayString =
+    `${year}-${month}-${day}`;
+
+  bookingDate.min =
+    todayString;
+
+}
+
+
+setMinimumDate();
+
+
+/* ==========================================
+   BOTÓN CONTINUAR
+   ========================================== */
 
 reserveButton.addEventListener('click', () => {
 
-  const selected = document.querySelector('.service.selected');
+  const selected =
+    document.querySelector('.service.selected');
 
-  if (!selected) {
-    alert('Por favor selecciona un servicio.');
+
+  if(!selected){
+
+    alert(
+      'Por favor selecciona un servicio.'
+    );
+
     return;
+
   }
 
+
+  bookingBox.style.display =
+    'block';
+
+
+  bookingBox.scrollIntoView({
+    behavior:'smooth',
+    block:'start'
+  });
+
+
   const serviceName =
-    selected.querySelector('.service-name').innerText;
+    selected.querySelector(
+      '.service-name'
+    ).innerText;
+
 
   const price =
-    selected.querySelector('.price').innerText;
+    selected.querySelector(
+      '.price'
+    ).innerText;
 
-  alert(
-    'Servicio seleccionado:\n\n' +
-    serviceName +
-    '\n' +
-    price +
-    '\n\n' +
-    '¡Perfecto! Ahora vamos a elegir fecha y hora.'
-  );
+
+  dayMessage.innerText =
+    `Servicio seleccionado: ${serviceName} · ${price}`;
+
+
+  bookingDate.focus();
 
 });
 
+
+/* ==========================================
+   CAMBIO DE FECHA
+   ========================================== */
+
+bookingDate.addEventListener(
+  'change',
+  () => {
+
+    const value =
+      bookingDate.value;
+
+
+    if(!value){
+
+      return;
+
+    }
+
+
+    const selectedDate =
+      new Date(
+        value + 'T12:00:00'
+      );
+
+
+    const day =
+      selectedDate.getDay();
+
+
+    const daySchedules =
+      schedules[day];
+
+
+    /* LIMPIAR HORARIOS */
+
+    timeOptions.innerHTML =
+      '';
+
+    timeSection.style.display =
+      'none';
+
+    selectedSummary.style.display =
+      'none';
+
+    bookingConfirm.style.display =
+      'none';
+
+
+    /* JUEVES / DÍA CERRADO */
+
+    if(
+      !daySchedules ||
+      daySchedules.length === 0
+    ){
+
+      dayMessage.innerText =
+        `🔴 ${dayNames[day]} estamos cerrados. Por favor selecciona otro día.`;
+
+      return;
+
+    }
+
+
+    /* DÍA DISPONIBLE */
+
+    dayMessage.innerText =
+      `🟢 ${dayNames[day]} tenemos atención. Selecciona una hora:`;
+
+
+    timeSection.style.display =
+      'block';
+
+
+    /* GENERAR HORARIOS */
+
+    daySchedules.forEach(
+      schedule => {
+
+        const start =
+          schedule[0];
+
+        const end =
+          schedule[1];
+
+
+        let current =
+          createTimeDate(
+            value,
+            start
+          );
+
+
+        const closing =
+          createTimeDate(
+            value,
+            end
+          );
+
+
+        while(
+          current < closing
+        ){
+
+          const hour =
+            String(
+              current.getHours()
+            ).padStart(2,'0')
+            +
+            ':'
+            +
+            String(
+              current.getMinutes()
+            ).padStart(2,'0');
+
+
+          const button =
+            document.createElement(
+              'button'
+            );
+
+
+          button.type =
+            'button';
+
+
+          button.className =
+            'time-button';
+
+
+          button.innerText =
+            hour;
+
+
+          button.addEventListener(
+            'click',
+            () => {
+
+              document
+                .querySelectorAll(
+                  '#timeOptions .time-button'
+                )
+                .forEach(
+                  btn => {
+                    btn.classList.remove(
+                      'selected'
+                    );
+                  }
+                );
+
+
+              button.classList.add(
+                'selected'
+              );
+
+
+              showSelectedTime(
+                value,
+                hour
+              );
+
+            }
+          );
+
+
+          timeOptions.appendChild(
+            button
+          );
+
+
+          current.setHours(
+            current.getHours() + 1
+          );
+
+        }
+
+      }
+    );
+
+  }
+);
+
+
+/* ==========================================
+   CREAR FECHA + HORA
+   ========================================== */
+
+function createTimeDate(
+  date,
+  time
+){
+
+  return new Date(
+    `${date}T${time}:00`
+  );
+
+}
+
+
+/* ==========================================
+   MOSTRAR RESUMEN
+   ========================================== */
+
+function showSelectedTime(
+  date,
+  time
+){
+
+  const selected =
+    document.querySelector(
+      '.service.selected'
+    );
+
+
+  if(!selected){
+
+    return;
+
+  }
+
+
+  const serviceName =
+    selected.querySelector(
+      '.service-name'
+    ).innerText;
+
+
+  const selectedDate =
+    new Date(
+      date + 'T12:00:00'
+    );
+
+
+  const formattedDate =
+    selectedDate.toLocaleDateString(
+      'es-CL',
+      {
+        weekday:'long',
+        day:'numeric',
+        month:'long'
+      }
+    );
+
+
+  summaryDate.innerText =
+    formattedDate;
+
+
+  summaryTime.innerText =
+    time;
+
+
+  summaryService.innerText =
+    serviceName;
+
+
+  selectedSummary.style.display =
+    'block';
+
+
+  bookingConfirm.style.display =
+    'block';
+
+
+  selectedSummary.scrollIntoView({
+    behavior:'smooth',
+    block:'nearest'
+  });
+
+}
+
+
+/* ==========================================
+   CONFIRMAR HORARIO
+
+   POR AHORA SOLO MUESTRA EL RESUMEN.
+   DESPUÉS CONECTAREMOS ESTE BOTÓN
+   DIRECTAMENTE CON SUPABASE Y WHATSAPP.
+   ========================================== */
+
+bookingConfirm.addEventListener(
+  'click',
+  () => {
+
+    const selected =
+      document.querySelector(
+        '.service.selected'
+      );
+
+
+    const selectedTime =
+      document.querySelector(
+        '#timeOptions .time-button.selected'
+      );
+
+
+    if(
+      !selected ||
+      !selectedTime ||
+      !bookingDate.value
+    ){
+
+      alert(
+        'Selecciona un servicio, fecha y hora.'
+      );
+
+      return;
+
+    }
+
+
+    const serviceName =
+      selected.querySelector(
+        '.service-name'
+      ).innerText;
+
+
+    const price =
+      selected.querySelector(
+        '.price'
+      ).innerText;
+
+
+    const message =
+      `Hola, quiero reservar en Rey de Reyes.%0A%0A` +
+      `✂️ Servicio: ${serviceName}%0A` +
+      `💰 Precio: ${price}%0A` +
+      `📅 Fecha: ${bookingDate.value}%0A` +
+      `⏰ Hora: ${selectedTime.innerText}`;
+
+
+    const whatsappURL =
+      `https://wa.me/56949616687?text=${message}`;
+
+
+    window.open(
+      whatsappURL,
+      '_blank'
+    );
+
+  }
+);
+
 </script>
+
 </body>
+
 </html>
