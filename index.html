@@ -9,7 +9,6 @@
 
 <title>Rey de Reyes | Barbería</title>
 
-<!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
@@ -26,6 +25,7 @@
   --gris:#aaa79e;
   --linea:#2b2924;
   --rojo:#d96b6b;
+  --verde:#9ac79d;
 }
 
 *{
@@ -47,8 +47,6 @@ body{
   margin:auto;
   padding:22px 17px 45px;
 }
-
-/* LOGO */
 
 header{
   text-align:center;
@@ -86,8 +84,6 @@ header p{
   margin-top:5px;
 }
 
-/* TARJETAS */
-
 .card{
   background:linear-gradient(145deg,#191917,#11110f);
   border:1px solid var(--linea);
@@ -116,8 +112,6 @@ header p{
   color:var(--gris);
   font-size:12px;
 }
-
-/* CUPON */
 
 .membership{
   position:relative;
@@ -186,8 +180,6 @@ header p{
   line-height:1.5;
 }
 
-/* SERVICIOS */
-
 .service{
   border:1px solid var(--linea);
   border-radius:15px;
@@ -224,8 +216,6 @@ header p{
   margin-top:5px;
 }
 
-/* BOTONES */
-
 .btn{
   width:100%;
   border:0;
@@ -245,19 +235,24 @@ header p{
   box-shadow:0 8px 25px #d7b56d25;
 }
 
+.btn:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+  transform:none;
+}
+
 .btn-outline{
   background:transparent;
   border:1px solid #675737;
   color:var(--dorado-claro);
 }
 
-/* RESERVA */
-
 .booking-box{
   display:none;
 }
 
-.date-input{
+.date-input,
+.form-input{
   width:100%;
   margin-top:15px;
   padding:14px;
@@ -270,7 +265,8 @@ header p{
   outline:none;
 }
 
-.date-input:focus{
+.date-input:focus,
+.form-input:focus{
   border-color:var(--dorado);
 }
 
@@ -320,12 +316,10 @@ header p{
   color:var(--dorado-claro);
 }
 
-/* HORARIO RESERVADO */
-
 .time-button.reserved{
   border-color:#542d2d;
   background:#211515;
-  color:#d96b6b;
+  color:var(--rojo);
   cursor:not-allowed;
   opacity:.75;
 }
@@ -348,37 +342,61 @@ header p{
   color:var(--dorado-claro);
 }
 
+.customer-form{
+  display:none;
+  margin-top:18px;
+  padding-top:18px;
+  border-top:1px solid var(--linea);
+}
+
+.customer-form h3{
+  font-size:14px;
+  margin-bottom:5px;
+}
+
+.customer-form p{
+  color:var(--gris);
+  font-size:11px;
+  line-height:1.5;
+}
+
+.form-label{
+  display:block;
+  color:#bbb5a9;
+  font-size:11px;
+  margin-top:13px;
+}
+
+.form-input{
+  margin-top:6px;
+}
+
 .booking-confirm{
   display:none;
-  margin-top:12px;
 }
 
-/* ESTADO SUPABASE */
-
-.database-status{
+.status{
   display:none;
   margin-top:12px;
-  padding:10px 12px;
-  border-radius:10px;
-  font-size:11px;
-  line-height:1.4;
+  padding:12px;
+  border-radius:12px;
+  font-size:12px;
+  line-height:1.5;
 }
 
-.database-status.success{
+.status.success{
   display:block;
   background:#111812;
   border:1px solid #293b2c;
-  color:#9ac79d;
+  color:var(--verde);
 }
 
-.database-status.error{
+.status.error{
   display:block;
   background:#211515;
   border:1px solid #542d2d;
-  color:#d96b6b;
+  color:var(--rojo);
 }
-
-/* UBICACION */
 
 .location{
   display:flex;
@@ -407,8 +425,6 @@ header p{
   margin-top:3px;
 }
 
-/* WHATSAPP */
-
 .whatsapp{
   border:1px solid #293b2c;
   background:#111812;
@@ -419,8 +435,6 @@ header p{
   font-weight:600;
 }
 
-/* FOOTER */
-
 footer{
   text-align:center;
   color:#696761;
@@ -428,8 +442,6 @@ footer{
   letter-spacing:1px;
   padding-top:10px;
 }
-
-/* DESKTOP */
 
 @media(min-width:700px){
 
@@ -489,13 +501,9 @@ footer{
   <div class="stamps">
 
     <div class="stamp active">✂</div>
-
     <div class="stamp">✂</div>
-
     <div class="stamp">✂</div>
-
     <div class="stamp">✂</div>
-
     <div class="stamp">🎁</div>
 
   </div>
@@ -512,7 +520,7 @@ footer{
 </section>
 
 
-<!-- RESERVA -->
+<!-- SERVICIOS -->
 
 <section class="card">
 
@@ -527,7 +535,7 @@ footer{
   </p>
 
 
-  <div class="service selected">
+  <div class="service selected" data-service-id="1">
 
     <div class="service-top">
 
@@ -548,7 +556,7 @@ footer{
   </div>
 
 
-  <div class="service">
+  <div class="service" data-service-id="2">
 
     <div class="service-top">
 
@@ -569,7 +577,7 @@ footer{
   </div>
 
 
-  <div class="service">
+  <div class="service" data-service-id="3">
 
     <div class="service-top">
 
@@ -590,7 +598,7 @@ footer{
   </div>
 
 
-  <div class="service">
+  <div class="service" data-service-id="4">
 
     <div class="service-top">
 
@@ -657,12 +665,6 @@ footer{
 
 
   <div
-    id="databaseStatus"
-    class="database-status">
-  </div>
-
-
-  <div
     id="timeSection"
     class="time-section">
 
@@ -699,14 +701,63 @@ footer{
     </div>
 
 
-    <button
-      id="bookingConfirm"
-      class="btn booking-confirm"
-      type="button">
+    <!-- DATOS DEL CLIENTE -->
 
-      CONFIRMAR HORARIO →
+    <div
+      id="customerForm"
+      class="customer-form">
 
-    </button>
+      <h3>
+        👤 Tus datos
+      </h3>
+
+      <p>
+        Necesitamos estos datos para registrar tu reserva.
+      </p>
+
+
+      <label class="form-label">
+        Nombre
+      </label>
+
+      <input
+        type="text"
+        id="customerName"
+        class="form-input"
+        placeholder="Ej: Juan Pérez"
+        autocomplete="name"
+      >
+
+
+      <label class="form-label">
+        WhatsApp
+      </label>
+
+      <input
+        type="tel"
+        id="customerWhatsapp"
+        class="form-input"
+        placeholder="Ej: +56912345678"
+        autocomplete="tel"
+      >
+
+
+      <div
+        id="bookingStatus"
+        class="status">
+      </div>
+
+
+      <button
+        id="bookingConfirm"
+        class="btn booking-confirm"
+        type="button">
+
+        CONFIRMAR RESERVA →
+
+      </button>
+
+    </div>
 
   </div>
 
@@ -808,7 +859,7 @@ footer{
 <script>
 
 /* =========================================================
-   CONEXIÓN CON SUPABASE
+   SUPABASE
    ========================================================= */
 
 const SUPABASE_URL =
@@ -825,44 +876,11 @@ const supabaseClient =
 
 
 /* =========================================================
-   SELECCIÓN DE SERVICIOS
+   ELEMENTOS
    ========================================================= */
 
 const services =
   document.querySelectorAll('.service');
-
-
-services.forEach(service => {
-
-  service.addEventListener('click', () => {
-
-    services.forEach(item => {
-      item.classList.remove('selected');
-    });
-
-    service.classList.add('selected');
-
-    /*
-      Si ya había una fecha seleccionada,
-      volvemos a cargar los horarios.
-    */
-
-    if(bookingDate.value){
-
-      cargarHorariosDisponibles(
-        bookingDate.value
-      );
-
-    }
-
-  });
-
-});
-
-
-/* =========================================================
-   ELEMENTOS DE RESERVA
-   ========================================================= */
 
 const reserveButton =
   document.getElementById('reserveButton');
@@ -894,23 +912,31 @@ const summaryTime =
 const summaryService =
   document.getElementById('summaryService');
 
+const customerForm =
+  document.getElementById('customerForm');
+
+const customerName =
+  document.getElementById('customerName');
+
+const customerWhatsapp =
+  document.getElementById('customerWhatsapp');
+
+const bookingStatus =
+  document.getElementById('bookingStatus');
+
 const bookingConfirm =
   document.getElementById('bookingConfirm');
 
-const databaseStatus =
-  document.getElementById('databaseStatus');
+
+/* =========================================================
+   SERVICIO SELECCIONADO
+   ========================================================= */
+
+let selectedServiceId = 1;
 
 
 /* =========================================================
-   HORARIOS DE REY DE REYES
-
-   0 = Domingo
-   1 = Lunes
-   2 = Martes
-   3 = Miércoles
-   4 = Jueves
-   5 = Viernes
-   6 = Sábado
+   HORARIOS
    ========================================================= */
 
 const schedules = {
@@ -946,7 +972,7 @@ const schedules = {
 
 
 /* =========================================================
-   NOMBRES DE LOS DÍAS
+   DÍAS
    ========================================================= */
 
 const dayNames = [
@@ -961,7 +987,39 @@ const dayNames = [
 
 
 /* =========================================================
-   FECHA MÍNIMA = HOY
+   SELECCIONAR SERVICIO
+   ========================================================= */
+
+services.forEach(service => {
+
+  service.addEventListener('click', () => {
+
+    services.forEach(item => {
+      item.classList.remove('selected');
+    });
+
+    service.classList.add('selected');
+
+    selectedServiceId =
+      Number(
+        service.dataset.serviceId
+      );
+
+    if(bookingDate.value){
+
+      cargarHorarios(
+        bookingDate.value
+      );
+
+    }
+
+  });
+
+});
+
+
+/* =========================================================
+   FECHA MÍNIMA
    ========================================================= */
 
 function setMinimumDate(){
@@ -982,11 +1040,8 @@ function setMinimumDate(){
       today.getDate()
     ).padStart(2,'0');
 
-  const todayString =
-    `${year}-${month}-${day}`;
-
   bookingDate.min =
-    todayString;
+    `${year}-${month}-${day}`;
 
 }
 
@@ -994,57 +1049,25 @@ setMinimumDate();
 
 
 /* =========================================================
-   BOTÓN CONTINUAR
+   CONTINUAR
    ========================================================= */
 
-reserveButton.addEventListener('click', () => {
+reserveButton.addEventListener(
+  'click',
+  () => {
 
-  const selected =
-    document.querySelector(
-      '.service.selected'
-    );
+    bookingBox.style.display =
+      'block';
 
+    bookingBox.scrollIntoView({
+      behavior:'smooth',
+      block:'start'
+    });
 
-  if(!selected){
-
-    alert(
-      'Por favor selecciona un servicio.'
-    );
-
-    return;
+    bookingDate.focus();
 
   }
-
-
-  bookingBox.style.display =
-    'block';
-
-
-  bookingBox.scrollIntoView({
-    behavior:'smooth',
-    block:'start'
-  });
-
-
-  const serviceName =
-    selected.querySelector(
-      '.service-name'
-    ).innerText;
-
-
-  const price =
-    selected.querySelector(
-      '.price'
-    ).innerText;
-
-
-  dayMessage.innerText =
-    `Servicio seleccionado: ${serviceName} · ${price}`;
-
-
-  bookingDate.focus();
-
-});
+);
 
 
 /* =========================================================
@@ -1055,28 +1078,25 @@ bookingDate.addEventListener(
   'change',
   () => {
 
-    const value =
-      bookingDate.value;
-
-
-    if(!value){
-
+    if(!bookingDate.value){
       return;
-
     }
 
-
-    cargarHorariosDisponibles(value);
+    cargarHorarios(
+      bookingDate.value
+    );
 
   }
 );
 
 
 /* =========================================================
-   CARGAR HORARIOS DISPONIBLES
+   CARGAR HORARIOS
    ========================================================= */
 
-async function cargarHorariosDisponibles(dateValue){
+async function cargarHorarios(
+  dateValue
+){
 
   const selectedDate =
     new Date(
@@ -1090,10 +1110,6 @@ async function cargarHorariosDisponibles(dateValue){
     schedules[day];
 
 
-  /*
-    Limpiar estado anterior
-  */
-
   timeOptions.innerHTML =
     '';
 
@@ -1103,16 +1119,12 @@ async function cargarHorariosDisponibles(dateValue){
   selectedSummary.style.display =
     'none';
 
-  bookingConfirm.style.display =
+  customerForm.style.display =
     'none';
 
-  databaseStatus.style.display =
+  bookingStatus.style.display =
     'none';
 
-
-  /*
-    Día cerrado
-  */
 
   if(
     !daySchedules ||
@@ -1127,13 +1139,13 @@ async function cargarHorariosDisponibles(dateValue){
   }
 
 
-  /*
-    Consultar reservas en Supabase
-  */
-
   dayMessage.innerText =
-    '⏳ Consultando horarios disponibles...';
+    '⏳ Consultando horarios...';
 
+
+  /*
+    CONSULTAR RESERVAS
+  */
 
   const { data, error } =
     await supabaseClient
@@ -1142,42 +1154,12 @@ async function cargarHorariosDisponibles(dateValue){
       .eq('fecha', dateValue);
 
 
-  /*
-    Error al consultar
-  */
-
   if(error){
 
-    console.error(
-      'Error consultando reservas:',
-      error
-    );
-
-
-    databaseStatus.className =
-      'database-status error';
-
-    databaseStatus.innerText =
-      '⚠️ No pudimos consultar las reservas. Puedes intentar nuevamente.';
-
-    databaseStatus.style.display =
-      'block';
-
+    console.error(error);
 
     dayMessage.innerText =
-      `🟢 ${dayNames[day]} tenemos atención.`;
-
-    /*
-      En caso de error no bloqueamos horarios.
-      Así podemos detectar el problema sin
-      romper completamente la página.
-    */
-
-    generarHorarios(
-      dateValue,
-      daySchedules,
-      []
-    );
+      '⚠️ No se pudieron consultar los horarios.';
 
     return;
 
@@ -1185,37 +1167,21 @@ async function cargarHorariosDisponibles(dateValue){
 
 
   /*
-    Obtener horas ocupadas
+    HORAS OCUPADAS
   */
 
   const reservedTimes =
     (data || [])
       .filter(reserva => {
 
-        /*
-          Si estado es null,
-          igualmente consideramos la reserva.
-
-          Si existe estado,
-          solamente bloqueamos estados
-          que NO sean cancelados.
-        */
-
         return (
           !reserva.estado ||
-          reserva.estado.toLowerCase() !== 'cancelada'
+          reserva.estado.toLowerCase()
+          !== 'cancelada'
         );
 
       })
       .map(reserva => {
-
-        /*
-          Supabase puede devolver:
-          16:00:00
-
-          Nosotros trabajamos con:
-          16:00
-        */
 
         return String(
           reserva.hora
@@ -1224,27 +1190,13 @@ async function cargarHorariosDisponibles(dateValue){
       });
 
 
-  /*
-    Mostrar estado correcto
-  */
-
-  databaseStatus.className =
-    'database-status success';
-
-  databaseStatus.innerText =
-    '✓ Horarios actualizados correctamente.';
-
-  databaseStatus.style.display =
-    'block';
-
-
   dayMessage.innerText =
     `🟢 ${dayNames[day]} tenemos atención. Selecciona una hora:`;
 
 
-  /*
-    Generar horarios
-  */
+  timeSection.style.display =
+    'block';
+
 
   generarHorarios(
     dateValue,
@@ -1267,13 +1219,6 @@ function generarHorarios(
 
   timeOptions.innerHTML =
     '';
-
-  timeSection.style.display =
-    'block';
-
-
-  let availableCount =
-    0;
 
 
   daySchedules.forEach(
@@ -1325,14 +1270,9 @@ function generarHorarios(
         button.type =
           'button';
 
-
         button.className =
           'time-button';
 
-
-        /*
-          Comprobar si está reservada
-        */
 
         const isReserved =
           reservedTimes.includes(
@@ -1346,23 +1286,16 @@ function generarHorarios(
             'reserved'
           );
 
-          button.innerText =
-            `🔴 ${hour} · RESERVADO`;
-
           button.disabled =
             true;
 
-          button.setAttribute(
-            'aria-label',
-            `Hora ${hour} reservada`
-          );
+          button.innerText =
+            `🔴 ${hour} · RESERVADO`;
 
         }else{
 
           button.innerText =
             hour;
-
-          availableCount++;
 
 
           button.addEventListener(
@@ -1375,11 +1308,9 @@ function generarHorarios(
                 )
                 .forEach(
                   btn => {
-
                     btn.classList.remove(
                       'selected'
                     );
-
                   }
                 );
 
@@ -1389,7 +1320,7 @@ function generarHorarios(
               );
 
 
-              showSelectedTime(
+              mostrarResumen(
                 dateValue,
                 hour
               );
@@ -1414,23 +1345,11 @@ function generarHorarios(
     }
   );
 
-
-  /*
-    Si todas las horas están ocupadas
-  */
-
-  if(availableCount === 0){
-
-    dayMessage.innerText =
-      '🔴 No quedan horarios disponibles para este día. Por favor selecciona otra fecha.';
-
-  }
-
 }
 
 
 /* =========================================================
-   CREAR FECHA + HORA
+   CREAR FECHA
    ========================================================= */
 
 function createTimeDate(
@@ -1449,7 +1368,7 @@ function createTimeDate(
    MOSTRAR RESUMEN
    ========================================================= */
 
-function showSelectedTime(
+function mostrarResumen(
   date,
   time
 ){
@@ -1461,9 +1380,7 @@ function showSelectedTime(
 
 
   if(!selected){
-
     return;
-
   }
 
 
@@ -1493,16 +1410,18 @@ function showSelectedTime(
   summaryDate.innerText =
     formattedDate;
 
-
   summaryTime.innerText =
     time;
-
 
   summaryService.innerText =
     serviceName;
 
 
   selectedSummary.style.display =
+    'block';
+
+
+  customerForm.style.display =
     'block';
 
 
@@ -1519,16 +1438,52 @@ function showSelectedTime(
 
 
 /* =========================================================
-   CONFIRMAR HORARIO
+   MOSTRAR ERROR
+   ========================================================= */
 
-   POR AHORA ENVÍA A WHATSAPP.
-   EN EL SIGUIENTE PASO LO CONECTAREMOS
-   PARA GUARDAR LA RESERVA EN SUPABASE.
+function mostrarError(
+  mensaje
+){
+
+  bookingStatus.className =
+    'status error';
+
+  bookingStatus.innerText =
+    mensaje;
+
+  bookingStatus.style.display =
+    'block';
+
+}
+
+
+/* =========================================================
+   MOSTRAR ÉXITO
+   ========================================================= */
+
+function mostrarExito(
+  mensaje
+){
+
+  bookingStatus.className =
+    'status success';
+
+  bookingStatus.innerText =
+    mensaje;
+
+  bookingStatus.style.display =
+    'block';
+
+}
+
+
+/* =========================================================
+   CONFIRMAR RESERVA
    ========================================================= */
 
 bookingConfirm.addEventListener(
   'click',
-  () => {
+  async () => {
 
     const selected =
       document.querySelector(
@@ -1548,7 +1503,7 @@ bookingConfirm.addEventListener(
       !bookingDate.value
     ){
 
-      alert(
+      mostrarError(
         'Selecciona un servicio, fecha y hora.'
       );
 
@@ -1557,34 +1512,339 @@ bookingConfirm.addEventListener(
     }
 
 
-    const serviceName =
-      selected.querySelector(
-        '.service-name'
-      ).innerText;
+    const name =
+      customerName.value.trim();
 
 
-    const price =
-      selected.querySelector(
-        '.price'
-      ).innerText;
+    const whatsapp =
+      customerWhatsapp.value.trim();
 
 
-    const message =
-      `Hola, quiero reservar en Rey de Reyes.%0A%0A` +
-      `✂️ Servicio: ${serviceName}%0A` +
-      `💰 Precio: ${price}%0A` +
-      `📅 Fecha: ${bookingDate.value}%0A` +
-      `⏰ Hora: ${selectedTime.innerText}`;
+    if(!name){
+
+      mostrarError(
+        'Escribe tu nombre para continuar.'
+      );
+
+      customerName.focus();
+
+      return;
+
+    }
 
 
-    const whatsappURL =
-      `https://wa.me/56949616687?text=${message}`;
+    if(!whatsapp){
+
+      mostrarError(
+        'Escribe tu número de WhatsApp para continuar.'
+      );
+
+      customerWhatsapp.focus();
+
+      return;
+
+    }
 
 
-    window.open(
-      whatsappURL,
-      '_blank'
-    );
+    const date =
+      bookingDate.value;
+
+
+    const time =
+      selectedTime.innerText.trim();
+
+
+    /*
+      EVITAR DOBLE CLIC
+    */
+
+    bookingConfirm.disabled =
+      true;
+
+    bookingConfirm.innerText =
+      'GUARDANDO RESERVA...';
+
+
+    try{
+
+
+      /*
+        1. COMPROBAR NUEVAMENTE
+        QUE LA HORA SIGA LIBRE
+      */
+
+      const { data: existingReservations,
+              error: checkError } =
+
+        await supabaseClient
+          .from('reservas')
+          .select('id, estado')
+          .eq('fecha', date)
+          .eq('hora', time);
+
+
+      if(checkError){
+
+        console.error(
+          checkError
+        );
+
+        throw new Error(
+          'No pudimos comprobar la disponibilidad.'
+        );
+
+      }
+
+
+      const activeReservation =
+        (existingReservations || [])
+          .find(reserva => {
+
+            return (
+              !reserva.estado ||
+              reserva.estado.toLowerCase()
+              !== 'cancelada'
+            );
+
+          });
+
+
+      if(activeReservation){
+
+        mostrarError(
+          '⚠️ Esa hora acaba de ser reservada. Por favor selecciona otra.'
+        );
+
+
+        await cargarHorarios(
+          date
+        );
+
+
+        bookingConfirm.disabled =
+          false;
+
+        bookingConfirm.innerText =
+          'CONFIRMAR RESERVA →';
+
+        return;
+
+      }
+
+
+      /*
+        2. BUSCAR SI EL CLIENTE
+        YA EXISTE
+      */
+
+      let clienteId =
+        null;
+
+
+      const {
+        data: existingClient,
+        error: clientSearchError
+      } =
+        await supabaseClient
+          .from('clientes')
+          .select('id')
+          .eq('whatsapp', whatsapp)
+          .maybeSingle();
+
+
+      if(clientSearchError){
+
+        console.error(
+          clientSearchError
+        );
+
+        throw new Error(
+          'No pudimos comprobar los datos del cliente.'
+        );
+
+      }
+
+
+      /*
+        3. SI EXISTE, USAMOS SU ID
+      */
+
+      if(existingClient){
+
+        clienteId =
+          existingClient.id;
+
+      }else{
+
+        /*
+          4. SI NO EXISTE,
+          CREAMOS EL CLIENTE
+        */
+
+        const {
+          data: newClient,
+          error: newClientError
+        } =
+          await supabaseClient
+            .from('clientes')
+            .insert({
+              nombre:name,
+              whatsapp:whatsapp
+            })
+            .select('id')
+            .single();
+
+
+        if(newClientError){
+
+          console.error(
+            newClientError
+          );
+
+          throw new Error(
+            'No pudimos registrar tus datos.'
+          );
+
+        }
+
+
+        clienteId =
+          newClient.id;
+
+      }
+
+
+      /*
+        5. CREAR RESERVA
+      */
+
+      const {
+        data: newReservation,
+        error: reservationError
+      } =
+        await supabaseClient
+          .from('reservas')
+          .insert({
+
+            cliente_id:
+              clienteId,
+
+            servicio_id:
+              selectedServiceId,
+
+            fecha:
+              date,
+
+            hora:
+              time,
+
+            estado:
+              'pendiente'
+
+          })
+          .select('id')
+          .single();
+
+
+      if(reservationError){
+
+        console.error(
+          reservationError
+        );
+
+        throw new Error(
+          'No pudimos guardar la reserva.'
+        );
+
+      }
+
+
+      /*
+        6. ÉXITO
+      */
+
+      mostrarExito(
+        '✅ ¡Reserva registrada correctamente! Te enviaremos la confirmación por WhatsApp.'
+      );
+
+
+      /*
+        7. PREPARAR WHATSAPP
+      */
+
+      const serviceName =
+        selected.querySelector(
+          '.service-name'
+        ).innerText;
+
+
+      const price =
+        selected.querySelector(
+          '.price'
+        ).innerText;
+
+
+      const message =
+        `Hola, soy ${name}. Quiero reservar en Rey de Reyes.%0A%0A` +
+        `✂️ Servicio: ${serviceName}%0A` +
+        `💰 Precio: ${price}%0A` +
+        `📅 Fecha: ${date}%0A` +
+        `⏰ Hora: ${time}%0A` +
+        `📱 WhatsApp: ${whatsapp}`;
+
+
+      const whatsappURL =
+        `https://wa.me/56949616687?text=${message}`;
+
+
+      /*
+        8. ABRIR WHATSAPP
+      */
+
+      setTimeout(() => {
+
+        window.open(
+          whatsappURL,
+          '_blank'
+        );
+
+      },500);
+
+
+      /*
+        9. ACTUALIZAR HORARIOS
+      */
+
+      setTimeout(() => {
+
+        cargarHorarios(
+          date
+        );
+
+      },1000);
+
+
+    }catch(error){
+
+      console.error(
+        'Error completo:',
+        error
+      );
+
+
+      mostrarError(
+        error.message ||
+        'Ocurrió un error al guardar la reserva.'
+      );
+
+    }
+
+
+    bookingConfirm.disabled =
+      false;
+
+    bookingConfirm.innerText =
+      'CONFIRMAR RESERVA →';
 
   }
 );
