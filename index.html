@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -168,10 +169,9 @@ header p{
 }
 
 .progress div{
-  width:0%;
+  width:20%;
   height:100%;
   background:linear-gradient(90deg,var(--dorado),var(--dorado-claro));
-  transition:width .4s ease;
 }
 
 .member-message{
@@ -179,23 +179,6 @@ header p{
   color:#bbb5a9;
   font-size:12px;
   line-height:1.5;
-}
-
-.loyalty-refresh{
-  width:100%;
-  margin-top:12px;
-  padding:9px;
-  border-radius:10px;
-  border:1px solid #4b412e;
-  background:#171613;
-  color:var(--dorado-claro);
-  font-family:inherit;
-  font-size:11px;
-  cursor:pointer;
-}
-
-.loyalty-refresh:hover{
-  border-color:var(--dorado);
 }
 
 .service{
@@ -443,14 +426,66 @@ header p{
   margin-top:3px;
 }
 
-.whatsapp{
-  border:1px solid #293b2c;
-  background:#111812;
+/* INSTAGRAM */
+
+.instagram{
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+  background:
+    radial-gradient(circle at 50% 0%,#3a2b18 0%,transparent 55%),
+    linear-gradient(145deg,#191917,#11110f);
 }
 
-.whatsapp .phone{
-  color:#9ac79d;
-  font-weight:600;
+.instagram::after{
+  content:"RR";
+  position:absolute;
+  right:-15px;
+  bottom:-35px;
+  font-family:'Playfair Display',serif;
+  font-size:120px;
+  font-weight:700;
+  color:#d7b56d08;
+  transform:rotate(-10deg);
+  pointer-events:none;
+}
+
+.instagram-icon{
+  width:58px;
+  height:58px;
+  margin:0 auto 13px;
+  border:1px solid var(--dorado);
+  border-radius:17px;
+  display:grid;
+  place-items:center;
+  font-size:28px;
+  color:var(--dorado-claro);
+  box-shadow:0 0 25px #d7b56d18;
+}
+
+.instagram h2{
+  font-family:'Playfair Display',serif;
+  font-size:20px;
+  letter-spacing:1px;
+}
+
+.instagram-handle{
+  color:var(--dorado-claro);
+  font-size:15px;
+  font-weight:700;
+  margin-top:8px;
+}
+
+.instagram-text{
+  color:var(--gris);
+  font-size:11px;
+  line-height:1.6;
+  margin-top:8px;
+}
+
+.instagram-btn{
+  position:relative;
+  z-index:2;
 }
 
 footer{
@@ -496,9 +531,7 @@ footer{
 </header>
 
 
-<!-- =====================================================
-     FIDELIDAD
-     ===================================================== -->
+<!-- FIDELIDAD -->
 
 <section class="card membership">
 
@@ -510,13 +543,7 @@ footer{
 
     <h2>🎟️ Tu tarjeta de fidelidad</h2>
 
-    <strong
-      class="gold"
-      id="loyaltyCounter">
-
-      0 / 5
-
-    </strong>
+    <strong class="gold">1 / 5</strong>
 
   </div>
 
@@ -524,12 +551,9 @@ footer{
     Tu quinto corte es gratis
   </p>
 
+  <div class="stamps">
 
-  <div
-    class="stamps"
-    id="loyaltyStamps">
-
-    <div class="stamp">✂</div>
+    <div class="stamp active">✂</div>
     <div class="stamp">✂</div>
     <div class="stamp">✂</div>
     <div class="stamp">✂</div>
@@ -537,40 +561,19 @@ footer{
 
   </div>
 
-
   <div class="progress">
-
-    <div
-      id="loyaltyProgress">
-    </div>
-
+    <div></div>
   </div>
 
-
-  <p
-    class="member-message"
-    id="loyaltyMessage">
-
-    Ingresa o realiza una reserva para consultar tu progreso.
-
+  <p class="member-message">
+    ¡Ya tienes tu primer corte registrado!
+    Completa 4 cortes más y desbloquea tu beneficio.
   </p>
-
-
-  <button
-    id="refreshLoyalty"
-    class="loyalty-refresh"
-    type="button">
-
-    🔄 ACTUALIZAR MI TARJETA
-
-  </button>
 
 </section>
 
 
-<!-- =====================================================
-     SERVICIOS
-     ===================================================== -->
+<!-- SERVICIOS -->
 
 <section class="card">
 
@@ -585,9 +588,7 @@ footer{
   </p>
 
 
-  <div
-    class="service selected"
-    data-service-id="1">
+  <div class="service selected" data-service-id="1">
 
     <div class="service-top">
 
@@ -608,9 +609,7 @@ footer{
   </div>
 
 
-  <div
-    class="service"
-    data-service-id="2">
+  <div class="service" data-service-id="2">
 
     <div class="service-top">
 
@@ -631,9 +630,7 @@ footer{
   </div>
 
 
-  <div
-    class="service"
-    data-service-id="3">
+  <div class="service" data-service-id="3">
 
     <div class="service-top">
 
@@ -654,9 +651,7 @@ footer{
   </div>
 
 
-  <div
-    class="service"
-    data-service-id="4">
+  <div class="service" data-service-id="4">
 
     <div class="service-top">
 
@@ -689,9 +684,7 @@ footer{
 </section>
 
 
-<!-- =====================================================
-     FECHA Y HORA
-     ===================================================== -->
+<!-- FECHA Y HORA -->
 
 <section
   class="card booking-box"
@@ -824,9 +817,7 @@ footer{
 </section>
 
 
-<!-- =====================================================
-     UBICACION
-     ===================================================== -->
+<!-- UBICACION -->
 
 <section class="card">
 
@@ -872,38 +863,33 @@ footer{
 </section>
 
 
-<!-- =====================================================
-     WHATSAPP
-     ===================================================== -->
+<!-- INSTAGRAM -->
 
-<section class="card whatsapp">
+<section class="card instagram">
 
-  <div class="card-title">
-
-    <h2>📲 ¿Necesitas ayuda?</h2>
-
+  <div class="instagram-icon">
+    📸
   </div>
 
-  <p class="muted">
-    También puedes contactarnos directamente.
+  <h2>
+    Síguenos en Instagram
+  </h2>
+
+  <div class="instagram-handle">
+    @rrbarberiaoficial
+  </div>
+
+  <p class="instagram-text">
+    Mira nuestros cortes, conoce nuestras novedades,
+    promociones y acompáñanos en Instagram.
   </p>
-
-
-  <p
-    class="phone"
-    style="margin-top:12px;">
-
-    +56 9 4961 6687
-
-  </p>
-
 
   <button
-    class="btn"
+    class="btn instagram-btn"
     type="button"
-    onclick="window.open('https://wa.me/56949616687','_blank')">
+    onclick="window.open('https://www.instagram.com/rrbarberiaoficial/','_blank')">
 
-    ABRIR WHATSAPP
+    📸 VER INSTAGRAM
 
   </button>
 
@@ -993,36 +979,6 @@ const bookingConfirm =
 
 
 /* =========================================================
-   ELEMENTOS FIDELIDAD
-   ========================================================= */
-
-const loyaltyCounter =
-  document.getElementById(
-    'loyaltyCounter'
-  );
-
-const loyaltyStamps =
-  document.getElementById(
-    'loyaltyStamps'
-  );
-
-const loyaltyProgress =
-  document.getElementById(
-    'loyaltyProgress'
-  );
-
-const loyaltyMessage =
-  document.getElementById(
-    'loyaltyMessage'
-  );
-
-const refreshLoyalty =
-  document.getElementById(
-    'refreshLoyalty'
-  );
-
-
-/* =========================================================
    SERVICIO SELECCIONADO
    ========================================================= */
 
@@ -1078,377 +1034,6 @@ const dayNames = [
   'Viernes',
   'Sábado'
 ];
-
-
-/* =========================================================
-   NORMALIZAR WHATSAPP
-   ========================================================= */
-
-function normalizeWhatsapp(
-  whatsapp
-){
-
-  return String(
-    whatsapp || ''
-  )
-  .replace(
-    /\s/g,
-    ''
-  );
-
-}
-
-
-/* =========================================================
-   FIDELIDAD
-   ========================================================= */
-
-/*
-  IMPORTANTE:
-
-  El progreso NO se calcula desde las reservas.
-
-  Se lee directamente desde:
-
-  clientes.cortes_completados
-
-  y
-
-  clientes.beneficio_disponible
-
-  Por lo tanto:
-
-  - Cancelar una reserva NO resta cortes.
-  - El Admin es quien suma los cortes.
-  - La página solamente muestra lo que hay en Supabase.
-*/
-
-async function loadLoyalty(){
-
-  const savedWhatsapp =
-    localStorage.getItem(
-      'reyDeReyesWhatsapp'
-    );
-
-
-  /*
-    Si todavía no existe un cliente
-    guardado en este navegador.
-  */
-
-  if(!savedWhatsapp){
-
-    showLoyalty(
-      0,
-      false,
-      false
-    );
-
-    loyaltyMessage.innerText =
-      'Realiza una reserva para vincular tu tarjeta de fidelidad.';
-
-    return;
-
-  }
-
-
-  const whatsapp =
-    normalizeWhatsapp(
-      savedWhatsapp
-    );
-
-
-  /*
-    Buscar cliente por WhatsApp
-  */
-
-  const {
-    data:client,
-    error
-  } =
-    await supabaseClient
-      .from('clientes')
-      .select(
-        'id,nombre,whatsapp,cortes_completados,beneficio_disponible'
-      )
-      .eq(
-        'whatsapp',
-        whatsapp
-      )
-      .maybeSingle();
-
-
-  if(error){
-
-    console.error(
-      'Error al cargar fidelidad:',
-      error
-    );
-
-    loyaltyMessage.innerText =
-      'No se pudo actualizar la tarjeta. Intenta nuevamente.';
-
-    return;
-
-  }
-
-
-  /*
-    Si no encuentra cliente
-  */
-
-  if(!client){
-
-    showLoyalty(
-      0,
-      false,
-      false
-    );
-
-    loyaltyMessage.innerText =
-      'No encontramos una tarjeta asociada a este WhatsApp.';
-
-    return;
-
-  }
-
-
-  /*
-    Obtener cortes desde Supabase
-  */
-
-  const cuts =
-    Math.max(
-      0,
-      Math.min(
-        5,
-        Number(
-          client.cortes_completados || 0
-        )
-      )
-    );
-
-
-  const benefit =
-    client.beneficio_disponible === true;
-
-
-  /*
-    Mostrar tarjeta
-  */
-
-  showLoyalty(
-    cuts,
-    benefit,
-    true
-  );
-
-}
-
-
-/* =========================================================
-   MOSTRAR TARJETA
-   ========================================================= */
-
-function showLoyalty(
-  cuts,
-  benefit,
-  hasClient
-){
-
-  /*
-    Contador
-  */
-
-  loyaltyCounter.innerText =
-    `${cuts} / 5`;
-
-
-  /*
-    Crear los 5 sellos
-  */
-
-  loyaltyStamps.innerHTML =
-    '';
-
-
-  for(
-    let i = 1;
-    i <= 5;
-    i++
-  ){
-
-    const stamp =
-      document.createElement(
-        'div'
-      );
-
-    stamp.className =
-      'stamp';
-
-
-    /*
-      Los primeros cortes
-      aparecen activos.
-    */
-
-    if(
-      i <= cuts &&
-      cuts < 5
-    ){
-
-      stamp.classList.add(
-        'active'
-      );
-
-      stamp.innerText =
-        '✂';
-
-    }
-
-    /*
-      Cuando llega a 5,
-      mostramos el regalo.
-    */
-
-    else if(
-      i === 5 &&
-      benefit
-    ){
-
-      stamp.classList.add(
-        'active'
-      );
-
-      stamp.innerText =
-        '🎁';
-
-    }
-
-    /*
-      El quinto espacio
-      antes de completar.
-    */
-
-    else if(
-      i === 5
-    ){
-
-      stamp.innerText =
-        '🎁';
-
-    }
-
-    /*
-      Espacios vacíos.
-    */
-
-    else{
-
-      stamp.innerText =
-        '✂';
-
-    }
-
-
-    loyaltyStamps.appendChild(
-      stamp
-    );
-
-  }
-
-
-  /*
-    Barra de progreso
-  */
-
-  const percentage =
-    (cuts / 5) * 100;
-
-
-  loyaltyProgress.style.width =
-    `${percentage}%`;
-
-
-  /*
-    Mensaje
-  */
-
-  if(benefit){
-
-    loyaltyMessage.innerText =
-      '🎉 ¡Completaste tus 5 cortes! Tienes un corte GRATIS disponible.';
-
-    return;
-
-  }
-
-
-  if(cuts === 0){
-
-    loyaltyMessage.innerText =
-      hasClient
-        ? 'Aún no tienes cortes registrados. ¡Comienza tu tarjeta!'
-        : 'Realiza una reserva para vincular tu tarjeta de fidelidad.';
-
-    return;
-
-  }
-
-
-  if(cuts === 1){
-
-    loyaltyMessage.innerText =
-      '✂️ Ya tienes 1 corte registrado. ¡Sigue avanzando para obtener tu corte gratis!';
-
-    return;
-
-  }
-
-
-  const remaining =
-    5 - cuts;
-
-
-  loyaltyMessage.innerText =
-    `✂️ Tienes ${cuts} cortes registrados. Te faltan ${remaining} para obtener tu corte GRATIS.`;
-
-}
-
-
-/* =========================================================
-   ACTUALIZAR TARJETA
-   ========================================================= */
-
-refreshLoyalty.addEventListener(
-  'click',
-  async () => {
-
-    refreshLoyalty.disabled =
-      true;
-
-    refreshLoyalty.innerText =
-      '⏳ ACTUALIZANDO...';
-
-
-    await loadLoyalty();
-
-
-    refreshLoyalty.disabled =
-      false;
-
-    refreshLoyalty.innerText =
-      '🔄 ACTUALIZAR MI TARJETA';
-
-  }
-);
-
-
-/* =========================================================
-   CARGAR FIDELIDAD AL ABRIR LA PÁGINA
-   ========================================================= */
-
-loadLoyalty();
 
 
 /* =========================================================
@@ -1608,10 +1193,6 @@ async function cargarHorarios(
     '⏳ Consultando horarios...';
 
 
-  /*
-    CONSULTAR RESERVAS
-  */
-
   const { data, error } =
     await supabaseClient
       .from('reservas')
@@ -1630,10 +1211,6 @@ async function cargarHorarios(
 
   }
 
-
-  /*
-    HORAS OCUPADAS
-  */
 
   const reservedTimes =
     (data || [])
@@ -2019,10 +1596,6 @@ bookingConfirm.addEventListener(
       selectedTime.innerText.trim();
 
 
-    /*
-      EVITAR DOBLE CLIC
-    */
-
     bookingConfirm.disabled =
       true;
 
@@ -2031,12 +1604,6 @@ bookingConfirm.addEventListener(
 
 
     try{
-
-
-      /*
-        1. COMPROBAR NUEVAMENTE
-        QUE LA HORA SIGA LIBRE
-      */
 
       const {
         data: existingReservations,
@@ -2098,19 +1665,8 @@ bookingConfirm.addEventListener(
       }
 
 
-      /*
-        2. BUSCAR SI EL CLIENTE
-        YA EXISTE
-      */
-
       let clienteId =
         null;
-
-
-      const normalizedWhatsapp =
-        normalizeWhatsapp(
-          whatsapp
-        );
 
 
       const {
@@ -2120,10 +1676,7 @@ bookingConfirm.addEventListener(
         await supabaseClient
           .from('clientes')
           .select('id')
-          .eq(
-            'whatsapp',
-            normalizedWhatsapp
-          )
+          .eq('whatsapp', whatsapp)
           .maybeSingle();
 
 
@@ -2140,29 +1693,12 @@ bookingConfirm.addEventListener(
       }
 
 
-      /*
-        3. SI EXISTE,
-        USAMOS SU ID
-      */
-
       if(existingClient){
 
         clienteId =
           existingClient.id;
 
       }else{
-
-        /*
-          4. SI NO EXISTE,
-          CREAMOS EL CLIENTE
-
-          IMPORTANTE:
-          No ponemos cortes aquí.
-
-          Supabase comenzará con 0
-          según la configuración de
-          la tabla.
-        */
 
         const {
           data: newClient,
@@ -2172,7 +1708,7 @@ bookingConfirm.addEventListener(
             .from('clientes')
             .insert({
               nombre:name,
-              whatsapp:normalizedWhatsapp
+              whatsapp:whatsapp
             })
             .select('id')
             .single();
@@ -2197,12 +1733,7 @@ bookingConfirm.addEventListener(
       }
 
 
-      /*
-        5. CREAR RESERVA
-      */
-
       const {
-        data: newReservation,
         error: reservationError
       } =
         await supabaseClient
@@ -2242,40 +1773,10 @@ bookingConfirm.addEventListener(
       }
 
 
-      /*
-        6. GUARDAR WHATSAPP
-        EN EL NAVEGADOR
-
-        Esto permite que la tarjeta
-        sepa qué cliente mostrar.
-      */
-
-      localStorage.setItem(
-        'reyDeReyesWhatsapp',
-        normalizedWhatsapp
-      );
-
-
-      /*
-        7. ACTUALIZAR TARJETA
-        DESDE SUPABASE
-      */
-
-      await loadLoyalty();
-
-
-      /*
-        8. ÉXITO
-      */
-
       mostrarExito(
         '✅ ¡Reserva registrada correctamente! Te enviaremos la confirmación por WhatsApp.'
       );
 
-
-      /*
-        9. PREPARAR WHATSAPP
-      */
 
       const serviceName =
         selected.querySelector(
@@ -2295,16 +1796,12 @@ bookingConfirm.addEventListener(
         `💰 Precio: ${price}%0A` +
         `📅 Fecha: ${date}%0A` +
         `⏰ Hora: ${time}%0A` +
-        `📱 WhatsApp: ${normalizedWhatsapp}`;
+        `📱 WhatsApp: ${whatsapp}`;
 
 
       const whatsappURL =
         `https://wa.me/56949616687?text=${message}`;
 
-
-      /*
-        10. ABRIR WHATSAPP
-      */
 
       setTimeout(() => {
 
@@ -2315,10 +1812,6 @@ bookingConfirm.addEventListener(
 
       },500);
 
-
-      /*
-        11. ACTUALIZAR HORARIOS
-      */
 
       setTimeout(() => {
 
@@ -2354,30 +1847,9 @@ bookingConfirm.addEventListener(
   }
 );
 
-
-/* =========================================================
-   ACTUALIZACIÓN AUTOMÁTICA DE FIDELIDAD
-   =========================================================
-
-   Si el Admin cambia el número de cortes mientras
-   la página principal está abierta, podemos actualizar
-   la tarjeta periódicamente.
-
-   No modifica nada en Supabase.
-   Solamente vuelve a leer los datos.
-*/
-
-setInterval(
-  () => {
-
-    loadLoyalty();
-
-  },
-  30000
-);
-
 </script>
 
 </body>
 
 </html>
+```
