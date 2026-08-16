@@ -9,6 +9,9 @@
 
 <title>Rey de Reyes | Barbería</title>
 
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
@@ -22,6 +25,7 @@
   --blanco:#f8f6f1;
   --gris:#aaa79e;
   --linea:#2b2924;
+  --rojo:#d96b6b;
 }
 
 *{
@@ -316,6 +320,21 @@ header p{
   color:var(--dorado-claro);
 }
 
+/* HORARIO RESERVADO */
+
+.time-button.reserved{
+  border-color:#542d2d;
+  background:#211515;
+  color:#d96b6b;
+  cursor:not-allowed;
+  opacity:.75;
+}
+
+.time-button.reserved:hover{
+  border-color:#542d2d;
+  transform:none;
+}
+
 .selected-summary{
   display:none;
   margin-top:18px;
@@ -332,6 +351,31 @@ header p{
 .booking-confirm{
   display:none;
   margin-top:12px;
+}
+
+/* ESTADO SUPABASE */
+
+.database-status{
+  display:none;
+  margin-top:12px;
+  padding:10px 12px;
+  border-radius:10px;
+  font-size:11px;
+  line-height:1.4;
+}
+
+.database-status.success{
+  display:block;
+  background:#111812;
+  border:1px solid #293b2c;
+  color:#9ac79d;
+}
+
+.database-status.error{
+  display:block;
+  background:#211515;
+  border:1px solid #542d2d;
+  color:#d96b6b;
 }
 
 /* UBICACION */
@@ -613,6 +657,12 @@ footer{
 
 
   <div
+    id="databaseStatus"
+    class="database-status">
+  </div>
+
+
+  <div
     id="timeSection"
     class="time-section">
 
@@ -757,9 +807,26 @@ footer{
 
 <script>
 
-/* ==========================================
+/* =========================================================
+   CONEXIÓN CON SUPABASE
+   ========================================================= */
+
+const SUPABASE_URL =
+  'https://yuoowwhuirefwfzugevv.supabase.co';
+
+const SUPABASE_PUBLISHABLE_KEY =
+  'sb_publishable_vRnRgcBrlkmUk9RkH7EWbg_tDkBv_6t';
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+
+/* =========================================================
    SELECCIÓN DE SERVICIOS
-   ========================================== */
+   ========================================================= */
 
 const services =
   document.querySelectorAll('.service');
@@ -775,14 +842,27 @@ services.forEach(service => {
 
     service.classList.add('selected');
 
+    /*
+      Si ya había una fecha seleccionada,
+      volvemos a cargar los horarios.
+    */
+
+    if(bookingDate.value){
+
+      cargarHorariosDisponibles(
+        bookingDate.value
+      );
+
+    }
+
   });
 
 });
 
 
-/* ==========================================
+/* =========================================================
    ELEMENTOS DE RESERVA
-   ========================================== */
+   ========================================================= */
 
 const reserveButton =
   document.getElementById('reserveButton');
@@ -817,8 +897,11 @@ const summaryService =
 const bookingConfirm =
   document.getElementById('bookingConfirm');
 
+const databaseStatus =
+  document.getElementById('databaseStatus');
 
-/* ==========================================
+
+/* =========================================================
    HORARIOS DE REY DE REYES
 
    0 = Domingo
@@ -828,7 +911,7 @@ const bookingConfirm =
    4 = Jueves
    5 = Viernes
    6 = Sábado
-   ========================================== */
+   ========================================================= */
 
 const schedules = {
 
@@ -862,9 +945,9 @@ const schedules = {
 };
 
 
-/* ==========================================
+/* =========================================================
    NOMBRES DE LOS DÍAS
-   ========================================== */
+   ========================================================= */
 
 const dayNames = [
   'Domingo',
@@ -877,9 +960,9 @@ const dayNames = [
 ];
 
 
-/* ==========================================
+/* =========================================================
    FECHA MÍNIMA = HOY
-   ========================================== */
+   ========================================================= */
 
 function setMinimumDate(){
 
@@ -890,10 +973,14 @@ function setMinimumDate(){
     today.getFullYear();
 
   const month =
-    String(today.getMonth() + 1).padStart(2,'0');
+    String(
+      today.getMonth() + 1
+    ).padStart(2,'0');
 
   const day =
-    String(today.getDate()).padStart(2,'0');
+    String(
+      today.getDate()
+    ).padStart(2,'0');
 
   const todayString =
     `${year}-${month}-${day}`;
@@ -903,18 +990,19 @@ function setMinimumDate(){
 
 }
 
-
 setMinimumDate();
 
 
-/* ==========================================
+/* =========================================================
    BOTÓN CONTINUAR
-   ========================================== */
+   ========================================================= */
 
 reserveButton.addEventListener('click', () => {
 
   const selected =
-    document.querySelector('.service.selected');
+    document.querySelector(
+      '.service.selected'
+    );
 
 
   if(!selected){
@@ -959,9 +1047,9 @@ reserveButton.addEventListener('click', () => {
 });
 
 
-/* ==========================================
+/* =========================================================
    CAMBIO DE FECHA
-   ========================================== */
+   ========================================================= */
 
 bookingDate.addEventListener(
   'change',
@@ -978,118 +1066,303 @@ bookingDate.addEventListener(
     }
 
 
-    const selectedDate =
-      new Date(
-        value + 'T12:00:00'
-      );
+    cargarHorariosDisponibles(value);
+
+  }
+);
 
 
-    const day =
-      selectedDate.getDay();
+/* =========================================================
+   CARGAR HORARIOS DISPONIBLES
+   ========================================================= */
+
+async function cargarHorariosDisponibles(dateValue){
+
+  const selectedDate =
+    new Date(
+      dateValue + 'T12:00:00'
+    );
+
+  const day =
+    selectedDate.getDay();
+
+  const daySchedules =
+    schedules[day];
 
 
-    const daySchedules =
-      schedules[day];
+  /*
+    Limpiar estado anterior
+  */
+
+  timeOptions.innerHTML =
+    '';
+
+  timeSection.style.display =
+    'none';
+
+  selectedSummary.style.display =
+    'none';
+
+  bookingConfirm.style.display =
+    'none';
+
+  databaseStatus.style.display =
+    'none';
 
 
-    /* LIMPIAR HORARIOS */
+  /*
+    Día cerrado
+  */
 
-    timeOptions.innerHTML =
-      '';
-
-    timeSection.style.display =
-      'none';
-
-    selectedSummary.style.display =
-      'none';
-
-    bookingConfirm.style.display =
-      'none';
-
-
-    /* JUEVES / DÍA CERRADO */
-
-    if(
-      !daySchedules ||
-      daySchedules.length === 0
-    ){
-
-      dayMessage.innerText =
-        `🔴 ${dayNames[day]} estamos cerrados. Por favor selecciona otro día.`;
-
-      return;
-
-    }
-
-
-    /* DÍA DISPONIBLE */
+  if(
+    !daySchedules ||
+    daySchedules.length === 0
+  ){
 
     dayMessage.innerText =
-      `🟢 ${dayNames[day]} tenemos atención. Selecciona una hora:`;
+      `🔴 ${dayNames[day]} estamos cerrados. Por favor selecciona otro día.`;
+
+    return;
+
+  }
 
 
-    timeSection.style.display =
+  /*
+    Consultar reservas en Supabase
+  */
+
+  dayMessage.innerText =
+    '⏳ Consultando horarios disponibles...';
+
+
+  const { data, error } =
+    await supabaseClient
+      .from('reservas')
+      .select('hora, estado')
+      .eq('fecha', dateValue);
+
+
+  /*
+    Error al consultar
+  */
+
+  if(error){
+
+    console.error(
+      'Error consultando reservas:',
+      error
+    );
+
+
+    databaseStatus.className =
+      'database-status error';
+
+    databaseStatus.innerText =
+      '⚠️ No pudimos consultar las reservas. Puedes intentar nuevamente.';
+
+    databaseStatus.style.display =
       'block';
 
 
-    /* GENERAR HORARIOS */
+    dayMessage.innerText =
+      `🟢 ${dayNames[day]} tenemos atención.`;
 
-    daySchedules.forEach(
-      schedule => {
+    /*
+      En caso de error no bloqueamos horarios.
+      Así podemos detectar el problema sin
+      romper completamente la página.
+    */
 
-        const start =
-          schedule[0];
+    generarHorarios(
+      dateValue,
+      daySchedules,
+      []
+    );
 
-        const end =
-          schedule[1];
+    return;
+
+  }
 
 
-        let current =
-          createTimeDate(
-            value,
-            start
+  /*
+    Obtener horas ocupadas
+  */
+
+  const reservedTimes =
+    (data || [])
+      .filter(reserva => {
+
+        /*
+          Si estado es null,
+          igualmente consideramos la reserva.
+
+          Si existe estado,
+          solamente bloqueamos estados
+          que NO sean cancelados.
+        */
+
+        return (
+          !reserva.estado ||
+          reserva.estado.toLowerCase() !== 'cancelada'
+        );
+
+      })
+      .map(reserva => {
+
+        /*
+          Supabase puede devolver:
+          16:00:00
+
+          Nosotros trabajamos con:
+          16:00
+        */
+
+        return String(
+          reserva.hora
+        ).substring(0,5);
+
+      });
+
+
+  /*
+    Mostrar estado correcto
+  */
+
+  databaseStatus.className =
+    'database-status success';
+
+  databaseStatus.innerText =
+    '✓ Horarios actualizados correctamente.';
+
+  databaseStatus.style.display =
+    'block';
+
+
+  dayMessage.innerText =
+    `🟢 ${dayNames[day]} tenemos atención. Selecciona una hora:`;
+
+
+  /*
+    Generar horarios
+  */
+
+  generarHorarios(
+    dateValue,
+    daySchedules,
+    reservedTimes
+  );
+
+}
+
+
+/* =========================================================
+   GENERAR HORARIOS
+   ========================================================= */
+
+function generarHorarios(
+  dateValue,
+  daySchedules,
+  reservedTimes
+){
+
+  timeOptions.innerHTML =
+    '';
+
+  timeSection.style.display =
+    'block';
+
+
+  let availableCount =
+    0;
+
+
+  daySchedules.forEach(
+    schedule => {
+
+      const start =
+        schedule[0];
+
+      const end =
+        schedule[1];
+
+
+      let current =
+        createTimeDate(
+          dateValue,
+          start
+        );
+
+
+      const closing =
+        createTimeDate(
+          dateValue,
+          end
+        );
+
+
+      while(
+        current < closing
+      ){
+
+        const hour =
+          String(
+            current.getHours()
+          ).padStart(2,'0')
+          +
+          ':'
+          +
+          String(
+            current.getMinutes()
+          ).padStart(2,'0');
+
+
+        const button =
+          document.createElement(
+            'button'
           );
 
 
-        const closing =
-          createTimeDate(
-            value,
-            end
+        button.type =
+          'button';
+
+
+        button.className =
+          'time-button';
+
+
+        /*
+          Comprobar si está reservada
+        */
+
+        const isReserved =
+          reservedTimes.includes(
+            hour
           );
 
 
-        while(
-          current < closing
-        ){
+        if(isReserved){
 
-          const hour =
-            String(
-              current.getHours()
-            ).padStart(2,'0')
-            +
-            ':'
-            +
-            String(
-              current.getMinutes()
-            ).padStart(2,'0');
+          button.classList.add(
+            'reserved'
+          );
 
+          button.innerText =
+            `🔴 ${hour} · RESERVADO`;
 
-          const button =
-            document.createElement(
-              'button'
-            );
+          button.disabled =
+            true;
 
+          button.setAttribute(
+            'aria-label',
+            `Hora ${hour} reservada`
+          );
 
-          button.type =
-            'button';
-
-
-          button.className =
-            'time-button';
-
+        }else{
 
           button.innerText =
             hour;
+
+          availableCount++;
 
 
           button.addEventListener(
@@ -1102,9 +1375,11 @@ bookingDate.addEventListener(
                 )
                 .forEach(
                   btn => {
+
                     btn.classList.remove(
                       'selected'
                     );
+
                   }
                 );
 
@@ -1115,35 +1390,48 @@ bookingDate.addEventListener(
 
 
               showSelectedTime(
-                value,
+                dateValue,
                 hour
               );
 
             }
           );
 
-
-          timeOptions.appendChild(
-            button
-          );
-
-
-          current.setHours(
-            current.getHours() + 1
-          );
-
         }
 
+
+        timeOptions.appendChild(
+          button
+        );
+
+
+        current.setHours(
+          current.getHours() + 1
+        );
+
       }
-    );
+
+    }
+  );
+
+
+  /*
+    Si todas las horas están ocupadas
+  */
+
+  if(availableCount === 0){
+
+    dayMessage.innerText =
+      '🔴 No quedan horarios disponibles para este día. Por favor selecciona otra fecha.';
 
   }
-);
+
+}
 
 
-/* ==========================================
+/* =========================================================
    CREAR FECHA + HORA
-   ========================================== */
+   ========================================================= */
 
 function createTimeDate(
   date,
@@ -1157,9 +1445,9 @@ function createTimeDate(
 }
 
 
-/* ==========================================
+/* =========================================================
    MOSTRAR RESUMEN
-   ========================================== */
+   ========================================================= */
 
 function showSelectedTime(
   date,
@@ -1230,13 +1518,13 @@ function showSelectedTime(
 }
 
 
-/* ==========================================
+/* =========================================================
    CONFIRMAR HORARIO
 
-   POR AHORA SOLO MUESTRA EL RESUMEN.
-   DESPUÉS CONECTAREMOS ESTE BOTÓN
-   DIRECTAMENTE CON SUPABASE Y WHATSAPP.
-   ========================================== */
+   POR AHORA ENVÍA A WHATSAPP.
+   EN EL SIGUIENTE PASO LO CONECTAREMOS
+   PARA GUARDAR LA RESERVA EN SUPABASE.
+   ========================================================= */
 
 bookingConfirm.addEventListener(
   'click',
