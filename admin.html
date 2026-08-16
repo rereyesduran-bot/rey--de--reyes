@@ -4,7 +4,6 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Admin | Rey de Reyes</title>
@@ -583,7 +582,7 @@ footer{
     <div style="margin-bottom:12px;">
 
       <strong>
-        📅 Buscar reservas
+        Buscar reservas
       </strong>
 
     </div>
@@ -619,7 +618,7 @@ footer{
         id="refreshButton"
         class="btn btn-dark">
 
-        🔄 ACTUALIZAR
+        ACTUALIZAR
 
       </button>
 
@@ -633,7 +632,7 @@ footer{
   <section class="card">
 
     <h2 style="font-size:17px;">
-      📋 Reservas
+      Reservas
     </h2>
 
     <p
@@ -893,7 +892,7 @@ async function loadReservations(){
 
       reservationsList.innerHTML =
         `<div class="empty">
-          ❌ No se pudieron cargar las reservas.<br><br>
+          No se pudieron cargar las reservas.<br><br>
           ${escapeHTML(error.message)}
         </div>`;
 
@@ -906,7 +905,7 @@ async function loadReservations(){
 
       reservationsList.innerHTML =
         `<div class="empty">
-          📅 No hay reservas
+          No hay reservas
           ${selectedDate
             ? 'para esta fecha'
             : ''}
@@ -1063,7 +1062,7 @@ async function loadReservations(){
 
     reservationsList.innerHTML =
       `<div class="empty">
-        ❌ Ocurrió un error.<br><br>
+        Ocurrió un error.<br><br>
         ${escapeHTML(error.message)}
       </div>`;
 
@@ -1133,7 +1132,7 @@ function renderReservations(reservations){
 
 
       let statusText =
-        '🟡 PENDIENTE';
+        'PENDIENTE';
 
 
       if(estado === 'confirmada'){
@@ -1142,7 +1141,7 @@ function renderReservations(reservations){
           'status-confirmada';
 
         statusText =
-          '🟢 CONFIRMADA';
+          'CONFIRMADA';
 
       }
 
@@ -1153,7 +1152,7 @@ function renderReservations(reservations){
           'status-cancelada';
 
         statusText =
-          '🔴 CANCELADA';
+          'CANCELADA';
 
       }
 
@@ -1216,6 +1215,10 @@ function renderReservations(reservations){
         true;
 
 
+      /*
+       * DATOS PARA WHATSAPP
+       */
+
       const whatsappData = {
 
         phone:
@@ -1258,7 +1261,7 @@ function renderReservations(reservations){
 
             <div class="reservation-time">
 
-              ⏰ ${formatTime(
+              ${formatTime(
                 reservation.hora
               )}
 
@@ -1267,7 +1270,7 @@ function renderReservations(reservations){
 
             <div class="reservation-date">
 
-              📅 ${formatDate(
+              ${formatDate(
                 reservation.fecha
               )}
 
@@ -1289,7 +1292,7 @@ function renderReservations(reservations){
 
           <div class="info-line">
 
-            👤 <span>Cliente:</span>
+            <span>Cliente:</span>
             ${escapeHTML(clientName)}
 
           </div>
@@ -1297,7 +1300,7 @@ function renderReservations(reservations){
 
           <div class="info-line">
 
-            📱 <span>WhatsApp:</span>
+            <span>WhatsApp:</span>
             ${escapeHTML(phone)}
 
           </div>
@@ -1305,7 +1308,7 @@ function renderReservations(reservations){
 
           <div class="info-line">
 
-            ✂️ <span>Servicio:</span>
+            <span>Servicio:</span>
             ${escapeHTML(serviceName)}
 
             ${
@@ -1326,7 +1329,7 @@ function renderReservations(reservations){
           <div class="loyalty-title">
 
             <strong>
-              🎟️ Fidelidad
+              Fidelidad
             </strong>
 
 
@@ -1351,7 +1354,7 @@ function renderReservations(reservations){
 
                 <div class="free-message">
 
-                  🎁 CORTE GRATIS DISPONIBLE
+                  CORTE GRATIS DISPONIBLE
 
                 </div>
 
@@ -1360,7 +1363,7 @@ function renderReservations(reservations){
                   class="loyalty-btn free"
                   onclick="useBenefit('${client.id}')">
 
-                  🎁 USAR BENEFICIO GRATIS
+                  USAR BENEFICIO GRATIS
 
                 </button>
 
@@ -1383,7 +1386,7 @@ function renderReservations(reservations){
                   class="loyalty-btn"
                   onclick="addCut('${client.id}')">
 
-                  ➕ SUMAR CORTE
+                  SUMAR CORTE
 
                 </button>
 
@@ -1407,7 +1410,7 @@ function renderReservations(reservations){
                   class="action-btn confirm-btn"
                   onclick="changeStatus('${reservation.id}','confirmada')">
 
-                  🟢 CONFIRMAR
+                  CONFIRMAR
 
                 </button>
 
@@ -1426,7 +1429,7 @@ function renderReservations(reservations){
                   class="action-btn cancel-btn"
                   onclick="changeStatus('${reservation.id}','cancelada')">
 
-                  🔴 CANCELAR
+                  CANCELAR
 
                 </button>
 
@@ -1445,7 +1448,7 @@ function renderReservations(reservations){
                   class="action-btn whatsapp-btn"
                   onclick="openWhatsAppData('${whatsappEncoded}')">
 
-                  📲 WHATSAPP
+                  WHATSAPP
 
                 </button>
 
@@ -1488,17 +1491,17 @@ function createStamps(cuts){
     if(i <= cuts){
 
       html +=
-        `<div class="stamp active">✂️</div>`;
+        `<div class="stamp active">✂</div>`;
 
     }else if(i === 5){
 
       html +=
-        `<div class="stamp">🎁</div>`;
+        `<div class="stamp">G</div>`;
 
     }else{
 
       html +=
-        `<div class="stamp">✂️</div>`;
+        `<div class="stamp">✂</div>`;
 
     }
 
@@ -1535,7 +1538,7 @@ async function addCut(clientId){
   if(clientError){
 
     alert(
-      '❌ No se pudo obtener la información del cliente.'
+      'No se pudo obtener la información del cliente.'
     );
 
     return;
@@ -1553,7 +1556,7 @@ async function addCut(clientId){
   if(client.beneficio_disponible){
 
     alert(
-      '🎁 Este cliente ya tiene un corte gratis disponible.'
+      'Este cliente ya tiene un corte gratis disponible.'
     );
 
     return;
@@ -1606,7 +1609,7 @@ async function addCut(clientId){
   if(error){
 
     alert(
-      '❌ No se pudo sumar el corte.\n\n' +
+      'No se pudo sumar el corte.\n\n' +
       error.message
     );
 
@@ -1618,15 +1621,15 @@ async function addCut(clientId){
   if(benefit){
 
     alert(
-      '🎉 ¡Cliente completó 5 cortes!\n\n' +
-      '🎁 Tiene un corte GRATIS disponible.'
+      'Cliente completó 5 cortes.\n\n' +
+      'Tiene un corte GRATIS disponible.'
     );
 
   }else{
 
     alert(
-      `✅ Corte registrado.\n\n` +
-      `✂️ Progreso: ${cuts}/5`
+      `Corte registrado.\n\n` +
+      `Progreso: ${cuts}/5`
     );
 
   }
@@ -1645,7 +1648,7 @@ async function useBenefit(clientId){
 
   const confirmUse =
     confirm(
-      '🎁 ¿Confirmas que el cliente está utilizando su corte GRATIS?'
+      '¿Confirmas que el cliente está utilizando su corte GRATIS?'
     );
 
 
@@ -1679,7 +1682,7 @@ async function useBenefit(clientId){
   if(error){
 
     alert(
-      '❌ No se pudo utilizar el beneficio.\n\n' +
+      'No se pudo utilizar el beneficio.\n\n' +
       error.message
     );
 
@@ -1689,8 +1692,8 @@ async function useBenefit(clientId){
 
 
   alert(
-    '🎁 Beneficio utilizado.\n\n' +
-    '✂️ La tarjeta comenzó nuevamente en 0/5.'
+    'Beneficio utilizado.\n\n' +
+    'La tarjeta comenzó nuevamente en 0/5.'
   );
 
 
@@ -1710,8 +1713,8 @@ async function changeStatus(
 
   const text =
     newStatus === 'confirmada'
-      ? '🟢 ¿Confirmar esta reserva?'
-      : '🔴 ¿Cancelar esta reserva?';
+      ? '¿Confirmar esta reserva?'
+      : '¿Cancelar esta reserva?';
 
 
   if(!confirm(text)){
@@ -1741,7 +1744,7 @@ async function changeStatus(
   if(error){
 
     alert(
-      '❌ No se pudo actualizar la reserva.\n\n' +
+      'No se pudo actualizar la reserva.\n\n' +
       error.message
     );
 
@@ -1752,8 +1755,8 @@ async function changeStatus(
 
   alert(
     newStatus === 'confirmada'
-      ? '✅ Reserva confirmada.'
-      : '🔴 Reserva cancelada.'
+      ? 'Reserva confirmada.'
+      : 'Reserva cancelada.'
   );
 
 
@@ -1762,10 +1765,9 @@ async function changeStatus(
 }
 
 
-/* =====================================================
-   WHATSAPP
-   MENSAJES CON EMOJIS
-===================================================== */
+/* ================================
+   WHATSAPP INTELIGENTE
+================================ */
 
 function openWhatsAppData(
   encodedData
@@ -1816,9 +1818,9 @@ function openWhatsAppData(
       '';
 
 
-    /* ==========================================
-       RESERVA PENDIENTE
-    ========================================== */
+    /* ================================
+       PENDIENTE
+    ================================= */
 
     if(
       data.status ===
@@ -1826,30 +1828,30 @@ function openWhatsAppData(
     ){
 
       message =
-`👋 Hola ${name}.
+`Hola ${name}.
 
-💈 Te escribimos de REY DE REYES BARBERÍA.
+Te escribimos de REY DE REYES BARBERIA.
 
-📋 Hemos recibido tu solicitud de reserva.
+Hemos recibido tu solicitud de reserva.
 
-📅 Fecha: ${date}
-⏰ Hora: ${time}
-✂️ Servicio: ${service}
-💰 Precio: ${price}
+FECHA: ${date}
+HORA: ${time}
+SERVICIO: ${service}
+PRECIO: ${price}
 
-🟡 Tu reserva se encuentra PENDIENTE DE CONFIRMACIÓN.
+Tu reserva se encuentra PENDIENTE DE CONFIRMACION.
 
-📲 Te avisaremos cuando la hora haya sido confirmada.
+Te avisaremos cuando la hora haya sido confirmada.
 
-👑 Gracias por preferir REY DE REYES BARBERÍA.`;
+Gracias por preferir REY DE REYES BARBERIA.`;
 
 
     }
 
 
-    /* ==========================================
-       RESERVA CONFIRMADA
-    ========================================== */
+    /* ================================
+       CONFIRMADA
+    ================================= */
 
     else if(
       data.status ===
@@ -1857,32 +1859,30 @@ function openWhatsAppData(
     ){
 
       message =
-`👋 Hola ${name}.
+`Hola ${name}.
 
-💈 Te escribimos de REY DE REYES BARBERÍA.
+Te escribimos de REY DE REYES BARBERIA.
 
-🎉 ¡Tu reserva ha sido CONFIRMADA!
+Tu reserva ha sido CONFIRMADA.
 
-📅 Fecha: ${date}
-⏰ Hora: ${time}
-✂️ Servicio: ${service}
-💰 Precio: ${price}
+FECHA: ${date}
+HORA: ${time}
+SERVICIO: ${service}
+PRECIO: ${price}
 
-✅ Tu hora está reservada.
+Te recomendamos llegar unos minutos antes de tu hora.
 
-🕐 Te recomendamos llegar unos minutos antes de tu hora.
+Gracias por preferir REY DE REYES BARBERIA.
 
-👑 Gracias por preferir REY DE REYES BARBERÍA.
-
-💈 ¡Te esperamos!`;
+Te esperamos.`;
 
 
     }
 
 
-    /* ==========================================
-       RESERVA CANCELADA
-    ========================================== */
+    /* ================================
+       CANCELADA
+    ================================= */
 
     else if(
       data.status ===
@@ -1890,41 +1890,41 @@ function openWhatsAppData(
     ){
 
       message =
-`👋 Hola ${name}.
+`Hola ${name}.
 
-💈 Te escribimos de REY DE REYES BARBERÍA.
+Te escribimos de REY DE REYES BARBERIA.
 
-🔴 Lamentamos informarte que tu reserva ha sido CANCELADA.
+Lamentamos informarte que tu reserva ha sido CANCELADA.
 
-📅 Fecha: ${date}
-⏰ Hora: ${time}
-✂️ Servicio: ${service}
+FECHA: ${date}
+HORA: ${time}
+SERVICIO: ${service}
 
-📲 Si deseas reservar nuevamente, puedes comunicarte con nosotros.
+Si deseas reservar nuevamente, puedes comunicarte con nosotros.
 
-👑 Gracias por preferir REY DE REYES BARBERÍA.`;
+Gracias por preferir REY DE REYES BARBERIA.`;
 
 
     }
 
 
-    /* ==========================================
+    /* ================================
        OTRO ESTADO
-    ========================================== */
+    ================================= */
 
     else{
 
       message =
-`👋 Hola ${name}.
+`Hola ${name}.
 
-💈 Te escribimos de REY DE REYES BARBERÍA.
+Te escribimos de REY DE REYES BARBERIA.
 
-📅 Fecha: ${date}
-⏰ Hora: ${time}
-✂️ Servicio: ${service}
-💰 Precio: ${price}
+FECHA: ${date}
+HORA: ${time}
+SERVICIO: ${service}
+PRECIO: ${price}
 
-👑 Gracias por preferir REY DE REYES BARBERÍA.`;
+Gracias por preferir REY DE REYES BARBERIA.`;
 
     }
 
@@ -1944,7 +1944,7 @@ function openWhatsAppData(
   }catch(error){
 
     alert(
-      '❌ No se pudo abrir WhatsApp.'
+      'No se pudo abrir WhatsApp.'
     );
 
   }
