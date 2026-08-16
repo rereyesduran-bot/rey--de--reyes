@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin | Rey de Reyes</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+:root{
+  --negro:#080808;
+  --card:#161614;
+  --dorado:#d7b56d;
+  --dorado-claro:#f0d99d;
+  --blanco:#f8f6f1;
+  --gris:#aaa79e;
+  --linea:#2b2924;
+  --verde:#8fc79b;
+  --rojo:#d98989;
+  --amarillo:#e5c875;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  background:
+    radial-gradient(circle at 50% -10%,#3b301d 0%,transparent 35%),
+    var(--negro);
+  color:var(--blanco);
+  font-family:'DM Sans',sans-serif;
+}
+
+.container{
+  width:min(100%,700px);
+  margin:auto;
+  padding:25px 17px 50px;
+}
+
+/* LOGIN */
+
+.login{
+  min-height:90vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.login-card{
+  width:100%;
+  max-width:430px;
+  background:linear-gradient(145deg,#191917,#11110f);
+  border:1px solid var(--linea);
+  border-radius:22px;
+  padding:30px 22px;
+  box-shadow:0 15px 40px #00000060;
+  text-align:center;
+}
+
+.logo{
+  width:85px;
+  height:85px;
+  margin:0 auto 18px;
+  border:1px solid var(--dorado);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--dorado-claro);
+  font-weight:700;
+  font-size:11px;
+  letter-spacing:2px;
+  line-height:1.4;
+}
+
+.login h1{
+  font-family:'Playfair Display',serif;
+  letter-spacing:2px;
+  margin-bottom:5px;
+}
+
+.login p{
+  color:var(--gris);
+  font-size:12px;
+  margin-bottom:22px;
+}
+
+.input{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid #3a352c;
+  background:#11110f;
+  color:white;
+  outline:none;
+  font-family:inherit;
+}
+
+.input:focus{
+  border-color:var(--dorado);
+}
+
+.error{
+  color:var(--rojo);
+  font-size:12px;
+  margin-top:12px;
+  display:none;
+}
+
+/* GENERAL */
+
+.hidden{
+  display:none !important;
+}
+
+header{
+  text-align:center;
+  padding:15px 0 25px;
+}
+
+header h1{
+  font-family:'Playfair Display',serif;
+  font-size:30px;
+  letter-spacing:3px;
+}
+
+header p{
+  color:var(--gris);
+  font-size:11px;
+  letter-spacing:2px;
+  margin-top:6px;
+}
+
+.card{
+  background:linear-gradient(145deg,#191917,#11110f);
+  border:1px solid var(--linea);
+  border-radius:20px;
+  padding:20px;
+  margin-bottom:15px;
+  box-shadow:0 15px 40px #00000040;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.stat{
+  background:#11110f;
+  border:1px solid var(--linea);
+  border-radius:15px;
+  padding:15px 8px;
+  text-align:center;
+}
+
+.stat strong{
+  display:block;
+  font-size:22px;
+  color:var(--dorado-claro);
+}
+
+.stat span{
+  display:block;
+  color:var(--gris);
+  font-size:10px;
+  margin-top:4px;
+}
+
+.controls{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.date-filter{
+  flex:1;
+  min-width:180px;
+}
+
+.btn{
+  border:0;
+  border-radius:12px;
+  padding:13px 16px;
+  background:linear-gradient(100deg,#b48d47,#efd38c);
+  color:#111;
+  font-weight:700;
+  font-family:inherit;
+  cursor:pointer;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+}
+
+.btn-dark{
+  background:#211c13;
+  color:var(--dorado-claro);
+  border:1px solid #675737;
+}
+
+/* RESERVAS */
+
+.reservation{
+  border:1px solid var(--linea);
+  border-radius:17px;
+  padding:17px;
+  margin-top:11px;
+  background:#121210;
+}
+
+.reservation-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:flex-start;
+}
+
+.reservation-time{
+  font-size:22px;
+  font-weight:700;
+  color:var(--dorado-claro);
+}
+
+.reservation-date{
+  color:var(--gris);
+  font-size:11px;
+  margin-top:3px;
+}
+
+.status{
+  padding:6px 9px;
+  border-radius:20px;
+  font-size:10px;
+  font-weight:700;
+}
+
+.status-pendiente{
+  background:#332d19;
+  color:var(--amarillo);
+}
+
+.status-confirmada{
+  background:#17251a;
+  color:var(--verde);
+}
+
+.status-cancelada{
+  background:#2c1818;
+  color:var(--rojo);
+}
+
+.reservation-info{
+  margin-top:14px;
+  border-top:1px solid var(--linea);
+  padding-top:12px;
+}
+
+.info-line{
+  font-size:12px;
+  margin-top:6px;
+  color:#ddd8ce;
+}
+
+.info-line span{
+  color:var(--gris);
+}
+
+.actions{
+  display:flex;
+  gap:8px;
+  margin-top:15px;
+}
+
+.action-btn{
+  flex:1;
+  border-radius:10px;
+  padding:10px 5px;
+  border:1px solid var(--linea);
+  background:#181714;
+  color:white;
+  cursor:pointer;
+  font-family:inherit;
+  font-size:11px;
+  font-weight:600;
+}
+
+.confirm-btn{
+  border-color:#38563d;
+  color:var(--verde);
+}
+
+.cancel-btn{
+  border-color:#5b3636;
+  color:var(--rojo);
+}
+
+.whatsapp-btn{
+  border-color:#38563d;
+  color:#9ac79d;
+}
+
+.empty{
+  text-align:center;
+  padding:35px 10px;
+  color:var(--gris);
+  font-size:13px;
+}
+
+.loading{
+  text-align:center;
+  color:var(--gris);
+  padding:25px;
+}
+
+footer{
+  text-align:center;
+  color:#696761;
+  font-size:10px;
+  letter-spacing:1px;
+  padding:20px 0;
+}
+
+@media(max-width:500px){
+
+  .stats{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .stat strong{
+    font-size:19px;
+  }
+
+  .controls{
+    flex-direction:column;
+  }
+
+  .date-filter{
+    width:100%;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==============================
+     LOGIN
+     ============================== -->
+
+<div
+  id="loginScreen"
+  class="login">
+
+  <div class="login-card">
+
+    <div class="logo">
+      REY<br>
+      DE<br>
+      REYES
+    </div>
+
+    <h1>Panel de Administración</h1>
+
+    <p>
+      Gestiona las reservas de Rey de Reyes
+    </p>
+
+    <input
+      id="passwordInput"
+      class="input"
+      type="password"
+      placeholder="Contraseña">
+
+    <button
+      id="loginButton"
+      class="btn"
+      style="width:100%;margin-top:12px;">
+
+      ENTRAR
+
+    </button>
+
+    <div
+      id="loginError"
+      class="error">
+
+      Contraseña incorrecta.
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ==============================
+     PANEL
+     ============================== -->
+
+<div
+  id="adminPanel"
+  class="container hidden">
+
+
+  <header>
+
+    <h1>REY DE REYES</h1>
+
+    <p>
+      PANEL DE ADMINISTRACIÓN
+    </p>
+
+  </header>
+
+
+  <!-- ESTADÍSTICAS -->
+
+  <section class="card">
+
+    <div class="stats">
+
+      <div class="stat">
+
+        <strong id="totalReservations">
+          0
+        </strong>
+
+        <span>
+          RESERVAS
+        </span>
+
+      </div>
+
+
+      <div class="stat">
+
+        <strong id="pendingReservations">
+          0
+        </strong>
+
+        <span>
+          PENDIENTES
+        </span>
+
+      </div>
+
+
+      <div class="stat">
+
+        <strong id="confirmedReservations">
+          0
+        </strong>
+
+        <span>
+          CONFIRMADAS
+        </span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FILTROS -->
+
+  <section class="card">
+
+    <div style="margin-bottom:12px;">
+
+      <strong>
+        📅 Buscar reservas
+      </strong>
+
+    </div>
+
+
+    <div class="controls">
+
+      <input
+        type="date"
+        id="dateFilter"
+        class="input date-filter">
+
+      <button
+        id="todayButton"
+        class="btn">
+
+        HOY
+
+      </button>
+
+      <button
+        id="allButton"
+        class="btn btn-dark">
+
+        TODAS
+
+      </button>
+
+      <button
+        id="refreshButton"
+        class="btn btn-dark">
+
+        🔄 ACTUALIZAR
+
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- RESERVAS -->
+
+  <section class="card">
+
+    <div
+      style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        margin-bottom:5px;
+      ">
+
+      <h2 style="font-size:17px;">
+        📋 Reservas
+      </h2>
+
+    </div>
+
+    <p
+      id="reservationSubtitle"
+      style="
+        color:var(--gris);
+        font-size:11px;
+        margin-bottom:10px;
+      ">
+
+      Cargando reservas...
+
+    </p>
+
+
+    <div
+      id="reservationsList">
+
+      <div class="loading">
+        Cargando reservas...
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <footer>
+
+    REY DE REYES · ADMINISTRACIÓN
+
+  </footer>
+
+
+</div>
+
+
+<script>
+
+/* ==========================================
+   CONFIGURACIÓN SUPABASE
+   ========================================== */
+
+const SUPABASE_URL =
+  'https://yuoowwhuirefwfzugevv.supabase.co';
+
+
+const SUPABASE_KEY =
+  'sb_publishable_vRnRgcBrlkmUk9RkH7EWbg_tDkBv_6t';
+
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* ==========================================
+   CONTRASEÑA DEL PANEL
+   ==========================================
+
+   IMPORTANTE:
+   Esta es una protección básica.
+   Más adelante podemos hacer un sistema
+   de administrador real con Supabase Auth.
+
+   Puedes cambiar esta contraseña.
+   ========================================== */
+
+const ADMIN_PASSWORD =
+  'ReyDeReyes2026';
+
+
+/* ==========================================
+   ELEMENTOS
+   ========================================== */
+
+const loginScreen =
+  document.getElementById(
+    'loginScreen'
+  );
+
+
+const adminPanel =
+  document.getElementById(
+    'adminPanel'
+  );
+
+
+const passwordInput =
+  document.getElementById(
+    'passwordInput'
+  );
+
+
+const loginButton =
+  document.getElementById(
+    'loginButton'
+  );
+
+
+const loginError =
+  document.getElementById(
+    'loginError'
+  );
+
+
+const reservationsList =
+  document.getElementById(
+    'reservationsList'
+  );
+
+
+const dateFilter =
+  document.getElementById(
+    'dateFilter'
+  );
+
+
+const totalReservations =
+  document.getElementById(
+    'totalReservations'
+  );
+
+
+const pendingReservations =
+  document.getElementById(
+    'pendingReservations'
+  );
+
+
+const confirmedReservations =
+  document.getElementById(
+    'confirmedReservations'
+  );
+
+
+const reservationSubtitle =
+  document.getElementById(
+    'reservationSubtitle'
+  );
+
+
+/* ==========================================
+   LOGIN
+   ========================================== */
+
+function login(){
+
+  const password =
+    passwordInput.value.trim();
+
+
+  if(password === ADMIN_PASSWORD){
+
+    loginScreen.classList.add(
+      'hidden'
+    );
+
+    adminPanel.classList.remove(
+      'hidden'
+    );
+
+    loadReservations();
+
+  }else{
+
+    loginError.style.display =
+      'block';
+
+  }
+
+}
+
+
+loginButton.addEventListener(
+  'click',
+  login
+);
+
+
+passwordInput.addEventListener(
+  'keydown',
+  event => {
+
+    if(event.key === 'Enter'){
+
+      login();
+
+    }
+
+  }
+);
+
+
+/* ==========================================
+   FECHA DE HOY
+   ========================================== */
+
+function getToday(){
+
+  const today =
+    new Date();
+
+  const year =
+    today.getFullYear();
+
+  const month =
+    String(
+      today.getMonth() + 1
+    ).padStart(2,'0');
+
+  const day =
+    String(
+      today.getDate()
+    ).padStart(2,'0');
+
+  return `${year}-${month}-${day}`;
+
+}
+
+
+/* ==========================================
+   CARGAR RESERVAS
+   ========================================== */
+
+async function loadReservations(){
+
+  reservationsList.innerHTML =
+    '<div class="loading">Cargando reservas...</div>';
+
+
+  try{
+
+    let query =
+      supabaseClient
+        .from('reservas')
+        .select('*')
+        .order('fecha',{ascending:true})
+        .order('hora',{ascending:true});
+
+
+    const selectedDate =
+      dateFilter.value;
+
+
+    if(selectedDate){
+
+      query =
+        query.eq(
+          'fecha',
+          selectedDate
+        );
+
+    }
+
+
+    const {
+      data,
+      error
+    } = await query;
+
+
+    if(error){
+
+      console.error(
+        'Error reservas:',
+        error
+      );
+
+      reservationsList.innerHTML =
+        `<div class="empty">
+          ❌ No se pudieron cargar las reservas.<br><br>
+          ${error.message}
+        </div>`;
+
+      return;
+
+    }
+
+
+    if(!data || data.length === 0){
+
+      reservationsList.innerHTML =
+        `<div class="empty">
+          📅 No hay reservas
+          ${selectedDate ? 'para esta fecha' : ''}
+        </div>`;
+
+      updateStats([]);
+
+      reservationSubtitle.innerText =
+        selectedDate
+          ? `Reservas del ${formatDate(selectedDate)}`
+          : 'Todas las reservas';
+
+      return;
+
+    }
+
+
+    /* BUSCAR CLIENTES */
+
+    const clientIds =
+      [
+        ...new Set(
+          data
+            .map(
+              reservation =>
+                reservation.cliente_id
+            )
+            .filter(Boolean)
+        )
+      ];
+
+
+    let clients = [];
+
+
+    if(clientIds.length > 0){
+
+      const {
+        data:clientData,
+        error:clientError
+      } =
+        await supabaseClient
+          .from('clientes')
+          .select(
+            'id,nombre,whatsapp'
+          )
+          .in(
+            'id',
+            clientIds
+          );
+
+
+      if(!clientError){
+
+        clients =
+          clientData || [];
+
+      }
+
+    }
+
+
+    /* BUSCAR SERVICIOS */
+
+    const serviceIds =
+      [
+        ...new Set(
+          data
+            .map(
+              reservation =>
+                reservation.servicio_id
+            )
+            .filter(Boolean)
+        )
+      ];
+
+
+    let services = [];
+
+
+    if(serviceIds.length > 0){
+
+      const {
+        data:serviceData,
+        error:serviceError
+      } =
+        await supabaseClient
+          .from('servicios')
+          .select(
+            'id,nombre,precio'
+          )
+          .in(
+            'id',
+            serviceIds
+          );
+
+
+      if(!serviceError){
+
+        services =
+          serviceData || [];
+
+      }
+
+    }
+
+
+    /* CONSTRUIR RESERVAS */
+
+    const completeReservations =
+      data.map(
+        reservation => {
+
+          const client =
+            clients.find(
+              item =>
+                item.id ===
+                reservation.cliente_id
+            );
+
+
+          const service =
+            services.find(
+              item =>
+                item.id ===
+                reservation.servicio_id
+            );
+
+
+          return {
+
+            ...reservation,
+
+            client:
+              client || null,
+
+            service:
+              service || null
+
+          };
+
+        }
+      );
+
+
+    updateStats(
+      completeReservations
+    );
+
+
+    renderReservations(
+      completeReservations
+    );
+
+
+    reservationSubtitle.innerText =
+      selectedDate
+        ? `Reservas del ${formatDate(selectedDate)}`
+        : `Todas las reservas · ${data.length}`;
+
+
+  }catch(error){
+
+    console.error(error);
+
+    reservationsList.innerHTML =
+      `<div class="empty">
+        ❌ Ocurrió un error.<br><br>
+        ${error.message}
+      </div>`;
+
+  }
+
+}
+
+
+/* ==========================================
+   ESTADÍSTICAS
+   ========================================== */
+
+function updateStats(
+  reservations
+){
+
+  totalReservations.innerText =
+    reservations.length;
+
+
+  pendingReservations.innerText =
+    reservations.filter(
+      reservation =>
+        reservation.estado ===
+        'pendiente'
+    ).length;
+
+
+  confirmedReservations.innerText =
+    reservations.filter(
+      reservation =>
+        reservation.estado ===
+        'confirmada'
+    ).length;
+
+}
+
+
+/* ==========================================
+   MOSTRAR RESERVAS
+   ========================================== */
+
+function renderReservations(
+  reservations
+){
+
+  reservationsList.innerHTML =
+    '';
+
+
+  reservations.forEach(
+    reservation => {
+
+      const card =
+        document.createElement(
+          'div'
+        );
+
+
+      card.className =
+        'reservation';
+
+
+      const estado =
+        reservation.estado ||
+        'pendiente';
+
+
+      let statusClass =
+        'status-pendiente';
+
+
+      let statusText =
+        '🟡 PENDIENTE';
+
+
+      if(
+        estado ===
+        'confirmada'
+      ){
+
+        statusClass =
+          'status-confirmada';
+
+        statusText =
+          '🟢 CONFIRMADA';
+
+      }
+
+
+      if(
+        estado ===
+        'cancelada'
+      ){
+
+        statusClass =
+          'status-cancelada';
+
+        statusText =
+          '🔴 CANCELADA';
+
+      }
+
+
+      const clientName =
+        reservation.client
+          ?.nombre ||
+        'Cliente';
+
+
+      const phone =
+        reservation.client
+          ?.whatsapp ||
+        'No registrado';
+
+
+      const serviceName =
+        reservation.service
+          ?.nombre ||
+        'Servicio';
+
+
+      const price =
+        reservation.service
+          ?.precio;
+
+
+      const formattedPrice =
+        price
+          ? '$' +
+            Number(price)
+              .toLocaleString(
+                'es-CL'
+              )
+          : '';
+
+
+      const whatsappNumber =
+        phone.replace(
+          /\D/g,
+          ''
+        );
+
+
+      card.innerHTML = `
+
+        <div class="reservation-top">
+
+          <div>
+
+            <div class="reservation-time">
+
+              ⏰ ${formatTime(
+                reservation.hora
+              )}
+
+            </div>
+
+            <div class="reservation-date">
+
+              📅 ${formatDate(
+                reservation.fecha
+              )}
+
+            </div>
+
+          </div>
+
+          <span class="status ${statusClass}">
+
+            ${statusText}
+
+          </span>
+
+        </div>
+
+
+        <div class="reservation-info">
+
+          <div class="info-line">
+
+            👤 <span>Cliente:</span>
+            ${escapeHTML(clientName)}
+
+          </div>
+
+
+          <div class="info-line">
+
+            📱 <span>WhatsApp:</span>
+            ${escapeHTML(phone)}
+
+          </div>
+
+
+          <div class="info-line">
+
+            ✂️ <span>Servicio:</span>
+            ${escapeHTML(serviceName)}
+            ${formattedPrice
+              ? ' · ' + formattedPrice
+              : ''}
+
+          </div>
+
+        </div>
+
+
+        <div class="actions">
+
+          ${
+            estado !== 'confirmada'
+            ? `
+              <button
+                class="action-btn confirm-btn"
+                onclick="changeStatus('${reservation.id}','confirmada')">
+
+                🟢 CONFIRMAR
+
+              </button>
+            `
+            : ''
+          }
+
+
+          ${
+            estado !== 'cancelada'
+            ? `
+              <button
+                class="action-btn cancel-btn"
+                onclick="changeStatus('${reservation.id}','cancelada')">
+
+                🔴 CANCELAR
+
+              </button>
+            `
+            : ''
+          }
+
+
+          ${
+            whatsappNumber
+            ? `
+              <button
+                class="action-btn whatsapp-btn"
+                onclick="openWhatsApp('${whatsappNumber}','${escapeAttribute(clientName)}')">
+
+                📲 WHATSAPP
+
+              </button>
+            `
+            : ''
+          }
+
+        </div>
+
+      `;
+
+
+      reservationsList.appendChild(
+        card
+      );
+
+    }
+  );
+
+}
+
+
+/* ==========================================
+   CAMBIAR ESTADO
+   ========================================== */
+
+async function changeStatus(
+  reservationId,
+  newStatus
+){
+
+  const text =
+    newStatus ===
+    'confirmada'
+      ? '¿Confirmar esta reserva?'
+      : '¿Cancelar esta reserva?';
+
+
+  if(!confirm(text)){
+
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from('reservas')
+      .update({
+        estado:newStatus
+      })
+      .eq(
+        'id',
+        reservationId
+      );
+
+
+  if(error){
+
+    alert(
+      'No se pudo actualizar la reserva.\n\n' +
+      error.message
+    );
+
+    console.error(
+      error
+    );
+
+    return;
+
+  }
+
+
+  alert(
+    newStatus ===
+    'confirmada'
+      ? '✅ Reserva confirmada.'
+      : '🔴 Reserva cancelada.'
+  );
+
+
+  loadReservations();
+
+}
+
+
+/* ==========================================
+   WHATSAPP
+   ========================================== */
+
+function openWhatsApp(
+  phone,
+  name
+){
+
+  const message =
+    `Hola ${name}, te escribimos de Rey de Reyes Barbería.`;
+
+  const url =
+    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+  window.open(
+    url,
+    '_blank'
+  );
+
+}
+
+
+/* ==========================================
+   FORMATO FECHA
+   ========================================== */
+
+function formatDate(
+  date
+){
+
+  if(!date){
+
+    return '';
+
+  }
+
+
+  const selected =
+    new Date(
+      date + 'T12:00:00'
+    );
+
+
+  return selected.toLocaleDateString(
+    'es-CL',
+    {
+      weekday:'long',
+      day:'numeric',
+      month:'long',
+      year:'numeric'
+    }
+  );
+
+}
+
+
+/* ==========================================
+   FORMATO HORA
+   ========================================== */
+
+function formatTime(
+  time
+){
+
+  if(!time){
+
+    return '';
+
+  }
+
+
+  return time.substring(
+    0,
+    5
+  );
+
+}
+
+
+/* ==========================================
+   SEGURIDAD HTML
+   ========================================== */
+
+function escapeHTML(
+  text
+){
+
+  return String(
+    text ?? ''
+  )
+  .replace(
+    /&/g,
+    '&amp;'
+  )
+  .replace(
+    /</g,
+    '&lt;'
+  )
+  .replace(
+    />/g,
+    '&gt;'
+  )
+  .replace(
+    /"/g,
+    '&quot;'
+  )
+  .replace(
+    /'/g,
+    '&#039;'
+  );
+
+}
+
+
+function escapeAttribute(
+  text
+){
+
+  return String(
+    text ?? ''
+  )
+  .replace(
+    /'/g,
+    "\\'"
+  );
+
+}
+
+
+/* ==========================================
+   BOTONES
+   ========================================== */
+
+document
+  .getElementById(
+    'todayButton'
+  )
+  .addEventListener(
+    'click',
+    () => {
+
+      dateFilter.value =
+        getToday();
+
+      loadReservations();
+
+    }
+  );
+
+
+document
+  .getElementById(
+    'allButton'
+  )
+  .addEventListener(
+    'click',
+    () => {
+
+      dateFilter.value =
+        '';
+
+      loadReservations();
+
+    }
+  );
+
+
+document
+  .getElementById(
+    'refreshButton'
+  )
+  .addEventListener(
+    'click',
+    () => {
+
+      loadReservations();
+
+    }
+  );
+
+
+dateFilter.addEventListener(
+  'change',
+  () => {
+
+    loadReservations();
+
+  }
+);
+
+</script>
+
+</body>
+
+</html>
