@@ -4,6 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Admin | Rey de Reyes</title>
@@ -51,7 +52,10 @@ body{
   display:none !important;
 }
 
-/* LOGIN */
+
+/* ================================
+   LOGIN
+================================ */
 
 .login{
   min-height:90vh;
@@ -121,7 +125,10 @@ body{
   display:none;
 }
 
-/* GENERAL */
+
+/* ================================
+   GENERAL
+================================ */
 
 header{
   text-align:center;
@@ -150,6 +157,11 @@ header p{
   box-shadow:0 15px 40px #00000040;
 }
 
+
+/* ================================
+   ESTADISTICAS
+================================ */
+
 .stats{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -176,6 +188,11 @@ header p{
   font-size:10px;
   margin-top:4px;
 }
+
+
+/* ================================
+   CONTROLES
+================================ */
 
 .controls{
   display:flex;
@@ -209,7 +226,10 @@ header p{
   border:1px solid #675737;
 }
 
-/* RESERVAS */
+
+/* ================================
+   RESERVAS
+================================ */
 
 .reservation{
   border:1px solid var(--linea);
@@ -312,7 +332,10 @@ header p{
   color:#9ac79d;
 }
 
-/* FIDELIDAD */
+
+/* ================================
+   FIDELIDAD
+================================ */
 
 .loyalty{
   margin-top:15px;
@@ -409,6 +432,7 @@ footer{
   padding:20px 0;
 }
 
+
 @media(max-width:500px){
 
   .stats{
@@ -433,10 +457,13 @@ footer{
 
 </head>
 
+
 <body>
 
 
-<!-- LOGIN -->
+<!-- ================================
+     LOGIN
+================================ -->
 
 <div id="loginScreen" class="login">
 
@@ -482,9 +509,12 @@ footer{
 </div>
 
 
-<!-- PANEL -->
+<!-- ================================
+     PANEL
+================================ -->
 
 <div id="adminPanel" class="container hidden">
+
 
   <header>
 
@@ -497,7 +527,7 @@ footer{
   </header>
 
 
-  <!-- ESTADÍSTICAS -->
+  <!-- ESTADISTICAS -->
 
   <section class="card">
 
@@ -515,6 +545,7 @@ footer{
 
       </div>
 
+
       <div class="stat">
 
         <strong id="pendingReservations">
@@ -526,6 +557,7 @@ footer{
         </span>
 
       </div>
+
 
       <div class="stat">
 
@@ -551,10 +583,11 @@ footer{
     <div style="margin-bottom:12px;">
 
       <strong>
-        Buscar reservas
+        📅 Buscar reservas
       </strong>
 
     </div>
+
 
     <div class="controls">
 
@@ -562,6 +595,7 @@ footer{
         type="date"
         id="dateFilter"
         class="input date-filter">
+
 
       <button
         id="todayButton"
@@ -571,6 +605,7 @@ footer{
 
       </button>
 
+
       <button
         id="allButton"
         class="btn btn-dark">
@@ -579,11 +614,12 @@ footer{
 
       </button>
 
+
       <button
         id="refreshButton"
         class="btn btn-dark">
 
-        ACTUALIZAR
+        🔄 ACTUALIZAR
 
       </button>
 
@@ -597,7 +633,7 @@ footer{
   <section class="card">
 
     <h2 style="font-size:17px;">
-      Reservas
+      📋 Reservas
     </h2>
 
     <p
@@ -611,6 +647,7 @@ footer{
       Cargando reservas...
 
     </p>
+
 
     <div id="reservationsList">
 
@@ -634,15 +671,18 @@ footer{
 
 <script>
 
-/* ==========================================
+
+/* ================================
    SUPABASE
-   ========================================== */
+================================ */
 
 const SUPABASE_URL =
   'https://yuoowwhuirefwfzugevv.supabase.co';
 
+
 const SUPABASE_KEY =
   'sb_publishable_vRnRgcBrlkmUk9RkH7EWbg_tDkBv_6t';
+
 
 const supabaseClient =
   window.supabase.createClient(
@@ -651,81 +691,111 @@ const supabaseClient =
   );
 
 
-/* ==========================================
+/* ================================
    CONTRASEÑA
-   ========================================== */
+================================ */
 
 const ADMIN_PASSWORD =
   'ReyDeReyes2026';
 
 
-/* ==========================================
+/* ================================
    ELEMENTOS
-   ========================================== */
+================================ */
 
 const loginScreen =
-  document.getElementById('loginScreen');
+  document.getElementById(
+    'loginScreen'
+  );
 
 const adminPanel =
-  document.getElementById('adminPanel');
+  document.getElementById(
+    'adminPanel'
+  );
 
 const passwordInput =
-  document.getElementById('passwordInput');
+  document.getElementById(
+    'passwordInput'
+  );
 
 const loginButton =
-  document.getElementById('loginButton');
+  document.getElementById(
+    'loginButton'
+  );
 
 const loginError =
-  document.getElementById('loginError');
+  document.getElementById(
+    'loginError'
+  );
 
 const reservationsList =
-  document.getElementById('reservationsList');
+  document.getElementById(
+    'reservationsList'
+  );
 
 const dateFilter =
-  document.getElementById('dateFilter');
+  document.getElementById(
+    'dateFilter'
+  );
 
 const totalReservations =
-  document.getElementById('totalReservations');
+  document.getElementById(
+    'totalReservations'
+  );
 
 const pendingReservations =
-  document.getElementById('pendingReservations');
+  document.getElementById(
+    'pendingReservations'
+  );
 
 const confirmedReservations =
-  document.getElementById('confirmedReservations');
+  document.getElementById(
+    'confirmedReservations'
+  );
 
 const reservationSubtitle =
-  document.getElementById('reservationSubtitle');
+  document.getElementById(
+    'reservationSubtitle'
+  );
 
 
-/* ==========================================
+/* ================================
    LOGIN
-   ========================================== */
+================================ */
 
 function login(){
 
   const password =
     passwordInput.value.trim();
 
+
   if(password === ADMIN_PASSWORD){
 
-    loginScreen.classList.add('hidden');
+    loginScreen.classList.add(
+      'hidden'
+    );
 
-    adminPanel.classList.remove('hidden');
+    adminPanel.classList.remove(
+      'hidden'
+    );
 
     loadReservations();
 
   }else{
 
-    loginError.style.display = 'block';
+    loginError.style.display =
+      'block';
 
   }
 
 }
 
+
 loginButton.addEventListener(
   'click',
   login
 );
+
 
 passwordInput.addEventListener(
   'keydown',
@@ -741,40 +811,46 @@ passwordInput.addEventListener(
 );
 
 
-/* ==========================================
+/* ================================
    FECHA DE HOY
-   ========================================== */
+================================ */
 
 function getToday(){
 
-  const today = new Date();
+  const today =
+    new Date();
+
 
   const year =
     today.getFullYear();
+
 
   const month =
     String(
       today.getMonth() + 1
     ).padStart(2,'0');
 
+
   const day =
     String(
       today.getDate()
     ).padStart(2,'0');
+
 
   return `${year}-${month}-${day}`;
 
 }
 
 
-/* ==========================================
+/* ================================
    CARGAR RESERVAS
-   ========================================== */
+================================ */
 
 async function loadReservations(){
 
   reservationsList.innerHTML =
     '<div class="loading">Cargando reservas...</div>';
+
 
   try{
 
@@ -791,8 +867,10 @@ async function loadReservations(){
           {ascending:true}
         );
 
+
     const selectedDate =
       dateFilter.value;
+
 
     if(selectedDate){
 
@@ -804,16 +882,18 @@ async function loadReservations(){
 
     }
 
+
     const {
       data,
       error
     } = await query;
 
+
     if(error){
 
       reservationsList.innerHTML =
         `<div class="empty">
-          No se pudieron cargar las reservas.<br><br>
+          ❌ No se pudieron cargar las reservas.<br><br>
           ${escapeHTML(error.message)}
         </div>`;
 
@@ -821,22 +901,26 @@ async function loadReservations(){
 
     }
 
+
     if(!data || data.length === 0){
 
       reservationsList.innerHTML =
         `<div class="empty">
-          No hay reservas
+          📅 No hay reservas
           ${selectedDate
             ? 'para esta fecha'
             : ''}
         </div>`;
 
+
       updateStats([]);
+
 
       reservationSubtitle.innerText =
         selectedDate
           ? `Reservas del ${formatDate(selectedDate)}`
           : 'Todas las reservas';
+
 
       return;
 
@@ -857,7 +941,9 @@ async function loadReservations(){
         )
       ];
 
+
     let clients = [];
+
 
     if(clientIds.length > 0){
 
@@ -873,6 +959,7 @@ async function loadReservations(){
             'id',
             clientIds
           );
+
 
       clients =
         clientData || [];
@@ -894,7 +981,9 @@ async function loadReservations(){
         )
       ];
 
+
     let services = [];
+
 
     if(serviceIds.length > 0){
 
@@ -910,6 +999,7 @@ async function loadReservations(){
             'id',
             serviceIds
           );
+
 
       services =
         serviceData || [];
@@ -928,12 +1018,14 @@ async function loadReservations(){
                 reservation.cliente_id
             );
 
+
           const service =
             services.find(
               item =>
                 item.id ===
                 reservation.servicio_id
             );
+
 
           return {
 
@@ -955,20 +1047,23 @@ async function loadReservations(){
       completeReservations
     );
 
+
     renderReservations(
       completeReservations
     );
+
 
     reservationSubtitle.innerText =
       selectedDate
         ? `Reservas del ${formatDate(selectedDate)}`
         : `Todas las reservas · ${data.length}`;
 
+
   }catch(error){
 
     reservationsList.innerHTML =
       `<div class="empty">
-        Ocurrió un error.<br><br>
+        ❌ Ocurrió un error.<br><br>
         ${escapeHTML(error.message)}
       </div>`;
 
@@ -977,46 +1072,56 @@ async function loadReservations(){
 }
 
 
-/* ==========================================
-   ESTADÍSTICAS
-   ========================================== */
+/* ================================
+   ESTADISTICAS
+================================ */
 
 function updateStats(reservations){
 
   totalReservations.innerText =
     reservations.length;
 
+
   pendingReservations.innerText =
     reservations.filter(
       reservation =>
-        reservation.estado === 'pendiente'
+        reservation.estado ===
+        'pendiente'
     ).length;
+
 
   confirmedReservations.innerText =
     reservations.filter(
       reservation =>
-        reservation.estado === 'confirmada'
+        reservation.estado ===
+        'confirmada'
     ).length;
 
 }
 
 
-/* ==========================================
+/* ================================
    MOSTRAR RESERVAS
-   ========================================== */
+================================ */
 
 function renderReservations(reservations){
 
-  reservationsList.innerHTML = '';
+  reservationsList.innerHTML =
+    '';
+
 
   reservations.forEach(
     reservation => {
 
       const card =
-        document.createElement('div');
+        document.createElement(
+          'div'
+        );
+
 
       card.className =
         'reservation';
+
 
       const estado =
         reservation.estado ||
@@ -1026,8 +1131,9 @@ function renderReservations(reservations){
       let statusClass =
         'status-pendiente';
 
+
       let statusText =
-        'PENDIENTE';
+        '🟡 PENDIENTE';
 
 
       if(estado === 'confirmada'){
@@ -1036,7 +1142,7 @@ function renderReservations(reservations){
           'status-confirmada';
 
         statusText =
-          'CONFIRMADA';
+          '🟢 CONFIRMADA';
 
       }
 
@@ -1047,17 +1153,20 @@ function renderReservations(reservations){
           'status-cancelada';
 
         statusText =
-          'CANCELADA';
+          '🔴 CANCELADA';
 
       }
 
 
       const client =
-        reservation.client || {};
+        reservation.client ||
+        {};
+
 
       const clientName =
         client.nombre ||
         'Cliente';
+
 
       const phone =
         client.whatsapp ||
@@ -1065,11 +1174,14 @@ function renderReservations(reservations){
 
 
       const service =
-        reservation.service || {};
+        reservation.service ||
+        {};
+
 
       const serviceName =
         service.nombre ||
         'Servicio';
+
 
       const price =
         service.precio;
@@ -1079,7 +1191,9 @@ function renderReservations(reservations){
         price
           ? '$' +
             Number(price)
-              .toLocaleString('es-CL')
+              .toLocaleString(
+                'es-CL'
+              )
           : '';
 
 
@@ -1092,18 +1206,15 @@ function renderReservations(reservations){
 
       const cuts =
         Number(
-          client.cortes_completados || 0
+          client.cortes_completados ||
+          0
         );
 
 
       const benefit =
-        client.beneficio_disponible === true;
+        client.beneficio_disponible ===
+        true;
 
-
-      /*
-        Guardamos la información necesaria
-        para enviar el WhatsApp.
-      */
 
       const whatsappData = {
 
@@ -1133,7 +1244,9 @@ function renderReservations(reservations){
 
       const whatsappEncoded =
         encodeURIComponent(
-          JSON.stringify(whatsappData)
+          JSON.stringify(
+            whatsappData
+          )
         );
 
 
@@ -1145,21 +1258,23 @@ function renderReservations(reservations){
 
             <div class="reservation-time">
 
-              ${formatTime(
+              ⏰ ${formatTime(
                 reservation.hora
               )}
 
             </div>
 
+
             <div class="reservation-date">
 
-              ${formatDate(
+              📅 ${formatDate(
                 reservation.fecha
               )}
 
             </div>
 
           </div>
+
 
           <span class="status ${statusClass}">
 
@@ -1174,7 +1289,7 @@ function renderReservations(reservations){
 
           <div class="info-line">
 
-            <span>Cliente:</span>
+            👤 <span>Cliente:</span>
             ${escapeHTML(clientName)}
 
           </div>
@@ -1182,7 +1297,7 @@ function renderReservations(reservations){
 
           <div class="info-line">
 
-            <span>WhatsApp:</span>
+            📱 <span>WhatsApp:</span>
             ${escapeHTML(phone)}
 
           </div>
@@ -1190,25 +1305,30 @@ function renderReservations(reservations){
 
           <div class="info-line">
 
-            <span>Servicio:</span>
+            ✂️ <span>Servicio:</span>
             ${escapeHTML(serviceName)}
 
-            ${formattedPrice
-              ? ' · ' + formattedPrice
-              : ''}
+            ${
+              formattedPrice
+                ? ' · ' + formattedPrice
+                : ''
+            }
 
           </div>
 
         </div>
 
 
+        <!-- FIDELIDAD -->
+
         <div class="loyalty">
 
           <div class="loyalty-title">
 
             <strong>
-              Fidelidad
+              🎟️ Fidelidad
             </strong>
+
 
             <strong>
               ${cuts} / 5
@@ -1226,23 +1346,26 @@ function renderReservations(reservations){
 
           ${
             benefit
+
               ? `
 
                 <div class="free-message">
 
-                  CORTE GRATIS DISPONIBLE
+                  🎁 CORTE GRATIS DISPONIBLE
 
                 </div>
+
 
                 <button
                   class="loyalty-btn free"
                   onclick="useBenefit('${client.id}')">
 
-                  USAR BENEFICIO GRATIS
+                  🎁 USAR BENEFICIO GRATIS
 
                 </button>
 
               `
+
               : `
 
                 <div class="loyalty-message">
@@ -1255,11 +1378,12 @@ function renderReservations(reservations){
 
                 </div>
 
+
                 <button
                   class="loyalty-btn"
                   onclick="addCut('${client.id}')">
 
-                  SUMAR CORTE
+                  ➕ SUMAR CORTE
 
                 </button>
 
@@ -1269,56 +1393,64 @@ function renderReservations(reservations){
         </div>
 
 
+        <!-- ACCIONES -->
+
         <div class="actions">
 
 
           ${
             estado !== 'confirmada'
+
               ? `
 
                 <button
                   class="action-btn confirm-btn"
                   onclick="changeStatus('${reservation.id}','confirmada')">
 
-                  CONFIRMAR
+                  🟢 CONFIRMAR
 
                 </button>
 
               `
+
               : ''
           }
 
 
           ${
             estado !== 'cancelada'
+
               ? `
 
                 <button
                   class="action-btn cancel-btn"
                   onclick="changeStatus('${reservation.id}','cancelada')">
 
-                  CANCELAR
+                  🔴 CANCELAR
 
                 </button>
 
               `
+
               : ''
           }
 
 
           ${
             whatsappNumber
+
               ? `
 
                 <button
                   class="action-btn whatsapp-btn"
                   onclick="openWhatsAppData('${whatsappEncoded}')">
 
-                  WHATSAPP
+                  📲 WHATSAPP
 
                 </button>
 
               `
+
               : ''
           }
 
@@ -1327,7 +1459,9 @@ function renderReservations(reservations){
       `;
 
 
-      reservationsList.appendChild(card);
+      reservationsList.appendChild(
+        card
+      );
 
     }
   );
@@ -1335,13 +1469,15 @@ function renderReservations(reservations){
 }
 
 
-/* ==========================================
-   SELLOS DE FIDELIDAD
-   ========================================== */
+/* ================================
+   SELLOS
+================================ */
 
 function createStamps(cuts){
 
-  let html = '';
+  let html =
+    '';
+
 
   for(
     let i = 1;
@@ -1352,30 +1488,31 @@ function createStamps(cuts){
     if(i <= cuts){
 
       html +=
-        `<div class="stamp active">✂</div>`;
+        `<div class="stamp active">✂️</div>`;
 
     }else if(i === 5){
 
       html +=
-        `<div class="stamp">G</div>`;
+        `<div class="stamp">🎁</div>`;
 
     }else{
 
       html +=
-        `<div class="stamp">✂</div>`;
+        `<div class="stamp">✂️</div>`;
 
     }
 
   }
+
 
   return html;
 
 }
 
 
-/* ==========================================
+/* ================================
    SUMAR CORTE
-   ========================================== */
+================================ */
 
 async function addCut(clientId){
 
@@ -1398,7 +1535,7 @@ async function addCut(clientId){
   if(clientError){
 
     alert(
-      'No se pudo obtener la información del cliente.'
+      '❌ No se pudo obtener la información del cliente.'
     );
 
     return;
@@ -1408,14 +1545,15 @@ async function addCut(clientId){
 
   let cuts =
     Number(
-      client.cortes_completados || 0
+      client.cortes_completados ||
+      0
     );
 
 
   if(client.beneficio_disponible){
 
     alert(
-      'Este cliente ya tiene un corte gratis disponible.'
+      '🎁 Este cliente ya tiene un corte gratis disponible.'
     );
 
     return;
@@ -1433,12 +1571,14 @@ async function addCut(clientId){
   cuts++;
 
 
-  let benefit = false;
+  let benefit =
+    false;
 
 
   if(cuts === 5){
 
-    benefit = true;
+    benefit =
+      true;
 
   }
 
@@ -1466,7 +1606,7 @@ async function addCut(clientId){
   if(error){
 
     alert(
-      'No se pudo sumar el corte.\n\n' +
+      '❌ No se pudo sumar el corte.\n\n' +
       error.message
     );
 
@@ -1478,15 +1618,15 @@ async function addCut(clientId){
   if(benefit){
 
     alert(
-      'Cliente completó 5 cortes.\n\n' +
-      'Tiene un corte GRATIS disponible.'
+      '🎉 ¡Cliente completó 5 cortes!\n\n' +
+      '🎁 Tiene un corte GRATIS disponible.'
     );
 
   }else{
 
     alert(
-      `Corte registrado.\n\n` +
-      `Progreso: ${cuts}/5`
+      `✅ Corte registrado.\n\n` +
+      `✂️ Progreso: ${cuts}/5`
     );
 
   }
@@ -1497,15 +1637,15 @@ async function addCut(clientId){
 }
 
 
-/* ==========================================
+/* ================================
    USAR BENEFICIO
-   ========================================== */
+================================ */
 
 async function useBenefit(clientId){
 
   const confirmUse =
     confirm(
-      '¿Confirmas que el cliente está utilizando su corte GRATIS?'
+      '🎁 ¿Confirmas que el cliente está utilizando su corte GRATIS?'
     );
 
 
@@ -1539,7 +1679,7 @@ async function useBenefit(clientId){
   if(error){
 
     alert(
-      'No se pudo utilizar el beneficio.\n\n' +
+      '❌ No se pudo utilizar el beneficio.\n\n' +
       error.message
     );
 
@@ -1549,8 +1689,8 @@ async function useBenefit(clientId){
 
 
   alert(
-    'Beneficio utilizado.\n\n' +
-    'La tarjeta comenzó nuevamente en 0/5.'
+    '🎁 Beneficio utilizado.\n\n' +
+    '✂️ La tarjeta comenzó nuevamente en 0/5.'
   );
 
 
@@ -1559,9 +1699,9 @@ async function useBenefit(clientId){
 }
 
 
-/* ==========================================
+/* ================================
    CAMBIAR ESTADO
-   ========================================== */
+================================ */
 
 async function changeStatus(
   reservationId,
@@ -1570,8 +1710,8 @@ async function changeStatus(
 
   const text =
     newStatus === 'confirmada'
-      ? '¿Confirmar esta reserva?'
-      : '¿Cancelar esta reserva?';
+      ? '🟢 ¿Confirmar esta reserva?'
+      : '🔴 ¿Cancelar esta reserva?';
 
 
   if(!confirm(text)){
@@ -1601,7 +1741,7 @@ async function changeStatus(
   if(error){
 
     alert(
-      'No se pudo actualizar la reserva.\n\n' +
+      '❌ No se pudo actualizar la reserva.\n\n' +
       error.message
     );
 
@@ -1612,8 +1752,8 @@ async function changeStatus(
 
   alert(
     newStatus === 'confirmada'
-      ? 'Reserva confirmada.'
-      : 'Reserva cancelada.'
+      ? '✅ Reserva confirmada.'
+      : '🔴 Reserva cancelada.'
   );
 
 
@@ -1622,17 +1762,22 @@ async function changeStatus(
 }
 
 
-/* ==========================================
-   WHATSAPP MEJORADO
-   ========================================== */
+/* =====================================================
+   WHATSAPP
+   MENSAJES CON EMOJIS
+===================================================== */
 
-function openWhatsAppData(encodedData){
+function openWhatsAppData(
+  encodedData
+){
 
   try{
 
     const data =
       JSON.parse(
-        decodeURIComponent(encodedData)
+        decodeURIComponent(
+          encodedData
+        )
       );
 
 
@@ -1641,58 +1786,153 @@ function openWhatsAppData(encodedData){
 
 
     const name =
-      data.name || 'Cliente';
+      data.name ||
+      'Cliente';
 
 
     const date =
-      formatDate(data.date);
+      formatDate(
+        data.date
+      );
 
 
     const time =
-      formatTime(data.time);
+      formatTime(
+        data.time
+      );
 
 
     const service =
-      data.service || 'Servicio';
+      data.service ||
+      'Servicio';
 
 
     const price =
-      data.price || 'Consultar';
+      data.price ||
+      'Consultar';
 
 
-    let statusText =
-      'pendiente de confirmación';
+    let message =
+      '';
 
 
-    if(data.status === 'confirmada'){
+    /* ==========================================
+       RESERVA PENDIENTE
+    ========================================== */
 
-      statusText =
-        'CONFIRMADA';
+    if(
+      data.status ===
+      'pendiente'
+    ){
+
+      message =
+`👋 Hola ${name}.
+
+💈 Te escribimos de REY DE REYES BARBERÍA.
+
+📋 Hemos recibido tu solicitud de reserva.
+
+📅 Fecha: ${date}
+⏰ Hora: ${time}
+✂️ Servicio: ${service}
+💰 Precio: ${price}
+
+🟡 Tu reserva se encuentra PENDIENTE DE CONFIRMACIÓN.
+
+📲 Te avisaremos cuando la hora haya sido confirmada.
+
+👑 Gracias por preferir REY DE REYES BARBERÍA.`;
+
 
     }
 
 
-    const message =
-`Hola ${name}.
+    /* ==========================================
+       RESERVA CONFIRMADA
+    ========================================== */
 
-Te escribimos de REY DE REYES BARBERIA.
+    else if(
+      data.status ===
+      'confirmada'
+    ){
 
-Tu reserva está ${statusText}.
+      message =
+`👋 Hola ${name}.
 
-FECHA: ${date}
-HORA: ${time}
-SERVICIO: ${service}
-PRECIO: ${price}
+💈 Te escribimos de REY DE REYES BARBERÍA.
 
-Por favor, llega unos minutos antes de tu hora reservada.
+🎉 ¡Tu reserva ha sido CONFIRMADA!
 
-Gracias por preferir REY DE REYES BARBERIA.
+📅 Fecha: ${date}
+⏰ Hora: ${time}
+✂️ Servicio: ${service}
+💰 Precio: ${price}
 
-¡Te esperamos!`;
+✅ Tu hora está reservada.
+
+🕐 Te recomendamos llegar unos minutos antes de tu hora.
+
+👑 Gracias por preferir REY DE REYES BARBERÍA.
+
+💈 ¡Te esperamos!`;
+
+
+    }
+
+
+    /* ==========================================
+       RESERVA CANCELADA
+    ========================================== */
+
+    else if(
+      data.status ===
+      'cancelada'
+    ){
+
+      message =
+`👋 Hola ${name}.
+
+💈 Te escribimos de REY DE REYES BARBERÍA.
+
+🔴 Lamentamos informarte que tu reserva ha sido CANCELADA.
+
+📅 Fecha: ${date}
+⏰ Hora: ${time}
+✂️ Servicio: ${service}
+
+📲 Si deseas reservar nuevamente, puedes comunicarte con nosotros.
+
+👑 Gracias por preferir REY DE REYES BARBERÍA.`;
+
+
+    }
+
+
+    /* ==========================================
+       OTRO ESTADO
+    ========================================== */
+
+    else{
+
+      message =
+`👋 Hola ${name}.
+
+💈 Te escribimos de REY DE REYES BARBERÍA.
+
+📅 Fecha: ${date}
+⏰ Hora: ${time}
+✂️ Servicio: ${service}
+💰 Precio: ${price}
+
+👑 Gracias por preferir REY DE REYES BARBERÍA.`;
+
+    }
 
 
     const url =
-      `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      `https://wa.me/${phone}?text=${encodeURIComponent(
+        message
+      )}`;
 
 
     window.open(
@@ -1704,7 +1944,7 @@ Gracias por preferir REY DE REYES BARBERIA.
   }catch(error){
 
     alert(
-      'No se pudo abrir WhatsApp.'
+      '❌ No se pudo abrir WhatsApp.'
     );
 
   }
@@ -1712,9 +1952,9 @@ Gracias por preferir REY DE REYES BARBERIA.
 }
 
 
-/* ==========================================
+/* ================================
    FORMATO FECHA
-   ========================================== */
+================================ */
 
 function formatDate(date){
 
@@ -1727,7 +1967,8 @@ function formatDate(date){
 
   const selected =
     new Date(
-      date + 'T12:00:00'
+      date +
+      'T12:00:00'
     );
 
 
@@ -1744,9 +1985,9 @@ function formatDate(date){
 }
 
 
-/* ==========================================
+/* ================================
    FORMATO HORA
-   ========================================== */
+================================ */
 
 function formatTime(time){
 
@@ -1765,9 +2006,9 @@ function formatTime(time){
 }
 
 
-/* ==========================================
+/* ================================
    SEGURIDAD HTML
-   ========================================== */
+================================ */
 
 function escapeHTML(text){
 
@@ -1798,12 +2039,14 @@ function escapeHTML(text){
 }
 
 
-/* ==========================================
+/* ================================
    BOTONES
-   ========================================== */
+================================ */
 
 document
-  .getElementById('todayButton')
+  .getElementById(
+    'todayButton'
+  )
   .addEventListener(
     'click',
     () => {
@@ -1818,7 +2061,9 @@ document
 
 
 document
-  .getElementById('allButton')
+  .getElementById(
+    'allButton'
+  )
   .addEventListener(
     'click',
     () => {
@@ -1833,7 +2078,9 @@ document
 
 
 document
-  .getElementById('refreshButton')
+  .getElementById(
+    'refreshButton'
+  )
   .addEventListener(
     'click',
     () => {
