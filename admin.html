@@ -4,7 +4,6 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Admin | Rey de Reyes</title>
@@ -17,7 +16,6 @@
 
 :root{
   --negro:#080808;
-  --negro2:#11110f;
   --card:#161614;
   --dorado:#d7b56d;
   --dorado-claro:#f0d99d;
@@ -37,16 +35,10 @@
 
 body{
   background:
-    radial-gradient(
-      circle at 50% -10%,
-      #3b301d 0%,
-      transparent 35%
-    ),
+    radial-gradient(circle at 50% -10%,#3b301d 0%,transparent 35%),
     var(--negro);
-
   color:var(--blanco);
   font-family:'DM Sans',sans-serif;
-  min-height:100vh;
 }
 
 .container{
@@ -55,69 +47,50 @@ body{
   padding:25px 17px 50px;
 }
 
+.hidden{
+  display:none !important;
+}
 
-/* ==========================================
-   LOGIN
-   ========================================== */
+/* LOGIN */
 
 .login{
-  min-height:100vh;
+  min-height:90vh;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:20px;
 }
 
 .login-card{
   width:100%;
   max-width:430px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #191917,
-      #11110f
-    );
-
+  background:linear-gradient(145deg,#191917,#11110f);
   border:1px solid var(--linea);
-  border-radius:24px;
-  padding:32px 22px;
-
-  box-shadow:
-    0 20px 60px #00000070;
-
+  border-radius:22px;
+  padding:30px 22px;
+  box-shadow:0 15px 40px #00000060;
   text-align:center;
 }
 
 .logo{
   width:85px;
   height:85px;
-
   margin:0 auto 18px;
-
   border:1px solid var(--dorado);
   border-radius:50%;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   color:var(--dorado-claro);
-
   font-weight:700;
   font-size:11px;
-
   letter-spacing:2px;
   line-height:1.4;
-
-  box-shadow:
-    0 0 35px #d7b56d18;
 }
 
 .login h1{
   font-family:'Playfair Display',serif;
   letter-spacing:2px;
-  margin-bottom:6px;
+  margin-bottom:5px;
 }
 
 .login p{
@@ -128,21 +101,13 @@ body{
 
 .input{
   width:100%;
-
   padding:14px;
-
   border-radius:12px;
-
   border:1px solid #3a352c;
-
   background:#11110f;
-
   color:white;
-
   outline:none;
-
   font-family:inherit;
-  font-size:14px;
 }
 
 .input:focus{
@@ -156,14 +121,7 @@ body{
   display:none;
 }
 
-
-/* ==========================================
-   GENERAL
-   ========================================== */
-
-.hidden{
-  display:none !important;
-}
+/* GENERAL */
 
 header{
   text-align:center;
@@ -184,58 +142,13 @@ header p{
 }
 
 .card{
-  background:
-    linear-gradient(
-      145deg,
-      #191917,
-      #11110f
-    );
-
+  background:linear-gradient(145deg,#191917,#11110f);
   border:1px solid var(--linea);
-
   border-radius:20px;
-
   padding:20px;
-
   margin-bottom:15px;
-
-  box-shadow:
-    0 15px 40px #00000040;
+  box-shadow:0 15px 40px #00000040;
 }
-
-
-/* ==========================================
-   CABECERA DEL ADMIN
-   ========================================== */
-
-.admin-header{
-  position:relative;
-}
-
-.logout-btn{
-  position:absolute;
-  right:0;
-  top:0;
-
-  border:1px solid #4b3939;
-  background:#1b1414;
-  color:var(--rojo);
-
-  border-radius:10px;
-
-  padding:8px 10px;
-
-  font-family:inherit;
-  font-size:10px;
-  font-weight:700;
-
-  cursor:pointer;
-}
-
-
-/* ==========================================
-   ESTADÍSTICAS
-   ========================================== */
 
 .stats{
   display:grid;
@@ -245,38 +158,24 @@ header p{
 
 .stat{
   background:#11110f;
-
   border:1px solid var(--linea);
-
   border-radius:15px;
-
   padding:15px 8px;
-
   text-align:center;
 }
 
 .stat strong{
   display:block;
-
   font-size:22px;
-
   color:var(--dorado-claro);
 }
 
 .stat span{
   display:block;
-
   color:var(--gris);
-
   font-size:10px;
-
   margin-top:4px;
 }
-
-
-/* ==========================================
-   CONTROLES
-   ========================================== */
 
 .controls{
   display:flex;
@@ -291,27 +190,13 @@ header p{
 
 .btn{
   border:0;
-
   border-radius:12px;
-
   padding:13px 16px;
-
-  background:
-    linear-gradient(
-      100deg,
-      #b48d47,
-      #efd38c
-    );
-
+  background:linear-gradient(100deg,#b48d47,#efd38c);
   color:#111;
-
   font-weight:700;
-
   font-family:inherit;
-
   cursor:pointer;
-
-  transition:.2s;
 }
 
 .btn:hover{
@@ -320,71 +205,44 @@ header p{
 
 .btn-dark{
   background:#211c13;
-
   color:var(--dorado-claro);
-
   border:1px solid #675737;
 }
 
-
-/* ==========================================
-   RESERVAS
-   ========================================== */
+/* RESERVAS */
 
 .reservation{
   border:1px solid var(--linea);
-
   border-radius:17px;
-
   padding:17px;
-
   margin-top:11px;
-
   background:#121210;
-
-  transition:.2s;
-}
-
-.reservation:hover{
-  border-color:#4b412e;
 }
 
 .reservation-top{
   display:flex;
-
   justify-content:space-between;
-
   gap:10px;
-
   align-items:flex-start;
 }
 
 .reservation-time{
   font-size:22px;
-
   font-weight:700;
-
   color:var(--dorado-claro);
 }
 
 .reservation-date{
   color:var(--gris);
-
   font-size:11px;
-
   margin-top:3px;
 }
 
 .status{
   padding:6px 9px;
-
   border-radius:20px;
-
   font-size:10px;
-
   font-weight:700;
-
-  white-space:nowrap;
 }
 
 .status-pendiente{
@@ -404,69 +262,39 @@ header p{
 
 .reservation-info{
   margin-top:14px;
-
   border-top:1px solid var(--linea);
-
   padding-top:12px;
 }
 
 .info-line{
   font-size:12px;
-
-  margin-top:7px;
-
+  margin-top:6px;
   color:#ddd8ce;
-
-  line-height:1.4;
 }
 
 .info-line span{
   color:var(--gris);
 }
 
-
-/* ==========================================
-   BOTONES DE RESERVA
-   ========================================== */
-
 .actions{
   display:flex;
-
   gap:8px;
-
   margin-top:15px;
-
   flex-wrap:wrap;
 }
 
 .action-btn{
   flex:1;
-
   min-width:120px;
-
   border-radius:10px;
-
-  padding:11px 5px;
-
+  padding:10px 5px;
   border:1px solid var(--linea);
-
   background:#181714;
-
   color:white;
-
   cursor:pointer;
-
   font-family:inherit;
-
   font-size:11px;
-
   font-weight:600;
-
-  transition:.2s;
-}
-
-.action-btn:hover{
-  transform:translateY(-1px);
 }
 
 .confirm-btn{
@@ -474,17 +302,9 @@ header p{
   color:var(--verde);
 }
 
-.confirm-btn:hover{
-  background:#17251a;
-}
-
 .cancel-btn{
   border-color:#5b3636;
   color:var(--rojo);
-}
-
-.cancel-btn:hover{
-  background:#2c1818;
 }
 
 .whatsapp-btn{
@@ -492,32 +312,19 @@ header p{
   color:#9ac79d;
 }
 
-.whatsapp-btn:hover{
-  background:#17251a;
-}
-
-
-/* ==========================================
-   FIDELIDAD
-   ========================================== */
+/* FIDELIDAD */
 
 .loyalty{
   margin-top:15px;
-
   padding:15px;
-
   border:1px solid #4b412e;
-
   border-radius:15px;
-
   background:#171613;
 }
 
 .loyalty-title{
   display:flex;
-
   justify-content:space-between;
-
   align-items:center;
 }
 
@@ -527,168 +334,89 @@ header p{
 
 .stamps{
   display:flex;
-
   gap:7px;
-
   margin:12px 0;
 }
 
 .stamp{
   height:35px;
-
   flex:1;
-
   border-radius:10px;
-
   border:1px solid #4b412e;
-
   display:flex;
-
   align-items:center;
-
   justify-content:center;
-
   color:#686257;
-
   font-size:15px;
 }
 
 .stamp.active{
-  background:
-    linear-gradient(
-      145deg,
-      #e1c47d,
-      #a9813c
-    );
-
+  background:linear-gradient(145deg,#e1c47d,#a9813c);
   color:#111;
-
   border-color:#e5c985;
 }
 
 .loyalty-message{
   color:var(--gris);
-
   font-size:11px;
-
   line-height:1.5;
 }
 
 .loyalty-btn{
   width:100%;
-
   margin-top:10px;
-
   padding:10px;
-
   border-radius:10px;
-
   border:1px solid #675737;
-
   background:#211c13;
-
   color:var(--dorado-claro);
-
   font-weight:700;
-
   cursor:pointer;
-
   font-family:inherit;
-
   font-size:11px;
-
-  transition:.2s;
-}
-
-.loyalty-btn:hover{
-  transform:translateY(-1px);
 }
 
 .free{
   border-color:#66552b;
-
   background:#29220f;
-
-  color:var(--dorado-claro);
 }
 
 .free-message{
   color:var(--dorado-claro);
-
   font-weight:700;
-
   font-size:12px;
-
   margin-top:8px;
 }
 
-
-/* ==========================================
-   MENSAJES
-   ========================================== */
-
 .empty{
   text-align:center;
-
   padding:35px 10px;
-
   color:var(--gris);
-
   font-size:13px;
-
-  line-height:1.6;
 }
 
 .loading{
   text-align:center;
-
   color:var(--gris);
-
   padding:25px;
 }
 
-
-/* ==========================================
-   FOOTER
-   ========================================== */
-
 footer{
   text-align:center;
-
   color:#696761;
-
   font-size:10px;
-
   letter-spacing:1px;
-
   padding:20px 0;
 }
 
-
-/* ==========================================
-   CELULAR
-   ========================================== */
-
 @media(max-width:500px){
-
-  .container{
-    padding:20px 13px 40px;
-  }
 
   .stats{
     grid-template-columns:repeat(3,1fr);
   }
 
-  .stat{
-    padding:13px 5px;
-  }
-
   .stat strong{
     font-size:19px;
-  }
-
-  .stat span{
-    font-size:9px;
   }
 
   .controls{
@@ -697,65 +425,6 @@ footer{
 
   .date-filter{
     width:100%;
-    min-width:0;
-  }
-
-  .controls .btn{
-    width:100%;
-  }
-
-  .reservation-top{
-    align-items:flex-start;
-  }
-
-  .reservation-time{
-    font-size:20px;
-  }
-
-  .actions{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-  }
-
-  .whatsapp-btn{
-    grid-column:1 / -1;
-  }
-
-  .action-btn{
-    min-width:0;
-  }
-
-  .logout-btn{
-    position:static;
-
-    margin-top:12px;
-
-    width:100%;
-  }
-
-}
-
-
-/* ==========================================
-   EXTRA CELULAR PEQUEÑO
-   ========================================== */
-
-@media(max-width:360px){
-
-  .stats{
-    gap:6px;
-  }
-
-  .stat strong{
-    font-size:17px;
-  }
-
-  .stat span{
-    font-size:8px;
-  }
-
-  .stamp{
-    font-size:13px;
   }
 
 }
@@ -764,46 +433,32 @@ footer{
 
 </head>
 
-
 <body>
 
 
-<!-- ========================================
-     LOGIN
-     ======================================== -->
+<!-- LOGIN -->
 
-<div
-  id="loginScreen"
-  class="login">
+<div id="loginScreen" class="login">
 
   <div class="login-card">
 
     <div class="logo">
-
       REY<br>
       DE<br>
       REYES
-
     </div>
 
-
-    <h1>
-      Panel de Administración
-    </h1>
-
+    <h1>Panel de Administración</h1>
 
     <p>
       Gestiona las reservas de Rey de Reyes
     </p>
 
-
     <input
       id="passwordInput"
       class="input"
       type="password"
-      placeholder="Contraseña"
-      autocomplete="current-password">
-
+      placeholder="Contraseña">
 
     <button
       id="loginButton"
@@ -813,7 +468,6 @@ footer{
       ENTRAR
 
     </button>
-
 
     <div
       id="loginError"
@@ -828,46 +482,26 @@ footer{
 </div>
 
 
-<!-- ========================================
-     PANEL
-     ======================================== -->
+<!-- PANEL -->
 
-<div
-  id="adminPanel"
-  class="container hidden">
+<div id="adminPanel" class="container hidden">
 
+  <header>
 
-  <header class="admin-header">
-
-    <h1>
-      REY DE REYES
-    </h1>
-
+    <h1>REY DE REYES</h1>
 
     <p>
       PANEL DE ADMINISTRACIÓN
     </p>
 
-
-    <button
-      id="logoutButton"
-      class="logout-btn">
-
-      🚪 CERRAR SESIÓN
-
-    </button>
-
   </header>
 
 
-  <!-- ======================================
-       ESTADÍSTICAS
-       ====================================== -->
+  <!-- ESTADÍSTICAS -->
 
   <section class="card">
 
     <div class="stats">
-
 
       <div class="stat">
 
@@ -881,7 +515,6 @@ footer{
 
       </div>
 
-
       <div class="stat">
 
         <strong id="pendingReservations">
@@ -893,7 +526,6 @@ footer{
         </span>
 
       </div>
-
 
       <div class="stat">
 
@@ -907,35 +539,29 @@ footer{
 
       </div>
 
-
     </div>
 
   </section>
 
 
-  <!-- ======================================
-       FILTROS
-       ====================================== -->
+  <!-- FILTROS -->
 
   <section class="card">
 
     <div style="margin-bottom:12px;">
 
       <strong>
-        📅 Buscar reservas
+        Buscar reservas
       </strong>
 
     </div>
 
-
     <div class="controls">
-
 
       <input
         type="date"
         id="dateFilter"
         class="input date-filter">
-
 
       <button
         id="todayButton"
@@ -945,7 +571,6 @@ footer{
 
       </button>
 
-
       <button
         id="allButton"
         class="btn btn-dark">
@@ -954,33 +579,26 @@ footer{
 
       </button>
 
-
       <button
         id="refreshButton"
         class="btn btn-dark">
 
-        🔄 ACTUALIZAR
+        ACTUALIZAR
 
       </button>
-
 
     </div>
 
   </section>
 
 
-  <!-- ======================================
-       RESERVAS
-       ====================================== -->
+  <!-- RESERVAS -->
 
   <section class="card">
 
     <h2 style="font-size:17px;">
-
-      📋 Reservas
-
+      Reservas
     </h2>
-
 
     <p
       id="reservationSubtitle"
@@ -994,13 +612,10 @@ footer{
 
     </p>
 
-
     <div id="reservationsList">
 
       <div class="loading">
-
         Cargando reservas...
-
       </div>
 
     </div>
@@ -1014,7 +629,6 @@ footer{
 
   </footer>
 
-
 </div>
 
 
@@ -1027,10 +641,8 @@ footer{
 const SUPABASE_URL =
   'https://yuoowwhuirefwfzugevv.supabase.co';
 
-
 const SUPABASE_KEY =
   'sb_publishable_vRnRgcBrlkmUk9RkH7EWbg_tDkBv_6t';
-
 
 const supabaseClient =
   window.supabase.createClient(
@@ -1040,7 +652,7 @@ const supabaseClient =
 
 
 /* ==========================================
-   CONTRASEÑA ACTUAL
+   CONTRASEÑA
    ========================================== */
 
 const ADMIN_PASSWORD =
@@ -1052,69 +664,37 @@ const ADMIN_PASSWORD =
    ========================================== */
 
 const loginScreen =
-  document.getElementById(
-    'loginScreen'
-  );
-
+  document.getElementById('loginScreen');
 
 const adminPanel =
-  document.getElementById(
-    'adminPanel'
-  );
-
+  document.getElementById('adminPanel');
 
 const passwordInput =
-  document.getElementById(
-    'passwordInput'
-  );
-
+  document.getElementById('passwordInput');
 
 const loginButton =
-  document.getElementById(
-    'loginButton'
-  );
-
+  document.getElementById('loginButton');
 
 const loginError =
-  document.getElementById(
-    'loginError'
-  );
-
+  document.getElementById('loginError');
 
 const reservationsList =
-  document.getElementById(
-    'reservationsList'
-  );
-
+  document.getElementById('reservationsList');
 
 const dateFilter =
-  document.getElementById(
-    'dateFilter'
-  );
-
+  document.getElementById('dateFilter');
 
 const totalReservations =
-  document.getElementById(
-    'totalReservations'
-  );
-
+  document.getElementById('totalReservations');
 
 const pendingReservations =
-  document.getElementById(
-    'pendingReservations'
-  );
-
+  document.getElementById('pendingReservations');
 
 const confirmedReservations =
-  document.getElementById(
-    'confirmedReservations'
-  );
-
+  document.getElementById('confirmedReservations');
 
 const reservationSubtitle =
-  document.getElementById(
-    'reservationSubtitle'
-  );
+  document.getElementById('reservationSubtitle');
 
 
 /* ==========================================
@@ -1126,60 +706,32 @@ function login(){
   const password =
     passwordInput.value.trim();
 
+  if(password === ADMIN_PASSWORD){
 
-  if(
-    password ===
-    ADMIN_PASSWORD
-  ){
+    loginScreen.classList.add('hidden');
 
-    loginError.style.display =
-      'none';
-
-
-    loginScreen.classList.add(
-      'hidden'
-    );
-
-
-    adminPanel.classList.remove(
-      'hidden'
-    );
-
+    adminPanel.classList.remove('hidden');
 
     loadReservations();
 
-
   }else{
 
-    loginError.style.display =
-      'block';
-
-
-    passwordInput.value =
-      '';
-
-
-    passwordInput.focus();
+    loginError.style.display = 'block';
 
   }
 
 }
-
 
 loginButton.addEventListener(
   'click',
   login
 );
 
-
 passwordInput.addEventListener(
   'keydown',
   event => {
 
-    if(
-      event.key ===
-      'Enter'
-    ){
+    if(event.key === 'Enter'){
 
       login();
 
@@ -1190,68 +742,25 @@ passwordInput.addEventListener(
 
 
 /* ==========================================
-   CERRAR SESIÓN
-   ========================================== */
-
-document
-  .getElementById(
-    'logoutButton'
-  )
-  .addEventListener(
-    'click',
-    () => {
-
-      adminPanel.classList.add(
-        'hidden'
-      );
-
-
-      loginScreen.classList.remove(
-        'hidden'
-      );
-
-
-      passwordInput.value =
-        '';
-
-
-      passwordInput.focus();
-
-    }
-  );
-
-
-/* ==========================================
    FECHA DE HOY
    ========================================== */
 
 function getToday(){
 
-  const today =
-    new Date();
-
+  const today = new Date();
 
   const year =
     today.getFullYear();
 
-
   const month =
     String(
       today.getMonth() + 1
-    ).padStart(
-      2,
-      '0'
-    );
-
+    ).padStart(2,'0');
 
   const day =
     String(
       today.getDate()
-    ).padStart(
-      2,
-      '0'
-    );
-
+    ).padStart(2,'0');
 
   return `${year}-${month}-${day}`;
 
@@ -1265,8 +774,7 @@ function getToday(){
 async function loadReservations(){
 
   reservationsList.innerHTML =
-    '<div class="loading">⏳ Cargando reservas...</div>';
-
+    '<div class="loading">Cargando reservas...</div>';
 
   try{
 
@@ -1276,21 +784,15 @@ async function loadReservations(){
         .select('*')
         .order(
           'fecha',
-          {
-            ascending:true
-          }
+          {ascending:true}
         )
         .order(
           'hora',
-          {
-            ascending:true
-          }
+          {ascending:true}
         );
-
 
     const selectedDate =
       dateFilter.value;
-
 
     if(selectedDate){
 
@@ -1302,66 +804,46 @@ async function loadReservations(){
 
     }
 
-
     const {
       data,
       error
     } = await query;
 
-
     if(error){
 
       reservationsList.innerHTML =
         `<div class="empty">
-
-          ❌ No se pudieron cargar las reservas.
-
-          <br><br>
-
+          No se pudieron cargar las reservas.<br><br>
           ${escapeHTML(error.message)}
-
         </div>`;
 
       return;
 
     }
 
-
-    if(
-      !data ||
-      data.length === 0
-    ){
+    if(!data || data.length === 0){
 
       reservationsList.innerHTML =
         `<div class="empty">
-
-          📅 No hay reservas
-          ${
-            selectedDate
-              ? 'para esta fecha'
-              : ''
-          }
-
+          No hay reservas
+          ${selectedDate
+            ? 'para esta fecha'
+            : ''}
         </div>`;
 
-
       updateStats([]);
-
 
       reservationSubtitle.innerText =
         selectedDate
           ? `Reservas del ${formatDate(selectedDate)}`
           : 'Todas las reservas';
 
-
       return;
 
     }
 
 
-    /* ======================================
-       CLIENTES
-       ====================================== */
+    /* CLIENTES */
 
     const clientIds =
       [
@@ -1375,17 +857,12 @@ async function loadReservations(){
         )
       ];
 
-
     let clients = [];
 
-
-    if(
-      clientIds.length > 0
-    ){
+    if(clientIds.length > 0){
 
       const {
-        data:clientData,
-        error:clientError
+        data:clientData
       } =
         await supabaseClient
           .from('clientes')
@@ -1397,25 +874,13 @@ async function loadReservations(){
             clientIds
           );
 
-
-      if(clientError){
-
-        console.error(
-          clientError
-        );
-
-      }
-
-
       clients =
         clientData || [];
 
     }
 
 
-    /* ======================================
-       SERVICIOS
-       ====================================== */
+    /* SERVICIOS */
 
     const serviceIds =
       [
@@ -1429,17 +894,12 @@ async function loadReservations(){
         )
       ];
 
-
     let services = [];
 
-
-    if(
-      serviceIds.length > 0
-    ){
+    if(serviceIds.length > 0){
 
       const {
-        data:serviceData,
-        error:serviceError
+        data:serviceData
       } =
         await supabaseClient
           .from('servicios')
@@ -1451,25 +911,11 @@ async function loadReservations(){
             serviceIds
           );
 
-
-      if(serviceError){
-
-        console.error(
-          serviceError
-        );
-
-      }
-
-
       services =
         serviceData || [];
 
     }
 
-
-    /* ======================================
-       UNIR INFORMACIÓN
-       ====================================== */
 
     const completeReservations =
       data.map(
@@ -1482,14 +928,12 @@ async function loadReservations(){
                 reservation.cliente_id
             );
 
-
           const service =
             services.find(
               item =>
                 item.id ===
                 reservation.servicio_id
             );
-
 
           return {
 
@@ -1511,11 +955,9 @@ async function loadReservations(){
       completeReservations
     );
 
-
     renderReservations(
       completeReservations
     );
-
 
     reservationSubtitle.innerText =
       selectedDate
@@ -1524,20 +966,10 @@ async function loadReservations(){
 
   }catch(error){
 
-    console.error(
-      error
-    );
-
-
     reservationsList.innerHTML =
       `<div class="empty">
-
-        ❌ Ocurrió un error.
-
-        <br><br>
-
+        Ocurrió un error.<br><br>
         ${escapeHTML(error.message)}
-
       </div>`;
 
   }
@@ -1549,27 +981,21 @@ async function loadReservations(){
    ESTADÍSTICAS
    ========================================== */
 
-function updateStats(
-  reservations
-){
+function updateStats(reservations){
 
   totalReservations.innerText =
     reservations.length;
 
-
   pendingReservations.innerText =
     reservations.filter(
       reservation =>
-        reservation.estado ===
-        'pendiente'
+        reservation.estado === 'pendiente'
     ).length;
-
 
   confirmedReservations.innerText =
     reservations.filter(
       reservation =>
-        reservation.estado ===
-        'confirmada'
+        reservation.estado === 'confirmada'
     ).length;
 
 }
@@ -1579,26 +1005,18 @@ function updateStats(
    MOSTRAR RESERVAS
    ========================================== */
 
-function renderReservations(
-  reservations
-){
+function renderReservations(reservations){
 
-  reservationsList.innerHTML =
-    '';
-
+  reservationsList.innerHTML = '';
 
   reservations.forEach(
     reservation => {
 
       const card =
-        document.createElement(
-          'div'
-        );
-
+        document.createElement('div');
 
       card.className =
         'reservation';
-
 
       const estado =
         reservation.estado ||
@@ -1608,50 +1026,38 @@ function renderReservations(
       let statusClass =
         'status-pendiente';
 
-
       let statusText =
-        '🟡 PENDIENTE';
+        'PENDIENTE';
 
 
-      if(
-        estado ===
-        'confirmada'
-      ){
+      if(estado === 'confirmada'){
 
         statusClass =
           'status-confirmada';
 
-
         statusText =
-          '🟢 CONFIRMADA';
+          'CONFIRMADA';
 
       }
 
 
-      if(
-        estado ===
-        'cancelada'
-      ){
+      if(estado === 'cancelada'){
 
         statusClass =
           'status-cancelada';
 
-
         statusText =
-          '🔴 CANCELADA';
+          'CANCELADA';
 
       }
 
 
       const client =
-        reservation.client ||
-        {};
-
+        reservation.client || {};
 
       const clientName =
         client.nombre ||
         'Cliente';
-
 
       const phone =
         client.whatsapp ||
@@ -1659,14 +1065,11 @@ function renderReservations(
 
 
       const service =
-        reservation.service ||
-        {};
-
+        reservation.service || {};
 
       const serviceName =
         service.nombre ||
         'Servicio';
-
 
       const price =
         service.precio;
@@ -1676,64 +1079,81 @@ function renderReservations(
         price
           ? '$' +
             Number(price)
-              .toLocaleString(
-                'es-CL'
-              )
+              .toLocaleString('es-CL')
           : '';
 
 
       const whatsappNumber =
-        String(phone)
-          .replace(
-            /\D/g,
-            ''
-          );
+        phone.replace(
+          /\D/g,
+          ''
+        );
 
 
       const cuts =
         Number(
-          client.cortes_completados ||
-          0
+          client.cortes_completados || 0
         );
 
 
       const benefit =
-        client.beneficio_disponible ===
-        true;
+        client.beneficio_disponible === true;
 
 
       /*
-        IMPORTANTE:
-
-        El cliente llega con 5/5 cuando
-        completó sus 5 cortes pagados.
-
-        En ese momento aparece el beneficio
-        gratis.
-
-        Al utilizarlo vuelve a 0/5.
+        Guardamos la información necesaria
+        para enviar el WhatsApp.
       */
+
+      const whatsappData = {
+
+        phone:
+          whatsappNumber,
+
+        name:
+          clientName,
+
+        date:
+          reservation.fecha,
+
+        time:
+          reservation.hora,
+
+        service:
+          serviceName,
+
+        price:
+          formattedPrice,
+
+        status:
+          estado
+
+      };
+
+
+      const whatsappEncoded =
+        encodeURIComponent(
+          JSON.stringify(whatsappData)
+        );
 
 
       card.innerHTML = `
 
         <div class="reservation-top">
 
-
           <div>
 
             <div class="reservation-time">
 
-              ⏰ ${formatTime(
+              ${formatTime(
                 reservation.hora
               )}
 
             </div>
 
-
             <div class="reservation-date">
 
-              📅 ${formatDate(
+              ${formatDate(
                 reservation.fecha
               )}
 
@@ -1741,274 +1161,173 @@ function renderReservations(
 
           </div>
 
-
-          <span
-            class="status ${statusClass}">
+          <span class="status ${statusClass}">
 
             ${statusText}
 
           </span>
-
 
         </div>
 
 
         <div class="reservation-info">
 
-
           <div class="info-line">
 
-            👤 <span>Cliente:</span>
-
-            ${escapeHTML(
-              clientName
-            )}
+            <span>Cliente:</span>
+            ${escapeHTML(clientName)}
 
           </div>
 
 
           <div class="info-line">
 
-            📱 <span>WhatsApp:</span>
-
-            ${escapeHTML(
-              phone
-            )}
+            <span>WhatsApp:</span>
+            ${escapeHTML(phone)}
 
           </div>
 
 
           <div class="info-line">
 
-            ✂️ <span>Servicio:</span>
+            <span>Servicio:</span>
+            ${escapeHTML(serviceName)}
 
-            ${escapeHTML(
-              serviceName
-            )}
-
-            ${
-              formattedPrice
-                ? ' · ' +
-                  formattedPrice
-                : ''
-            }
+            ${formattedPrice
+              ? ' · ' + formattedPrice
+              : ''}
 
           </div>
-
-
-          <div class="info-line">
-
-            📌 <span>Estado:</span>
-
-            ${escapeHTML(
-              statusText
-            )}
-
-          </div>
-
 
         </div>
 
 
-        <!-- FIDELIDAD -->
-
         <div class="loyalty">
-
 
           <div class="loyalty-title">
 
-
             <strong>
-              🎟️ Fidelidad
+              Fidelidad
             </strong>
 
-
             <strong>
-              ${Math.min(cuts,5)} / 5
+              ${cuts} / 5
             </strong>
-
 
           </div>
 
 
           <div class="stamps">
 
-            ${createStamps(
-              cuts
-            )}
+            ${createStamps(cuts)}
 
           </div>
 
 
           ${
             benefit
-
               ? `
 
                 <div class="free-message">
 
-                  🎁 ¡CORTE GRATIS DISPONIBLE!
+                  CORTE GRATIS DISPONIBLE
 
                 </div>
 
-
                 <button
                   class="loyalty-btn free"
-                  onclick="useBenefit('${escapeAttribute(client.id || '')}')">
+                  onclick="useBenefit('${client.id}')">
 
-                  🎁 USAR BENEFICIO GRATIS
+                  USAR BENEFICIO GRATIS
 
                 </button>
 
               `
-
               : `
 
                 <div class="loyalty-message">
 
                   ${
                     cuts === 0
-
                       ? 'Cliente comenzando su tarjeta.'
-
-                      : cuts >= 4
-
-                        ? '🎯 ¡Este es su último corte pagado antes del beneficio!'
-
-                        : `Le faltan ${5 - cuts} corte(s) para completar la tarjeta.`
-
+                      : `Le faltan ${5 - cuts} corte(s) para completar la tarjeta.`
                   }
 
                 </div>
 
+                <button
+                  class="loyalty-btn"
+                  onclick="addCut('${client.id}')">
 
-                ${
-                  estado === 'confirmada'
+                  SUMAR CORTE
 
-                    ? `
-
-                      <button
-                        class="loyalty-btn"
-                        onclick="addCut('${escapeAttribute(client.id || '')}')">
-
-                        ➕ SUMAR CORTE
-
-                      </button>
-
-                    `
-
-                    : `
-
-                      <div
-                        class="loyalty-message"
-                        style="margin-top:10px;">
-
-                        🔒 Confirma la reserva para poder registrar el corte.
-
-                      </div>
-
-                    `
-
-                }
+                </button>
 
               `
           }
 
-
         </div>
-
-
-        <!-- ACCIONES -->
 
 
         <div class="actions">
 
 
           ${
-            estado !==
-            'confirmada'
-
+            estado !== 'confirmada'
               ? `
 
                 <button
                   class="action-btn confirm-btn"
-                  onclick="changeStatus(
-                    '${escapeAttribute(reservation.id)}',
-                    'confirmada'
-                  )">
+                  onclick="changeStatus('${reservation.id}','confirmada')">
 
-                  🟢 CONFIRMAR
+                  CONFIRMAR
 
                 </button>
 
               `
-
               : ''
-
           }
 
 
           ${
-            estado !==
-            'cancelada'
-
+            estado !== 'cancelada'
               ? `
 
                 <button
                   class="action-btn cancel-btn"
-                  onclick="changeStatus(
-                    '${escapeAttribute(reservation.id)}',
-                    'cancelada'
-                  )">
+                  onclick="changeStatus('${reservation.id}','cancelada')">
 
-                  🔴 CANCELAR
+                  CANCELAR
 
                 </button>
 
               `
-
               : ''
-
           }
 
 
           ${
             whatsappNumber
-
               ? `
 
                 <button
                   class="action-btn whatsapp-btn"
-                  onclick="openWhatsApp(
-                    '${escapeAttribute(whatsappNumber)}',
-                    '${escapeAttribute(clientName)}',
-                    '${escapeAttribute(reservation.fecha)}',
-                    '${escapeAttribute(formatTime(reservation.hora))}',
-                    '${escapeAttribute(serviceName)}',
-                    '${escapeAttribute(price || '')}',
-                    '${escapeAttribute(estado)}'
-                  )">
+                  onclick="openWhatsAppData('${whatsappEncoded}')">
 
-                  📲 WHATSAPP
+                  WHATSAPP
 
                 </button>
 
               `
-
               : ''
-
           }
 
-
         </div>
-
 
       `;
 
 
-      reservationsList.appendChild(
-        card
-      );
+      reservationsList.appendChild(card);
 
     }
   );
@@ -2017,23 +1336,12 @@ function renderReservations(
 
 
 /* ==========================================
-   CREAR SELLOS
+   SELLOS DE FIDELIDAD
    ========================================== */
 
-function createStamps(
-  cuts
-){
+function createStamps(cuts){
 
-  let html =
-    '';
-
-
-  const safeCuts =
-    Math.min(
-      Number(cuts) || 0,
-      5
-    );
-
+  let html = '';
 
   for(
     let i = 1;
@@ -2041,19 +1349,15 @@ function createStamps(
     i++
   ){
 
-    if(
-      i <= safeCuts
-    ){
+    if(i <= cuts){
 
       html +=
         `<div class="stamp active">✂</div>`;
 
-    }else if(
-      i === 5
-    ){
+    }else if(i === 5){
 
       html +=
-        `<div class="stamp">🎁</div>`;
+        `<div class="stamp">G</div>`;
 
     }else{
 
@@ -2064,7 +1368,6 @@ function createStamps(
 
   }
 
-
   return html;
 
 }
@@ -2074,20 +1377,7 @@ function createStamps(
    SUMAR CORTE
    ========================================== */
 
-async function addCut(
-  clientId
-){
-
-  if(!clientId){
-
-    alert(
-      'No se encontró el cliente.'
-    );
-
-    return;
-
-  }
-
+async function addCut(clientId){
 
   const {
     data:client,
@@ -2108,8 +1398,7 @@ async function addCut(
   if(clientError){
 
     alert(
-      'No se pudo obtener la información del cliente.\n\n' +
-      clientError.message
+      'No se pudo obtener la información del cliente.'
     );
 
     return;
@@ -2119,17 +1408,14 @@ async function addCut(
 
   let cuts =
     Number(
-      client.cortes_completados ||
-      0
+      client.cortes_completados || 0
     );
 
 
-  if(
-    client.beneficio_disponible
-  ){
+  if(client.beneficio_disponible){
 
     alert(
-      '🎁 Este cliente ya tiene un corte gratis disponible.'
+      'Este cliente ya tiene un corte gratis disponible.'
     );
 
     return;
@@ -2137,28 +1423,7 @@ async function addCut(
   }
 
 
-  if(
-    cuts >= 5
-  ){
-
-    alert(
-      'El cliente ya completó 5 cortes.'
-    );
-
-    return;
-
-  }
-
-
-  const confirmCut =
-    confirm(
-      `¿Registrar este corte como pagado?\n\n` +
-      `Progreso actual: ${cuts}/5\n` +
-      `Después quedará en: ${cuts + 1}/5`
-    );
-
-
-  if(!confirmCut){
+  if(cuts >= 5){
 
     return;
 
@@ -2168,16 +1433,12 @@ async function addCut(
   cuts++;
 
 
-  let benefit =
-    false;
+  let benefit = false;
 
 
-  if(
-    cuts === 5
-  ){
+  if(cuts === 5){
 
-    benefit =
-      true;
+    benefit = true;
 
   }
 
@@ -2214,20 +1475,17 @@ async function addCut(
   }
 
 
-  if(
-    benefit
-  ){
+  if(benefit){
 
     alert(
-      '🎉 ¡TARJETA COMPLETADA!\n\n' +
-      'El cliente llegó a 5/5.\n\n' +
-      '🎁 Tiene un corte GRATIS disponible.'
+      'Cliente completó 5 cortes.\n\n' +
+      'Tiene un corte GRATIS disponible.'
     );
 
   }else{
 
     alert(
-      `✅ Corte registrado.\n\n` +
+      `Corte registrado.\n\n` +
       `Progreso: ${cuts}/5`
     );
 
@@ -2243,25 +1501,11 @@ async function addCut(
    USAR BENEFICIO
    ========================================== */
 
-async function useBenefit(
-  clientId
-){
-
-  if(!clientId){
-
-    alert(
-      'No se encontró el cliente.'
-    );
-
-    return;
-
-  }
-
+async function useBenefit(clientId){
 
   const confirmUse =
     confirm(
-      '🎁 ¿Confirmas que el cliente está utilizando su corte GRATIS?\n\n' +
-      'Después de utilizarlo, su tarjeta volverá a 0/5.'
+      '¿Confirmas que el cliente está utilizando su corte GRATIS?'
     );
 
 
@@ -2305,7 +1549,7 @@ async function useBenefit(
 
 
   alert(
-    '🎁 Beneficio utilizado correctamente.\n\n' +
+    'Beneficio utilizado.\n\n' +
     'La tarjeta comenzó nuevamente en 0/5.'
   );
 
@@ -2325,17 +1569,12 @@ async function changeStatus(
 ){
 
   const text =
-    newStatus ===
-    'confirmada'
-
+    newStatus === 'confirmada'
       ? '¿Confirmar esta reserva?'
-
       : '¿Cancelar esta reserva?';
 
 
-  if(
-    !confirm(text)
-  ){
+  if(!confirm(text)){
 
     return;
 
@@ -2372,26 +1611,10 @@ async function changeStatus(
 
 
   alert(
-
-    newStatus ===
-    'confirmada'
-
-      ? '✅ Reserva confirmada correctamente.'
-
-      : '🔴 Reserva cancelada correctamente.'
-
+    newStatus === 'confirmada'
+      ? 'Reserva confirmada.'
+      : 'Reserva cancelada.'
   );
-
-
-  /*
-    IMPORTANTE:
-
-    Confirmar o cancelar NO abre WhatsApp.
-
-    Si quieres enviar el mensaje,
-    debes presionar el botón
-    📲 WHATSAPP.
-  */
 
 
   loadReservations();
@@ -2403,130 +1626,88 @@ async function changeStatus(
    WHATSAPP MEJORADO
    ========================================== */
 
-function openWhatsApp(
-  phone,
-  name,
-  reservationDate,
-  reservationTime,
-  serviceName,
-  price,
-  status
-){
+function openWhatsAppData(encodedData){
 
-  let message =
-    '';
+  try{
+
+    const data =
+      JSON.parse(
+        decodeURIComponent(encodedData)
+      );
 
 
-  const formattedDate =
-    formatDate(
-      reservationDate
+    const phone =
+      data.phone;
+
+
+    const name =
+      data.name || 'Cliente';
+
+
+    const date =
+      formatDate(data.date);
+
+
+    const time =
+      formatTime(data.time);
+
+
+    const service =
+      data.service || 'Servicio';
+
+
+    const price =
+      data.price || 'Consultar';
+
+
+    let statusText =
+      'pendiente de confirmación';
+
+
+    if(data.status === 'confirmada'){
+
+      statusText =
+        'CONFIRMADA';
+
+    }
+
+
+    const message =
+`Hola ${name}.
+
+Te escribimos de REY DE REYES BARBERIA.
+
+Tu reserva está ${statusText}.
+
+FECHA: ${date}
+HORA: ${time}
+SERVICIO: ${service}
+PRECIO: ${price}
+
+Por favor, llega unos minutos antes de tu hora reservada.
+
+Gracias por preferir REY DE REYES BARBERIA.
+
+¡Te esperamos!`;
+
+
+    const url =
+      `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+
+    window.open(
+      url,
+      '_blank'
     );
 
 
-  const formattedPrice =
-    price
+  }catch(error){
 
-      ? '$' +
-        Number(price)
-          .toLocaleString(
-            'es-CL'
-          )
-
-      : '';
-
-
-  /* ======================================
-     RESERVA CONFIRMADA
-     ====================================== */
-
-  if(
-    status ===
-    'confirmada'
-  ){
-
-    message =
-      `👑 Hola ${name}, te hablamos de Rey de Reyes Barbería.\n\n` +
-
-      `🟢 *TU RESERVA HA SIDO CONFIRMADA*\n\n` +
-
-      `✂️ Servicio: ${serviceName}\n` +
-
-      `💰 Precio: ${formattedPrice}\n` +
-
-      `📅 Fecha: ${formattedDate}\n` +
-
-      `⏰ Hora: ${reservationTime}\n\n` +
-
-      `📍 María Cristina 6600, La Florida, Santiago\n\n` +
-
-      `¡Te esperamos! 👑✂️\n\n` +
-
-      `Rey de Reyes · Barbería`;
+    alert(
+      'No se pudo abrir WhatsApp.'
+    );
 
   }
-
-
-  /* ======================================
-     RESERVA CANCELADA
-     ====================================== */
-
-  else if(
-    status ===
-    'cancelada'
-  ){
-
-    message =
-      `👑 Hola ${name}, te hablamos de Rey de Reyes Barbería.\n\n` +
-
-      `🔴 *TU RESERVA HA SIDO CANCELADA*\n\n` +
-
-      `✂️ Servicio: ${serviceName}\n` +
-
-      `📅 Fecha: ${formattedDate}\n` +
-
-      `⏰ Hora: ${reservationTime}\n\n` +
-
-      `Si quieres reservar nuevamente, escríbenos y con gusto te ayudaremos a encontrar otra hora. 👑✂️\n\n` +
-
-      `Rey de Reyes · Barbería`;
-
-  }
-
-
-  /* ======================================
-     RESERVA PENDIENTE
-     ====================================== */
-
-  else{
-
-    message =
-      `👑 Hola ${name}, te hablamos de Rey de Reyes Barbería.\n\n` +
-
-      `📋 *INFORMACIÓN DE TU RESERVA*\n\n` +
-
-      `✂️ Servicio: ${serviceName}\n` +
-
-      `💰 Precio: ${formattedPrice}\n` +
-
-      `📅 Fecha: ${formattedDate}\n` +
-
-      `⏰ Hora: ${reservationTime}\n\n` +
-
-      `Tu reserva está pendiente de confirmación.\n\n` +
-
-      `¡Gracias por preferir Rey de Reyes! 👑✂️`;
-
-  }
-
-
-  const url =
-    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-
-
-  window.open(
-    url,
-    '_blank'
-  );
 
 }
 
@@ -2535,9 +1716,7 @@ function openWhatsApp(
    FORMATO FECHA
    ========================================== */
 
-function formatDate(
-  date
-){
+function formatDate(date){
 
   if(!date){
 
@@ -2548,8 +1727,7 @@ function formatDate(
 
   const selected =
     new Date(
-      date +
-      'T12:00:00'
+      date + 'T12:00:00'
     );
 
 
@@ -2570,9 +1748,7 @@ function formatDate(
    FORMATO HORA
    ========================================== */
 
-function formatTime(
-  time
-){
+function formatTime(time){
 
   if(!time){
 
@@ -2581,9 +1757,7 @@ function formatTime(
   }
 
 
-  return String(
-    time
-  ).substring(
+  return time.substring(
     0,
     5
   );
@@ -2595,34 +1769,27 @@ function formatTime(
    SEGURIDAD HTML
    ========================================== */
 
-function escapeHTML(
-  text
-){
+function escapeHTML(text){
 
   return String(
     text ?? ''
   )
-
   .replace(
     /&/g,
     '&amp;'
   )
-
   .replace(
     /</g,
     '&lt;'
   )
-
   .replace(
     />/g,
     '&gt;'
   )
-
   .replace(
     /"/g,
     '&quot;'
   )
-
   .replace(
     /'/g,
     '&#039;'
@@ -2631,45 +1798,12 @@ function escapeHTML(
 }
 
 
-function escapeAttribute(
-  text
-){
-
-  return String(
-    text ?? ''
-  )
-
-  .replace(
-    /\\/g,
-    '\\\\'
-  )
-
-  .replace(
-    /'/g,
-    "\\'"
-  )
-
-  .replace(
-    /\n/g,
-    '\\n'
-  )
-
-  .replace(
-    /\r/g,
-    '\\r'
-  );
-
-}
-
-
 /* ==========================================
-   BOTÓN HOY
+   BOTONES
    ========================================== */
 
 document
-  .getElementById(
-    'todayButton'
-  )
+  .getElementById('todayButton')
   .addEventListener(
     'click',
     () => {
@@ -2677,21 +1811,14 @@ document
       dateFilter.value =
         getToday();
 
-
       loadReservations();
 
     }
   );
 
 
-/* ==========================================
-   BOTÓN TODAS
-   ========================================== */
-
 document
-  .getElementById(
-    'allButton'
-  )
+  .getElementById('allButton')
   .addEventListener(
     'click',
     () => {
@@ -2699,21 +1826,14 @@ document
       dateFilter.value =
         '';
 
-
       loadReservations();
 
     }
   );
 
 
-/* ==========================================
-   BOTÓN ACTUALIZAR
-   ========================================== */
-
 document
-  .getElementById(
-    'refreshButton'
-  )
+  .getElementById('refreshButton')
   .addEventListener(
     'click',
     () => {
@@ -2723,10 +1843,6 @@ document
     }
   );
 
-
-/* ==========================================
-   FILTRO DE FECHA
-   ========================================== */
 
 dateFilter.addEventListener(
   'change',
