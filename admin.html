@@ -281,10 +281,12 @@ header p{
   display:flex;
   gap:8px;
   margin-top:15px;
+  flex-wrap:wrap;
 }
 
 .action-btn{
   flex:1;
+  min-width:120px;
   border-radius:10px;
   padding:10px 5px;
   border:1px solid var(--linea);
@@ -309,6 +311,82 @@ header p{
 .whatsapp-btn{
   border-color:#38563d;
   color:#9ac79d;
+}
+
+/* FIDELIDAD */
+
+.loyalty{
+  margin-top:15px;
+  padding:15px;
+  border:1px solid #4b412e;
+  border-radius:15px;
+  background:#171613;
+}
+
+.loyalty-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.loyalty-title strong{
+  color:var(--dorado-claro);
+}
+
+.stamps{
+  display:flex;
+  gap:7px;
+  margin:12px 0;
+}
+
+.stamp{
+  height:35px;
+  flex:1;
+  border-radius:10px;
+  border:1px solid #4b412e;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#686257;
+  font-size:15px;
+}
+
+.stamp.active{
+  background:linear-gradient(145deg,#e1c47d,#a9813c);
+  color:#111;
+  border-color:#e5c985;
+}
+
+.loyalty-message{
+  color:var(--gris);
+  font-size:11px;
+  line-height:1.5;
+}
+
+.loyalty-btn{
+  width:100%;
+  margin-top:10px;
+  padding:10px;
+  border-radius:10px;
+  border:1px solid #675737;
+  background:#211c13;
+  color:var(--dorado-claro);
+  font-weight:700;
+  cursor:pointer;
+  font-family:inherit;
+  font-size:11px;
+}
+
+.free{
+  border-color:#66552b;
+  background:#29220f;
+}
+
+.free-message{
+  color:var(--dorado-claro);
+  font-weight:700;
+  font-size:12px;
+  margin-top:8px;
 }
 
 .empty{
@@ -360,9 +438,7 @@ footer{
 <body>
 
 
-<!-- ==============================
-     LOGIN
-     ============================== -->
+<!-- LOGIN -->
 
 <div
   id="loginScreen"
@@ -410,9 +486,7 @@ footer{
 </div>
 
 
-<!-- ==============================
-     PANEL
-     ============================== -->
+<!-- PANEL -->
 
 <div
   id="adminPanel"
@@ -499,6 +573,7 @@ footer{
         id="dateFilter"
         class="input date-filter">
 
+
       <button
         id="todayButton"
         class="btn">
@@ -507,6 +582,7 @@ footer{
 
       </button>
 
+
       <button
         id="allButton"
         class="btn btn-dark">
@@ -514,6 +590,7 @@ footer{
         TODAS
 
       </button>
+
 
       <button
         id="refreshButton"
@@ -532,26 +609,16 @@ footer{
 
   <section class="card">
 
-    <div
-      style="
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        margin-bottom:5px;
-      ">
-
-      <h2 style="font-size:17px;">
-        📋 Reservas
-      </h2>
-
-    </div>
+    <h2 style="font-size:17px;">
+      📋 Reservas
+    </h2>
 
     <p
       id="reservationSubtitle"
       style="
         color:var(--gris);
         font-size:11px;
-        margin-bottom:10px;
+        margin:5px 0 10px;
       ">
 
       Cargando reservas...
@@ -584,7 +651,7 @@ footer{
 <script>
 
 /* ==========================================
-   CONFIGURACIÓN SUPABASE
+   SUPABASE
    ========================================== */
 
 const SUPABASE_URL =
@@ -603,15 +670,7 @@ const supabaseClient =
 
 
 /* ==========================================
-   CONTRASEÑA DEL PANEL
-   ==========================================
-
-   IMPORTANTE:
-   Esta es una protección básica.
-   Más adelante podemos hacer un sistema
-   de administrador real con Supabase Auth.
-
-   Puedes cambiar esta contraseña.
+   CONTRASEÑA
    ========================================== */
 
 const ADMIN_PASSWORD =
@@ -627,60 +686,50 @@ const loginScreen =
     'loginScreen'
   );
 
-
 const adminPanel =
   document.getElementById(
     'adminPanel'
   );
-
 
 const passwordInput =
   document.getElementById(
     'passwordInput'
   );
 
-
 const loginButton =
   document.getElementById(
     'loginButton'
   );
-
 
 const loginError =
   document.getElementById(
     'loginError'
   );
 
-
 const reservationsList =
   document.getElementById(
     'reservationsList'
   );
-
 
 const dateFilter =
   document.getElementById(
     'dateFilter'
   );
 
-
 const totalReservations =
   document.getElementById(
     'totalReservations'
   );
-
 
 const pendingReservations =
   document.getElementById(
     'pendingReservations'
   );
 
-
 const confirmedReservations =
   document.getElementById(
     'confirmedReservations'
   );
-
 
 const reservationSubtitle =
   document.getElementById(
@@ -697,8 +746,10 @@ function login(){
   const password =
     passwordInput.value.trim();
 
-
-  if(password === ADMIN_PASSWORD){
+  if(
+    password ===
+    ADMIN_PASSWORD
+  ){
 
     loginScreen.classList.add(
       'hidden'
@@ -730,7 +781,10 @@ passwordInput.addEventListener(
   'keydown',
   event => {
 
-    if(event.key === 'Enter'){
+    if(
+      event.key ===
+      'Enter'
+    ){
 
       login();
 
@@ -783,8 +837,14 @@ async function loadReservations(){
       supabaseClient
         .from('reservas')
         .select('*')
-        .order('fecha',{ascending:true})
-        .order('hora',{ascending:true});
+        .order(
+          'fecha',
+          {ascending:true}
+        )
+        .order(
+          'hora',
+          {ascending:true}
+        );
 
 
     const selectedDate =
@@ -810,11 +870,6 @@ async function loadReservations(){
 
     if(error){
 
-      console.error(
-        'Error reservas:',
-        error
-      );
-
       reservationsList.innerHTML =
         `<div class="empty">
           ❌ No se pudieron cargar las reservas.<br><br>
@@ -826,12 +881,17 @@ async function loadReservations(){
     }
 
 
-    if(!data || data.length === 0){
+    if(
+      !data ||
+      data.length === 0
+    ){
 
       reservationsList.innerHTML =
         `<div class="empty">
           📅 No hay reservas
-          ${selectedDate ? 'para esta fecha' : ''}
+          ${selectedDate
+            ? 'para esta fecha'
+            : ''}
         </div>`;
 
       updateStats([]);
@@ -846,7 +906,7 @@ async function loadReservations(){
     }
 
 
-    /* BUSCAR CLIENTES */
+    /* CLIENTES */
 
     const clientIds =
       [
@@ -864,16 +924,17 @@ async function loadReservations(){
     let clients = [];
 
 
-    if(clientIds.length > 0){
+    if(
+      clientIds.length > 0
+    ){
 
       const {
-        data:clientData,
-        error:clientError
+        data:clientData
       } =
         await supabaseClient
           .from('clientes')
           .select(
-            'id,nombre,whatsapp'
+            'id,nombre,whatsapp,cortes_completados,beneficio_disponible'
           )
           .in(
             'id',
@@ -881,17 +942,13 @@ async function loadReservations(){
           );
 
 
-      if(!clientError){
-
-        clients =
-          clientData || [];
-
-      }
+      clients =
+        clientData || [];
 
     }
 
 
-    /* BUSCAR SERVICIOS */
+    /* SERVICIOS */
 
     const serviceIds =
       [
@@ -909,11 +966,12 @@ async function loadReservations(){
     let services = [];
 
 
-    if(serviceIds.length > 0){
+    if(
+      serviceIds.length > 0
+    ){
 
       const {
-        data:serviceData,
-        error:serviceError
+        data:serviceData
       } =
         await supabaseClient
           .from('servicios')
@@ -926,17 +984,11 @@ async function loadReservations(){
           );
 
 
-      if(!serviceError){
-
-        services =
-          serviceData || [];
-
-      }
+      services =
+        serviceData || [];
 
     }
 
-
-    /* CONSTRUIR RESERVAS */
 
     const completeReservations =
       data.map(
@@ -992,8 +1044,6 @@ async function loadReservations(){
 
   }catch(error){
 
-    console.error(error);
-
     reservationsList.innerHTML =
       `<div class="empty">
         ❌ Ocurrió un error.<br><br>
@@ -1016,14 +1066,12 @@ function updateStats(
   totalReservations.innerText =
     reservations.length;
 
-
   pendingReservations.innerText =
     reservations.filter(
       reservation =>
         reservation.estado ===
         'pendiente'
     ).length;
-
 
   confirmedReservations.innerText =
     reservations.filter(
@@ -1036,7 +1084,7 @@ function updateStats(
 
 
 /* ==========================================
-   MOSTRAR RESERVAS
+   RESERVAS
    ========================================== */
 
 function renderReservations(
@@ -1101,27 +1149,33 @@ function renderReservations(
       }
 
 
+      const client =
+        reservation.client ||
+        {};
+
+
       const clientName =
-        reservation.client
-          ?.nombre ||
+        client.nombre ||
         'Cliente';
 
 
       const phone =
-        reservation.client
-          ?.whatsapp ||
+        client.whatsapp ||
         'No registrado';
 
 
+      const service =
+        reservation.service ||
+        {};
+
+
       const serviceName =
-        reservation.service
-          ?.nombre ||
+        service.nombre ||
         'Servicio';
 
 
       const price =
-        reservation.service
-          ?.precio;
+        service.precio;
 
 
       const formattedPrice =
@@ -1139,6 +1193,18 @@ function renderReservations(
           /\D/g,
           ''
         );
+
+
+      const cuts =
+        Number(
+          client.cortes_completados ||
+          0
+        );
+
+
+      const benefit =
+        client.beneficio_disponible ===
+        true;
 
 
       card.innerHTML = `
@@ -1164,6 +1230,7 @@ function renderReservations(
             </div>
 
           </div>
+
 
           <span class="status ${statusClass}">
 
@@ -1205,50 +1272,115 @@ function renderReservations(
         </div>
 
 
+        <div class="loyalty">
+
+          <div class="loyalty-title">
+
+            <strong>
+              🎟️ Fidelidad
+            </strong>
+
+            <strong>
+              ${cuts} / 5
+            </strong>
+
+          </div>
+
+
+          <div class="stamps">
+
+            ${createStamps(cuts)}
+
+          </div>
+
+
+          ${
+            benefit
+              ? `
+                <div class="free-message">
+
+                  🎁 ¡CORTE GRATIS DISPONIBLE!
+
+                </div>
+
+                <button
+                  class="loyalty-btn free"
+                  onclick="useBenefit('${client.id}')">
+
+                  🎁 USAR BENEFICIO GRATIS
+
+                </button>
+              `
+              : `
+                <div class="loyalty-message">
+
+                  ${
+                    cuts === 0
+                      ? 'Cliente comenzando su tarjeta.'
+                      : `Le faltan ${5 - cuts} corte(s) para completar la tarjeta.`
+                  }
+
+                </div>
+
+                <button
+                  class="loyalty-btn"
+                  onclick="addCut('${client.id}')">
+
+                  ➕ SUMAR CORTE
+
+                </button>
+              `
+          }
+
+        </div>
+
+
         <div class="actions">
 
           ${
-            estado !== 'confirmada'
-            ? `
-              <button
-                class="action-btn confirm-btn"
-                onclick="changeStatus('${reservation.id}','confirmada')">
+            estado !==
+            'confirmada'
+              ? `
+                <button
+                  class="action-btn confirm-btn"
+                  onclick="changeStatus('${reservation.id}','confirmada')">
 
-                🟢 CONFIRMAR
+                  🟢 CONFIRMAR
 
-              </button>
-            `
-            : ''
+                </button>
+              `
+              : ''
           }
 
 
           ${
-            estado !== 'cancelada'
-            ? `
-              <button
-                class="action-btn cancel-btn"
-                onclick="changeStatus('${reservation.id}','cancelada')">
+            estado !==
+            'cancelada'
+              ? `
+                <button
+                  class="action-btn cancel-btn"
+                  onclick="changeStatus('${reservation.id}','cancelada')">
 
-                🔴 CANCELAR
+                  🔴 CANCELAR
 
-              </button>
-            `
-            : ''
+                </button>
+              `
+              : ''
           }
 
 
           ${
             whatsappNumber
-            ? `
-              <button
-                class="action-btn whatsapp-btn"
-                onclick="openWhatsApp('${whatsappNumber}','${escapeAttribute(clientName)}')">
+              ? `
+                <button
+                  class="action-btn whatsapp-btn"
+                  onclick="openWhatsApp('${whatsappNumber}','${escapeAttribute(clientName)}')">
 
-                📲 WHATSAPP
+                  📲 WHATSAPP
 
-              </button>
-            `
-            : ''
+                </button>
+              `
+              : ''
           }
 
         </div>
@@ -1262,6 +1394,253 @@ function renderReservations(
 
     }
   );
+
+}
+
+
+/* ==========================================
+   CREAR SELLOS
+   ========================================== */
+
+function createStamps(
+  cuts
+){
+
+  let html = '';
+
+
+  for(
+    let i = 1;
+    i <= 5;
+    i++
+  ){
+
+    if(
+      i <= cuts
+    ){
+
+      html +=
+        `<div class="stamp active">✂</div>`;
+
+    }else if(
+      i === 5
+    ){
+
+      html +=
+        `<div class="stamp">🎁</div>`;
+
+    }else{
+
+      html +=
+        `<div class="stamp">✂</div>`;
+
+    }
+
+  }
+
+
+  return html;
+
+}
+
+
+/* ==========================================
+   SUMAR CORTE
+   ========================================== */
+
+async function addCut(
+  clientId
+){
+
+  const {
+    data:client,
+    error:clientError
+  } =
+    await supabaseClient
+      .from('clientes')
+      .select(
+        'cortes_completados,beneficio_disponible'
+      )
+      .eq(
+        'id',
+        clientId
+      )
+      .single();
+
+
+  if(clientError){
+
+    alert(
+      'No se pudo obtener la información del cliente.'
+    );
+
+    return;
+
+  }
+
+
+  let cuts =
+    Number(
+      client.cortes_completados ||
+      0
+    );
+
+
+  if(
+    client.beneficio_disponible
+  ){
+
+    alert(
+      'Este cliente ya tiene un corte gratis disponible.'
+    );
+
+    return;
+
+  }
+
+
+  if(
+    cuts >= 5
+  ){
+
+    return;
+
+  }
+
+
+  cuts++;
+
+
+  let benefit =
+    false;
+
+
+  if(
+    cuts === 5
+  ){
+
+    benefit =
+      true;
+
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from('clientes')
+      .update({
+
+        cortes_completados:
+          cuts,
+
+        beneficio_disponible:
+          benefit
+
+      })
+      .eq(
+        'id',
+        clientId
+      );
+
+
+  if(error){
+
+    alert(
+      'No se pudo sumar el corte.\n\n' +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  if(
+    benefit
+  ){
+
+    alert(
+      '🎉 ¡Cliente completó 5 cortes!\n\n' +
+      '🎁 Tiene un corte GRATIS disponible.'
+    );
+
+  }else{
+
+    alert(
+      `✅ Corte registrado.\n\n` +
+      `Progreso: ${cuts}/5`
+    );
+
+  }
+
+
+  loadReservations();
+
+}
+
+
+/* ==========================================
+   USAR BENEFICIO
+   ========================================== */
+
+async function useBenefit(
+  clientId
+){
+
+  const confirmUse =
+    confirm(
+      '¿Confirmas que el cliente está utilizando su corte GRATIS?'
+    );
+
+
+  if(!confirmUse){
+
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+    await supabaseClient
+      .from('clientes')
+      .update({
+
+        cortes_completados:
+          0,
+
+        beneficio_disponible:
+          false
+
+      })
+      .eq(
+        'id',
+        clientId
+      );
+
+
+  if(error){
+
+    alert(
+      'No se pudo utilizar el beneficio.\n\n' +
+      error.message
+    );
+
+    return;
+
+  }
+
+
+  alert(
+    '🎁 Beneficio utilizado.\n\n' +
+    'La tarjeta comenzó nuevamente en 0/5.'
+  );
+
+
+  loadReservations();
 
 }
 
@@ -1282,7 +1661,9 @@ async function changeStatus(
       : '¿Cancelar esta reserva?';
 
 
-  if(!confirm(text)){
+  if(
+    !confirm(text)
+  ){
 
     return;
 
@@ -1295,7 +1676,8 @@ async function changeStatus(
     await supabaseClient
       .from('reservas')
       .update({
-        estado:newStatus
+        estado:
+          newStatus
       })
       .eq(
         'id',
@@ -1308,10 +1690,6 @@ async function changeStatus(
     alert(
       'No se pudo actualizar la reserva.\n\n' +
       error.message
-    );
-
-    console.error(
-      error
     );
 
     return;
@@ -1372,7 +1750,8 @@ function formatDate(
 
   const selected =
     new Date(
-      date + 'T12:00:00'
+      date +
+      'T12:00:00'
     );
 
 
